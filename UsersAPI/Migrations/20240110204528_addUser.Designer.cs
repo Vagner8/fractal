@@ -12,8 +12,8 @@ using UsersAPI.Data;
 namespace UsersAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231231114156_SeedUsersTables")]
-    partial class SeedUsersTables
+    [Migration("20240110204528_addUser")]
+    partial class addUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,19 +78,7 @@ namespace UsersAPI.Migrations
                             Login = "Vagner",
                             Password = "123456",
                             Phone = "+420776544634",
-                            Updated = new DateTime(2023, 12, 31, 13, 41, 56, 146, DateTimeKind.Local).AddTicks(5610)
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            DateTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "myevropa1@gmail.com",
-                            FirstName = "Dmitry",
-                            LastName = "Vagner",
-                            Login = "Vagner",
-                            Password = "123456",
-                            Phone = "+420776544634",
-                            Updated = new DateTime(2023, 12, 31, 13, 41, 56, 146, DateTimeKind.Local).AddTicks(5687)
+                            Updated = new DateTime(2024, 1, 10, 22, 45, 27, 761, DateTimeKind.Local).AddTicks(7721)
                         });
                 });
 #pragma warning restore 612, 618

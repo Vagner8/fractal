@@ -21,18 +21,6 @@ namespace UsersAPI.Data
                 Password = "123456",
                 Updated = DateTime.Now,
             });
-
-            modelBuilder.Entity<User>().HasData(new User
-            {
-                UserId = 2,
-                Login = "Vagner",
-                FirstName = "Dmitry",
-                LastName = "Vagner",
-                Email = "myevropa1@gmail.com",
-                Phone = "+420776544634",
-                Password = "123456",
-                Updated = DateTime.Now,
-            });
         }
     }
 }
