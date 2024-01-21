@@ -15,15 +15,19 @@ namespace UsersAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            try
-            {
-                var response = new VegaShareNuget.Response<IEnumerable<User>>(await _db.Users.ToListAsync(), "");
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            throw new InvalidOperationException("This operation is not valid.");
+            //var response = new ResponseTest<List<User>>();
+            //try
+            //{
+            //    return StatusCode(500, response);
+            //    //response.Data = await _db.Users.ToListAsync();
+            //    //return Ok(response);
+            //}
+            //catch (Exception ex)
+            //{
+            //    response.ErrorMessage = ex.Message;
+            //    return StatusCode(500, response);
+            //}
         }
     }
 }
