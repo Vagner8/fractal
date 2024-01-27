@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 
 namespace UsersAPI.Lib.ExceptionHandling
 {
     public class GlobalExceptionHandler : IExceptionHandler
     {
         private readonly ILogger<GlobalExceptionHandler> _logger;
+        private ResponseDto _responseDto;
 
         public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
         {
             _logger = logger;
+            _responseDto = new ResponseDto();
         }
 
         public async ValueTask<bool> TryHandleAsync(
@@ -19,16 +20,9 @@ namespace UsersAPI.Lib.ExceptionHandling
         {
             _logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
 
-            var problemDetails = new ProblemDetails
-            {
-                Status = StatusCodes.Status500InternalServerError,
-                Title = "Global server error",
-                Detail = exception.Message
-            };
+            _responseDto.ErrorMessage = exception.Message;
 
-            httpContext.Response.StatusCode = problemDetails.Status.Value;
-
-            await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+            await httpContext.Response.WriteAsJsonAsync(_responseDto, cancellationToken);
 
             return true;
         }

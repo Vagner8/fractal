@@ -20,6 +20,7 @@ namespace UsersAPI.Data
                 Phone = "+420776544634",
                 Password = "123456",
                 Updated = DateTime.Now,
+                Created = DateTime.Now,
             });
 
             modelBuilder.Entity<User>().HasData(new User
@@ -32,6 +33,7 @@ namespace UsersAPI.Data
                 Phone = "+420776544634",
                 Password = "123456",
                 Updated = DateTime.Now,
+                Created = DateTime.Now,
             });
         }
     }

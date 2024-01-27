@@ -21,6 +21,7 @@ namespace UsersAPI.Models
         required public string Password { get; set; }
         [Required]
         required public DateTime Updated { get; set; }
-        public DateTime DateTime { get; internal set; }
+        [Required]
+        required public DateTime Created { get; set; }
     }
 }
