@@ -10,31 +10,38 @@ namespace UsersAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly AppDbContext _db;
-        private ResponseDto _responseDto;
 
         public UsersController(AppDbContext db)
         {
             _db = db;
-            _responseDto = new ResponseDto();
         }
 
         [HttpGet]
         public async Task<ActionResult> Get()
         {
-            _responseDto.Result = await _db.Users.ToListAsync();
-            return Ok(_responseDto);
+            return Ok(new ResponseDto
+            {
+                Result = await _db.Users.ToListAsync()
+            });
         }
 
         [HttpGet]
         [Route("{userId:int}")]
         public async Task<ActionResult> Get(int userId)
         {
-            _responseDto.Result = await _db.Users.FirstOrDefaultAsync(user => user.UserId == userId);
-            if (_responseDto.Result == null)
+            var user = await _db.Users.FirstOrDefaultAsync(user => user.UserId == userId);
+            if (user == null)
             {
-                _responseDto.ErrorMessage = $"Incorrest userId: {userId}";
+                return NotFound(new ResponseDto
+                {
+                    ErrorMessage = $"Incorrest userId: {userId}",
+                    Status = StatusCodes.Status404NotFound
+                });
             }
-            return Ok(_responseDto);
+            return Ok(new ResponseDto
+            {
+                Result = user
+            });
         }
     }
 }

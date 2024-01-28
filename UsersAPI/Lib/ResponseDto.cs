@@ -2,27 +2,8 @@
 {
     public class ResponseDto
     {
-        private object? _result = null;
-        private string? _errorMessage = null;
-
-        public object? Result
-        {
-            get => _result;
-            set
-            {
-                _result = value;
-                _errorMessage = null;
-            }
-        }
-
-        public string? ErrorMessage
-        {
-            get => _errorMessage;
-            set
-            {
-                _errorMessage = value;
-                _result = null;
-            }
-        }
+        public object? Result { get; set; } = null;
+        public string? ErrorMessage { get; set; } = null;
+        public int? Status { get; set; } = StatusCodes.Status200OK;
     }
 }

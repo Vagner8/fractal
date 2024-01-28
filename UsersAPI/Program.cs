@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UsersAPI.Data;
 using UsersAPI.Lib.ExceptionHandling;
+using UsersAPI.Lib.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
@@ -36,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler();
+
 app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
@@ -44,7 +47,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseExceptionHandler();
+app.UseMiddleware<NotMatchMiddleware>();
 
 ApplyMigration();
 
