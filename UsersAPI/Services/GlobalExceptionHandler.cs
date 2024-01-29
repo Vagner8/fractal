@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
+using UsersAPI.Lib;
 
-namespace UsersAPI.Lib.ExceptionHandling
+namespace UsersAPI.Services
 {
     public class GlobalExceptionHandler : IExceptionHandler
     {
@@ -18,7 +19,8 @@ namespace UsersAPI.Lib.ExceptionHandling
         CancellationToken cancellationToken)
         {
             _logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
-            ResponseDto responseDto = new ResponseDto {
+            ResponseDto responseDto = new ResponseDto
+            {
                 Result = null,
                 Status = StatusCodes.Status500InternalServerError,
                 ErrorMessage = exception.Message,

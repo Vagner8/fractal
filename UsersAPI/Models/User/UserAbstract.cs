@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace UsersAPI.Models
+namespace UsersAPI.Models.User
 {
-    public class User
+    public abstract class UserAbstract
     {
         [Key]
-        public int UserId { get; set; }
+        required public Guid UserId { get; set; }
         [Required]
         required public string Login { get; set; }
         [Required]
@@ -16,12 +15,12 @@ namespace UsersAPI.Models
         [Required]
         required public string Email { get; set; }
         [Required]
-        required  public string Phone { get; set; }
-        [Required]
-        required public string Password { get; set; }
+        required public string Phone { get; set; }
         [Required]
         required public DateTime Updated { get; set; }
         [Required]
         required public DateTime Created { get; set; }
+        [Required]
+        required public string Password { get; set; }
     }
 }

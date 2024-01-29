@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UsersAPI.Models;
+using UsersAPI.Models.User;
 
 namespace UsersAPI.Data
 {
@@ -12,7 +12,7 @@ namespace UsersAPI.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasData(new User
             {
-                UserId = 1,
+                UserId = Guid.NewGuid(),
                 Login = "Vagner",
                 FirstName = "Dmitry",
                 LastName = "Vagner",
@@ -20,12 +20,12 @@ namespace UsersAPI.Data
                 Phone = "+420776544634",
                 Password = "123456",
                 Updated = DateTime.Now,
-                Created = DateTime.Now,
+                Created = DateTime.Now
             });
 
             modelBuilder.Entity<User>().HasData(new User
             {
-                UserId = 2,
+                UserId = Guid.NewGuid(),
                 Login = "Vagner",
                 FirstName = "Dmitry",
                 LastName = "Vagner",
@@ -33,7 +33,7 @@ namespace UsersAPI.Data
                 Phone = "+420776544634",
                 Password = "123456",
                 Updated = DateTime.Now,
-                Created = DateTime.Now,
+                Created = DateTime.Now
             });
         }
     }

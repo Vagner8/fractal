@@ -1,4 +1,6 @@
-﻿namespace UsersAPI.Lib.Middleware
+﻿using UsersAPI.Lib;
+
+namespace UsersAPI.Middleware
 {
     public class NotMatchMiddleware
     {
@@ -12,7 +14,6 @@
         public async Task InvokeAsync(HttpContext context)
         {
             await _next(context);
-            Console.WriteLine("NotMatchMiddleware executing...");
             if (context.Response.StatusCode == 404)
             {
                 var responseDto = new ResponseDto
