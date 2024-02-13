@@ -21,36 +21,40 @@ namespace UsersAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult> Get([FromQuery] Guid? userId)
         {
-            return Ok(new ResponseDto
+            if (userId.HasValue)
             {
-                Result = _mapper.Map<List<UserDto>>(await _db.Users.ToListAsync())
-            });
-        }
-
-        [HttpGet]
-        [Route("{userId:Guid}")]
-        public async Task<ActionResult> Get(Guid userId)
-        {
-            var user = await _db.Users.FirstOrDefaultAsync(user => user.UserId == userId);
-            if (user == null)
-            {
-                return NotFound(new ResponseDto
+                var user = await _db.Users.FirstOrDefaultAsync(user => user.UserId == userId);             
+                return Ok(new ResponseDto
                 {
-                    ErrorMessage = $"Incorrest userId: {userId}",
-                    Status = StatusCodes.Status404NotFound
+                    Result = _mapper.Map<UserDto>(user)
                 });
             }
-            return Ok(new ResponseDto
+            else
             {
-                Result = _mapper.Map<UserDto>(user)
-            });
+                return Ok(new ResponseDto
+                {
+                    Result = _mapper.Map<List<UserDto>>(await _db.Users.ToListAsync())
+                });
+            }
         }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] UserDto userDto)
         {
+            if (!ModelState.IsValid)
+            {
+                // Custom response for validation errors
+                var responseDto = new ResponseDto
+                {
+                    Result = null,
+                    Status = StatusCodes.Status400BadRequest,
+                    ErrorMessage = "Invalid user data. Please check the provided information."
+                };
+
+                return BadRequest(responseDto);
+            }
             userDto.Updated = DateTime.Now;
             userDto.Created = DateTime.Now;
             userDto.UserId = Guid.NewGuid();
@@ -76,10 +80,17 @@ namespace UsersAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("{userId:Guid}")]
-        public ActionResult Delete(Guid userId)
+        public async Task<ActionResult> Delete([FromQuery] Guid userId)
         {
-            User user = _db.Users.First(user => user.UserId == userId);
+            var user = await _db.Users.FirstOrDefaultAsync(user => user.UserId == userId);
+            if (user == null)
+            {
+                return NotFound(new ResponseDto
+                {
+                    ErrorMessage = $"Not possible delete user by id: {userId}",
+                    Status = StatusCodes.Status404NotFound
+                });
+            }
             _db.Users.Remove(user);
             _db.SaveChanges();
             return Ok(new ResponseDto

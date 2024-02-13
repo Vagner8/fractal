@@ -19,7 +19,7 @@ namespace UsersAPI.Services
         CancellationToken cancellationToken)
         {
             _logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
-            ResponseDto responseDto = new ResponseDto
+            ResponseDto responseDto = new()
             {
                 Result = null,
                 Status = StatusCodes.Status500InternalServerError,
