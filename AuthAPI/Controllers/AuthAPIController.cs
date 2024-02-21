@@ -4,10 +4,7 @@ using AuthAPI.Models.Dto;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
+using AuthAPI.Services;
 
 namespace AuthAPI.Controllers
 {
@@ -18,15 +15,18 @@ namespace AuthAPI.Controllers
         private readonly AppDbContext _appDbContext;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ITokenGeneratorService _tokenGeneratorService;
 
         public AuthAPIController(
             AppDbContext appDbContext,
             UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            ITokenGeneratorService tokenGeneratorService)
         {
             _appDbContext = appDbContext;
             _userManager = userManager;
             _roleManager = roleManager;
+            _tokenGeneratorService = tokenGeneratorService;
         }
 
         [HttpPost("regester")]
@@ -57,7 +57,8 @@ namespace AuthAPI.Controllers
             if (user == null) return NotFound(new ResponseDtoBuilder().SetError("User not found").Get());
             var isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
             if (!isValid) return BadRequest(new ResponseDtoBuilder().SetError("Unvalid password").Get());
-            return Ok(new ResponseDtoBuilder().SetResult(new UserDtoBuilder().FromUser(user)).Get());
+            var token = _tokenGeneratorService.GenerateToken(user);
+            return Ok(new ResponseDtoBuilder().SetToken(token).SetResult(new UserDtoBuilder().FromUser(user)).Get());
         }
     }
 }

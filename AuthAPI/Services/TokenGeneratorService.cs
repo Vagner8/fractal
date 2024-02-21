@@ -1,4 +1,5 @@
 ﻿using AuthAPI.Models;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,22 +11,34 @@ namespace AuthAPI.Services
     {
         private readonly JwtOptions _jwtOptions;
 
-        public TokenGeneratorService(JwtOptions jwtOptions)
+        public TokenGeneratorService(IOptions<JwtOptions> jwtOptions)
         {
-            this._jwtOptions = jwtOptions;
+            this._jwtOptions = jwtOptions.Value;
         }
 
         public string GenerateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
-            var claimList = new List<Claim>
-            {
-                new(JwtRegisteredClaimNames.Email, user.Email),
+            var claimList = GetClaimList(user);
+            var tokenDescriptor = GetTokenDescriptor(claimList, key);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
+        private List<Claim> GetClaimList(User user)
+        {
+            return
+            [
+                new(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty),
                 new(JwtRegisteredClaimNames.Sub, user.Id),
-                new(JwtRegisteredClaimNames.Name, user.UserName)
-            };
-            var tokenDescriptor = new SecurityTokenDescriptor
+                new(JwtRegisteredClaimNames.Name, user.UserName ?? string.Empty)
+            ];
+        }
+
+        private SecurityTokenDescriptor GetTokenDescriptor(List<Claim> claimList, byte[] key)
+        {
+            return new SecurityTokenDescriptor
             {
                 Audience = _jwtOptions.Audience,
                 Issuer = _jwtOptions.Issuer,
@@ -33,8 +46,6 @@ namespace AuthAPI.Services
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
         }
     }
 }
