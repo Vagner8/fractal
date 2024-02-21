@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using AuthAPI.Data;
 using AuthAPI.Models;
 using Microsoft.AspNetCore.Identity;
+using AuthAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(option =>
@@ -14,6 +15,7 @@ builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppD
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

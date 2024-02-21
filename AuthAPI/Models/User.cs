@@ -1,15 +1,34 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿using AuthAPI.Models.Dto;
+using Microsoft.AspNetCore.Identity;
 
 namespace AuthAPI.Models
 {
     public class User : IdentityUser
     {
-        [Required]
-        required public string Name { get; set; }
-        [Required]
-        required public DateTime Updated { get; set; }
-        [Required]
-        required public DateTime Created { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public DateTime Updated { get; set; }
+        public DateTime Created { get; set; }
+    }
+
+    public class UserBuilder
+    {
+        private readonly User _user;
+
+        public UserBuilder()
+        {
+            _user = new User();
+        }
+
+        public User FromRegistrationDto(RegistrationDto registrationDto)
+        {
+            _user.UserName = registrationDto.Email;
+            _user.Email = registrationDto.Email;
+            _user.NormalizedEmail = registrationDto.Email.ToUpper();
+            _user.Name = registrationDto.Name;
+            _user.PhoneNumber = registrationDto.PhoneNumber;
+            _user.Created = DateTime.Now;
+            _user.Updated = DateTime.Now;
+            return _user;
+        }
     }
 }
