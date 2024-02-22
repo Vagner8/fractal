@@ -20,14 +20,11 @@
         public ResponseDtoBuilder SetResult(object value)
         {
             _responseDto.Result = value;
-            _responseDto.Success = true;
-            _responseDto.Error = null;
             return this;
         }
 
         public ResponseDtoBuilder SetError(string? value)
         {
-            _responseDto.Result = null;
             _responseDto.Success = false;
             _responseDto.Error = value;
             return this;

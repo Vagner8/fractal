@@ -12,21 +12,11 @@ namespace AuthAPI.Controllers
     [ApiController]
     public class AuthAPIController : ControllerBase
     {
-        private readonly AppDbContext _appDbContext;
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly ITokenGeneratorService _tokenGeneratorService;
+        private readonly IAuthAPIService _authAPIService;
 
-        public AuthAPIController(
-            AppDbContext appDbContext,
-            UserManager<User> userManager,
-            RoleManager<IdentityRole> roleManager,
-            ITokenGeneratorService tokenGeneratorService)
+        public AuthAPIController(IAuthAPIService authAPIService)
         {
-            _appDbContext = appDbContext;
-            _userManager = userManager;
-            _roleManager = roleManager;
-            _tokenGeneratorService = tokenGeneratorService;
+            _authAPIService = authAPIService;
         }
 
         [HttpPost("regester")]
@@ -34,15 +24,9 @@ namespace AuthAPI.Controllers
         {
             try
             {
-                var newUser = new UserBuilder().FromRegistrationDto(registrationDto);
-                var identityResult = await _userManager.CreateAsync(newUser, registrationDto.Password);
-                if (!identityResult.Succeeded) {
-                    var errorMasage = identityResult.Errors.FirstOrDefault()?.Description;
-                    return BadRequest(new ResponseDtoBuilder().SetError(errorMasage).Get());
-                }
-                var user = await _appDbContext.Users.FirstAsync(user => user.UserName == registrationDto.Email);
-                UserDto userDto = new UserDtoBuilder().FromUser(user);
-                return Ok(new ResponseDtoBuilder().SetResult(userDto).Get());
+                var responseDto = await _authAPIService.Register(registrationDto);
+                if (!responseDto.Success) return BadRequest(responseDto);
+                return Ok(responseDto);
             }
             catch (Exception ex)
             {
@@ -53,12 +37,31 @@ namespace AuthAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
         {
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(user => user.UserName == loginRequestDto.UserName);
-            if (user == null) return NotFound(new ResponseDtoBuilder().SetError("User not found").Get());
-            var isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
-            if (!isValid) return BadRequest(new ResponseDtoBuilder().SetError("Unvalid password").Get());
-            var token = _tokenGeneratorService.GenerateToken(user);
-            return Ok(new ResponseDtoBuilder().SetToken(token).SetResult(new UserDtoBuilder().FromUser(user)).Get());
+            try
+            {
+                var responseDto = await _authAPIService.Login(loginRequestDto);
+                if (!responseDto.Success) return BadRequest(responseDto);
+                return Ok(responseDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Get());
+            }
+        }
+
+        [HttpPost("AssignRole")]
+        public async Task<IActionResult> AssignRole([FromBody] RegistrationDto registrationDto)
+        {
+            try
+            {
+                var responseDto = await _authAPIService.AssignRole(registrationDto);
+                if (!responseDto.Success) return BadRequest(responseDto);
+                return Ok(responseDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Get());
+            }
         }
     }
 }
