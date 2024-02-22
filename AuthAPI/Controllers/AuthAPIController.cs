@@ -1,8 +1,4 @@
-﻿using AuthAPI.Data;
-using AuthAPI.Models;
-using AuthAPI.Models.Dto;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using AuthAPI.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using AuthAPI.Services;
 
