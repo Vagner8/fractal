@@ -16,7 +16,7 @@ namespace AuthAPI.Controllers
         }
 
         [HttpPost("regester")]
-        public async Task<IActionResult> Register([FromBody] RegistrationDto registrationDto)
+        public async Task<ActionResult> Register([FromBody] RegistrationDto registrationDto)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace AuthAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
+        public async Task<ActionResult> Login([FromBody] LoginRequestDto loginRequestDto)
         {
             try
             {
@@ -45,8 +45,8 @@ namespace AuthAPI.Controllers
             }
         }
 
-        [HttpPost("AssignRole")]
-        public async Task<IActionResult> AssignRole([FromBody] RegistrationDto registrationDto)
+        [HttpPost("assignRole")]
+        public async Task<ActionResult> AssignRole([FromBody] RegistrationDto registrationDto)
         {
             try
             {

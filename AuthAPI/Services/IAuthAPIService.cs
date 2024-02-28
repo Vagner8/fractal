@@ -1,5 +1,4 @@
 ﻿using AuthAPI.Models.Dto;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AuthAPI.Services
 {

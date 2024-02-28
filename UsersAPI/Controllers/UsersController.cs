@@ -7,7 +7,7 @@ using UsersAPI.Models.User;
 
 namespace UsersAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
