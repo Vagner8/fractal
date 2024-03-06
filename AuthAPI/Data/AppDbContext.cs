@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AuthAPI.Models;
+using AuthAPI.Models.User;
 
 namespace AuthAPI.Data
 {

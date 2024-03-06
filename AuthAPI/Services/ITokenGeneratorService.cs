@@ -1,4 +1,4 @@
-﻿using AuthAPI.Models;
+﻿using AuthAPI.Models.User;
 
 namespace AuthAPI.Services
 {

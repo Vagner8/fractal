@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AuthAPI.Models.Dto;
 using AuthAPI.Services;
+using AuthAPI.Models.Login;
+using AuthAPI.Models;
+using AuthAPI.Models.ResponseDto;
 
 namespace AuthAPI.Controllers
 {

@@ -1,6 +1,8 @@
 ﻿using AuthAPI.Data;
 using AuthAPI.Models;
-using AuthAPI.Models.Dto;
+using AuthAPI.Models.Login;
+using AuthAPI.Models.ResponseDto;
+using AuthAPI.Models.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +29,7 @@ namespace AuthAPI.Services
 
         public async Task<ResponseDto> Register(RegistrationDto registrationDto)
         {
-            var newUser = new UserBuilder().FromRegistrationDto(registrationDto);
+            var newUser = UserBuilder.ToUser(registrationDto);
             var identityResult = await _userManager.CreateAsync(newUser, registrationDto.Password);
             if (!identityResult.Succeeded)
             {
@@ -35,7 +37,7 @@ namespace AuthAPI.Services
                 return new ResponseDtoBuilder().SetError(errorMessage).Get();
             }
             var user = await GetUserByEmail(registrationDto);
-            UserDto userDto = UserDtoMap.ToUserDto(user);
+            var userDto = UserBuilder.ToUserDto(user);
             return new ResponseDtoBuilder().SetData(userDto).Get();
         }
 
@@ -46,7 +48,7 @@ namespace AuthAPI.Services
             var isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
             if (!isValid) return new ResponseDtoBuilder().SetError("Unvalid password").Get();
             var token = _tokenGeneratorService.GenerateToken(user);
-            return new ResponseDtoBuilder().SetToken(token).SetData(UserDtoMap.ToUserDto(user)).Get();
+            return new ResponseDtoBuilder().SetToken(token).SetData(UserBuilder.ToUserDto(user)).Get();
         }
 
         public async Task<ResponseDto> AssignRole(RegistrationDto registrationDto)

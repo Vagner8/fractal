@@ -3,6 +3,7 @@ using AuthAPI.Data;
 using AuthAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using AuthAPI.Services;
+using AuthAPI.Models.User;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

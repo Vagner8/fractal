@@ -1,4 +1,6 @@
-﻿using AuthAPI.Models.Dto;
+﻿using AuthAPI.Models;
+using AuthAPI.Models.Login;
+using AuthAPI.Models.ResponseDto;
 
 namespace AuthAPI.Services
 {

@@ -1,8 +1,8 @@
-﻿using AuthAPI.Models.Dto;
-using AuthAPI.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using AuthAPI.Models.User;
+using AuthAPI.Models.ResponseDto;
 
 namespace AuthAPI.Controllers
 {
@@ -23,7 +23,7 @@ namespace AuthAPI.Controllers
             try
             {
                 var users = await _manager.Users.ToArrayAsync();
-                return Ok(new ResponseDtoBuilder().SetData(UserDtoMap.ToUsersDto(users)).Get());
+                return Ok(new ResponseDtoBuilder().SetData(UserBuilder.ToUsersDto(users)).Get());
             }
             catch (Exception ex)
             {
