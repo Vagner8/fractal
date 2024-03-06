@@ -23,7 +23,7 @@ namespace AuthAPI.Controllers
             try
             {
                 var users = await _manager.Users.ToArrayAsync();
-                return Ok(new ResponseDtoBuilder().SetData(UserDtoBuilder.ToUsersDto(users)).Get());
+                return Ok(new ResponseDtoBuilder().SetData(UserDtoMap.ToUsersDto(users)).Get());
             }
             catch (Exception ex)
             {

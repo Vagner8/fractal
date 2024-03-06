@@ -35,7 +35,7 @@ namespace AuthAPI.Services
                 return new ResponseDtoBuilder().SetError(errorMessage).Get();
             }
             var user = await GetUserByEmail(registrationDto);
-            UserDto userDto = UserDtoBuilder.ToUserDto(user);
+            UserDto userDto = UserDtoMap.ToUserDto(user);
             return new ResponseDtoBuilder().SetData(userDto).Get();
         }
 
@@ -46,7 +46,7 @@ namespace AuthAPI.Services
             var isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
             if (!isValid) return new ResponseDtoBuilder().SetError("Unvalid password").Get();
             var token = _tokenGeneratorService.GenerateToken(user);
-            return new ResponseDtoBuilder().SetToken(token).SetData(UserDtoBuilder.ToUserDto(user)).Get();
+            return new ResponseDtoBuilder().SetToken(token).SetData(UserDtoMap.ToUserDto(user)).Get();
         }
 
         public async Task<ResponseDto> AssignRole(RegistrationDto registrationDto)

@@ -8,7 +8,7 @@
         public string? Phone { get; set; } = string.Empty;
     }
 
-    public class UserDtoBuilder
+    public class UserDtoMap
     {
         public static UserDto ToUserDto(User user)
         {
