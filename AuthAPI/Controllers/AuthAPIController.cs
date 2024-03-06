@@ -1,5 +1,5 @@
-﻿using AuthAPI.Models.Dto;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using AuthAPI.Models.Dto;
 using AuthAPI.Services;
 
 namespace AuthAPI.Controllers
@@ -15,7 +15,7 @@ namespace AuthAPI.Controllers
             _authAPIService = authAPIService;
         }
 
-        [HttpPost("regester")]
+        [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegistrationDto registrationDto)
         {
             try

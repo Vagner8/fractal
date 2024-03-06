@@ -2,10 +2,10 @@
 {
     public class ResponseDto
     {
-        public object? Result { get; set; } = null;
+        public object? Data { get; set; } = null;
         public bool Success { get; set; } = true;
-        public string Error { get; set; } = string.Empty;
-        public string Token { get; set; } = string.Empty;
+        public string? Error { get; set; } = null;
+        public string? Token { get; set; } = null;
     }
 
     public class ResponseDtoBuilder
@@ -17,9 +17,9 @@
             _responseDto = new ResponseDto();
         }
 
-        public ResponseDtoBuilder SetResult(object value)
+        public ResponseDtoBuilder SetData(object value)
         {
-            _responseDto.Result = value;
+            _responseDto.Data = value;
             return this;
         }
 

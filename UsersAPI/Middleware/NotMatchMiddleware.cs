@@ -18,7 +18,7 @@ namespace UsersAPI.Middleware
             {
                 var responseDto = new ResponseDto
                 {
-                    Result = null,
+                    Data = null,
                     Status = StatusCodes.Status404NotFound,
                     ErrorMessage = $"Wrong url: {context.Request.Path}{context.Request.QueryString}"
                 };

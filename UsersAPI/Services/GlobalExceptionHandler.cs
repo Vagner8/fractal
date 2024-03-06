@@ -21,7 +21,7 @@ namespace UsersAPI.Services
             _logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
             ResponseDto responseDto = new()
             {
-                Result = null,
+                Data = null,
                 Status = StatusCodes.Status500InternalServerError,
                 ErrorMessage = exception.Message,
             };

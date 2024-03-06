@@ -6,6 +6,7 @@ namespace AuthAPI.Models
     public class User : IdentityUser
     {
         public string Name { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
         public DateTime Updated { get; set; }
         public DateTime Created { get; set; }
     }
@@ -25,7 +26,7 @@ namespace AuthAPI.Models
             _user.Email = registrationDto.Email;
             _user.NormalizedEmail = registrationDto.Email.ToUpper();
             _user.Name = registrationDto.Name;
-            _user.PhoneNumber = registrationDto.PhoneNumber;
+            _user.Phone = registrationDto.Phone;
             _user.Created = DateTime.Now;
             _user.Updated = DateTime.Now;
             return _user;

@@ -2,7 +2,7 @@
 {
     public class ResponseDto
     {
-        public object? Result { get; set; } = null;
+        public object? Data { get; set; } = null;
         public string? ErrorMessage { get; set; } = null;
         public int? Status { get; set; } = 200;
     }

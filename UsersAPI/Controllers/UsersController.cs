@@ -28,14 +28,14 @@ namespace UsersAPI.Controllers
                 var user = await _db.Users.FirstOrDefaultAsync(user => user.UserId == userId);             
                 return Ok(new ResponseDto
                 {
-                    Result = _mapper.Map<UserDto>(user)
+                    Data = _mapper.Map<UserDto>(user)
                 });
             }
             else
             {
                 return Ok(new ResponseDto
                 {
-                    Result = _mapper.Map<List<UserDto>>(await _db.Users.ToListAsync())
+                    Data = _mapper.Map<List<UserDto>>(await _db.Users.ToListAsync())
                 });
             }
         }
@@ -48,7 +48,7 @@ namespace UsersAPI.Controllers
                 // Custom response for validation errors
                 var responseDto = new ResponseDto
                 {
-                    Result = null,
+                    Data = null,
                     Status = StatusCodes.Status400BadRequest,
                     ErrorMessage = "Invalid user data. Please check the provided information."
                 };
@@ -63,7 +63,7 @@ namespace UsersAPI.Controllers
             _db.SaveChanges();
             return Ok(new ResponseDto
             {
-                Result = userDto
+                Data = userDto
             });
         }
 
@@ -75,7 +75,7 @@ namespace UsersAPI.Controllers
             _db.SaveChanges();
             return Ok(new ResponseDto
             {
-                Result = userDto
+                Data = userDto
             });
         }
 
@@ -95,7 +95,7 @@ namespace UsersAPI.Controllers
             _db.SaveChanges();
             return Ok(new ResponseDto
             {
-                Result = _mapper.Map<UserDto>(user)
+                Data = _mapper.Map<UserDto>(user)
             });
         }
     }

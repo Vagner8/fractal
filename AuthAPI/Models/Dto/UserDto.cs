@@ -5,25 +5,25 @@
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string? Email { get; set; } = string.Empty;
-        public string? PhoneNumber { get; set; } = string.Empty;
+        public string? Phone { get; set; } = string.Empty;
     }
 
     public class UserDtoBuilder
     {
-        private readonly UserDto _userDto;
-
-        public UserDtoBuilder()
+        public static UserDto ToUserDto(User user)
         {
-            _userDto = new UserDto();
+            return new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                Phone = user.Phone,
+            };
         }
 
-        public UserDto FromUser(User user)
+        public static UserDto[] ToUsersDto(User[] users)
         {
-            _userDto.Id = user.Id;
-            _userDto.Name = user.Name;
-            _userDto.Email = user.Email;
-            _userDto.PhoneNumber = user.PhoneNumber;
-            return _userDto;
+            return users.Select(user => ToUserDto(user)).ToArray();
         }
     }
 }

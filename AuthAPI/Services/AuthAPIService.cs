@@ -35,18 +35,18 @@ namespace AuthAPI.Services
                 return new ResponseDtoBuilder().SetError(errorMessage).Get();
             }
             var user = await GetUserByEmail(registrationDto);
-            UserDto userDto = new UserDtoBuilder().FromUser(user);
-            return new ResponseDtoBuilder().SetResult(userDto).Get();
+            UserDto userDto = UserDtoBuilder.ToUserDto(user);
+            return new ResponseDtoBuilder().SetData(userDto).Get();
         }
 
         public async Task<ResponseDto> Login(LoginRequestDto loginRequestDto)
         {
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(user => user.UserName == loginRequestDto.UserName);
+            var user = await _appDbContext.Users.FirstOrDefaultAsync(user => user.Email == loginRequestDto.Email);
             if (user == null) return new ResponseDtoBuilder().SetError("User not found").Get();
             var isValid = await _userManager.CheckPasswordAsync(user, loginRequestDto.Password);
             if (!isValid) return new ResponseDtoBuilder().SetError("Unvalid password").Get();
             var token = _tokenGeneratorService.GenerateToken(user);
-            return new ResponseDtoBuilder().SetToken(token).SetResult(new UserDtoBuilder().FromUser(user)).Get();
+            return new ResponseDtoBuilder().SetToken(token).SetData(UserDtoBuilder.ToUserDto(user)).Get();
         }
 
         public async Task<ResponseDto> AssignRole(RegistrationDto registrationDto)
@@ -58,7 +58,7 @@ namespace AuthAPI.Services
                 await _roleManager.CreateAsync(new IdentityRole(registrationDto.Role));
             }
             await _userManager.AddToRoleAsync(user, registrationDto.Role);
-            return new ResponseDtoBuilder().SetResult(user).Get();
+            return new ResponseDtoBuilder().SetData(user).Get();
         }
 
         private async Task<User> GetUserByEmail(RegistrationDto registrationDto)

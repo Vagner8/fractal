@@ -27,6 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
 builder.Services.AddScoped<IAuthAPIService, AuthAPIService>();
+builder.Services.AddScoped<IUsersAPIService, UsersAPIService>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
