@@ -1,5 +1,4 @@
-﻿using AuthAPI.Models;
-using AuthAPI.Models.Dto;
+﻿using AuthAPI.Models.Dto;
 
 namespace AuthAPI.Models.User
 {
@@ -9,31 +8,24 @@ namespace AuthAPI.Models.User
         {
             return new User
             {
+                Name = registrationDto.Name,
+                Surname = registrationDto.Surname,
                 UserName = registrationDto.Email,
+                PhoneNumber = registrationDto.Phone,
                 Email = registrationDto.Email,
                 NormalizedEmail = registrationDto.Email.ToUpper(),
-                Name = registrationDto.Name,
-                Phone = registrationDto.Phone,
-                Created = DateTime.Now,
-                Updated = DateTime.Now,
             };
         }
 
-        public static UserDto ToUserDto(User user)
+        public static UserDto ToUserDto(User user, string? token = null)
         {
             return new UserDto
             {
                 Id = user.Id,
                 Name = user.Name,
-                Phone = user.Phone,
-                Updated = user.Updated,
-                Created = user.Updated,
+                Surname = user.Surname,
+                Token = token,
             };
-        }
-
-        public static UserDto[] ToUsersDto(User[] users)
-        {
-            return users.Select(user => ToUserDto(user)).ToArray();
         }
     }
 }

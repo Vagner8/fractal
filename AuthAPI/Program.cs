@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using AuthAPI.Data;
-using AuthAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using AuthAPI.Services;
 using AuthAPI.Models.User;
+using AuthAPI.Models.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -28,7 +28,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITokenGeneratorService, TokenGeneratorService>();
 builder.Services.AddScoped<IAuthAPIService, AuthAPIService>();
-builder.Services.AddScoped<IUsersAPIService, UsersAPIService>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

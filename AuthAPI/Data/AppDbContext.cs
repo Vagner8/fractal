@@ -6,7 +6,7 @@ namespace AuthAPI.Data
 {
     public class AppDbContext: IdentityDbContext<User>
     {
-        public DbSet<User> user { get; set; }
+        public DbSet<User> User { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
         {

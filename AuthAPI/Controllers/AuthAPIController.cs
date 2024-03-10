@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AuthAPI.Services;
 using AuthAPI.Models.Login;
-using AuthAPI.Models;
 using AuthAPI.Models.ResponseDto;
+using AuthAPI.Models;
 
 namespace AuthAPI.Controllers
 {
@@ -28,7 +28,7 @@ namespace AuthAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Get());
+                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Build());
             }
         }
 
@@ -43,7 +43,7 @@ namespace AuthAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Get());
+                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Build());
             }
         }
 
@@ -58,7 +58,7 @@ namespace AuthAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Get());
+                return BadRequest(new ResponseDtoBuilder().SetError(ex.Message).Build());
             }
         }
     }

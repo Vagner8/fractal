@@ -1,7 +1,8 @@
-﻿using AuthAPI.Models;
+﻿using AuthAPI.Models.Registration;
 using AuthAPI.Models.User;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -17,14 +18,20 @@ namespace AuthAPI.Services
             this._jwtOptions = jwtOptions.Value;
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(User user, IEnumerable<string> roles)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
             var claimList = GetClaimList(user);
+            AddRolesToClaimList(claimList, roles);
             var tokenDescriptor = GetTokenDescriptor(claimList, key);
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        private void AddRolesToClaimList(List<Claim> claimList, IEnumerable<string> roles)
+        {
+            claimList.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
         }
 
         private List<Claim> GetClaimList(User user)

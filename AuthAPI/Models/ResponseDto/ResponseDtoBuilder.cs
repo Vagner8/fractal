@@ -22,13 +22,7 @@
             return this;
         }
 
-        public ResponseDtoBuilder SetToken(string token)
-        {
-            _responseDto.Token = token;
-            return this;
-        }
-
-        public ResponseDto Get()
+        public ResponseDto Build()
         {
             return _responseDto;
         }
