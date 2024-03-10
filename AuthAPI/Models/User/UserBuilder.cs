@@ -13,6 +13,8 @@ namespace AuthAPI.Models.User
                 UserName = registrationDto.Email,
                 PhoneNumber = registrationDto.Phone,
                 Email = registrationDto.Email,
+                Created = DateTime.Now,
+                Updated = DateTime.Now,
                 NormalizedEmail = registrationDto.Email.ToUpper(),
             };
         }
@@ -24,6 +26,10 @@ namespace AuthAPI.Models.User
                 Id = user.Id,
                 Name = user.Name,
                 Surname = user.Surname,
+                Email = user.Email,
+                Phone = user.PhoneNumber,
+                Created = user.Created,
+                Updated = user.Updated,
                 Token = token,
             };
         }
