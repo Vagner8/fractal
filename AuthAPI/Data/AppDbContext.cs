@@ -1,18 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AuthAPI.Models.User;
+using UsersAPI.Models.User;
 
-namespace AuthAPI.Data
+namespace UsersAPI.Data
 {
-    public class AppDbContext: IdentityDbContext<User>
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<User>(options)
     {
-        public DbSet<User> User { get; set; }
-
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base (options)
-        {
-            
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

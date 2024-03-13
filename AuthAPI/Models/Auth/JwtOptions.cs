@@ -1,4 +1,4 @@
-﻿namespace AuthAPI.Models.Registration
+﻿namespace UsersAPI.Models.Auth
 {
     public class JwtOptions
     {

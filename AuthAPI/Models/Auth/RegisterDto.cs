@@ -1,8 +1,9 @@
-﻿namespace AuthAPI.Models.Login
+﻿namespace UsersAPI.Models.Auth
 {
-    public class LoginRequestDto
+    public class RegisterDto
     {
         public required string Email { get; set; }
         public required string Password { get; set; }
+        public required string Role { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿using AuthAPI.Models.User;
+﻿using UsersAPI.Models.User;
 
-namespace AuthAPI.Services
+namespace UsersAPI.Services.TokenGeneratorService
 {
     public interface ITokenGeneratorService
     {

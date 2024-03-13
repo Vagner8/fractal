@@ -1,22 +1,17 @@
-﻿using AuthAPI.Models.Registration;
-using AuthAPI.Models.User;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using UsersAPI.Models.User;
+using UsersAPI.Models.Auth;
 
-namespace AuthAPI.Services
+namespace UsersAPI.Services.TokenGeneratorService
 {
-    public class TokenGeneratorService : ITokenGeneratorService
+    public class TokenGeneratorService(IOptions<JwtOptions> jwtOptions) : ITokenGeneratorService
     {
-        private readonly JwtOptions _jwtOptions;
-
-        public TokenGeneratorService(IOptions<JwtOptions> jwtOptions)
-        {
-            this._jwtOptions = jwtOptions.Value;
-        }
+        private readonly JwtOptions _jwtOptions = jwtOptions.Value;
 
         public string GenerateToken(User user, IEnumerable<string> roles)
         {

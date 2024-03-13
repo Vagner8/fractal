@@ -1,4 +1,4 @@
-﻿namespace AuthAPI.Models.ResponseDto
+﻿namespace UsersAPI.Models.Response
 {
     public class ResponseDto
     {
