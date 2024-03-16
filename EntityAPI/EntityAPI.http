@@ -1,0 +1,6 @@
+@EntityAPI_HostAddress = http://localhost:5189
+
+GET {{EntityAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
