@@ -16,20 +16,9 @@ namespace EntityAPI.Controllers
         {
             try
             {
-                var newEntity = new Entity
-                {
-                    Name = entityDto.Name
-                };
-                var fields = entityDto.Fields.Select(field => new Field
-                {
-                    Name = field.Name,
-                    Value = field.Value,
-                    Entity = newEntity,
-                });
-                newEntity.Fields = fields.ToList();
+                var newEntity = EntityBuilder.ToEntity(entityDto);
                 await _db.Entities.AddAsync(newEntity);
                 await _db.SaveChangesAsync();
-                await _db.Entry(newEntity).Collection(entit => entit.Fields).LoadAsync();
                 return Ok(ResponseBuilder.Data(newEntity));
             }
             catch (Exception ex)
@@ -38,75 +27,48 @@ namespace EntityAPI.Controllers
             }
         }
 
-        [HttpPatch("update")]
-        public async Task<ActionResult<EntityDto>> Update([FromBody] EntityDto entityDto)
+        [HttpGet("one")]
+        public async Task<ActionResult> GetOne(string name)
         {
             try
             {
-                var existingEntity = await _db.Entities
-                    .Include(e => e.Fields)
-                    .FirstOrDefaultAsync(e => e.Id == entityDto.Id);
-                if (existingEntity == null) return NotFound(ResponseBuilder.Error($"Entity id: {entityDto.Id}"));
+                var entity = await _db.Entities
+                    .Include(e => e.Sorts)
+                    .Include(e => e.Items)
+                    .ThenInclude(i => i.Fields)
+                    .FirstOrDefaultAsync(e => e.Name == name);
+                if (entity == null) return NotFound(ResponseBuilder.Error($"Find entity: {name}"));
+                return Ok(ResponseBuilder.Data(entity));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseBuilder.Error(ex.Message));
+            }
+        }
 
-                foreach (var fieldDto in entityDto.Fields)
+        [HttpPatch("update")]
+        public async Task<ActionResult> Update([FromBody] EntityDto entityDto)
+        {
+            try
+            {
+                var entity = _db.Entities
+                    .Include(e => e.Sorts)
+                    .Include(e => e.Items)
+                    .ThenInclude(i => i.Fields)
+                    .FirstOrDefault(e => e.Name == entityDto.Name);
+                if (entity == null) return NotFound(ResponseBuilder.Error($"Update entity: {entityDto.Name}"));
+                if (entityDto.Sorts != null)
                 {
-                    if (fieldDto.Action == FieldAction.Create)
+                    entity.Sorts = entityDto.Sorts;
+                    _db.Entry(entity.Sorts).State = EntityState.Modified;
+                }
+                if (entityDto.Items != null)
+                {
+                    foreach (var item in entityDto.Items)
                     {
-                        existingEntity.Fields.Add(new Field
-                        {
-                            Name = fieldDto.Name,
-                            Value = fieldDto.Value,
-                            Entity = existingEntity
-                        });
-                        _db.Entry(existingEntity.Fields.Last()).State = EntityState.Added;
-                    }
-                    if (fieldDto.Action == FieldAction.Update)
-                    {
-                        var existingField = existingEntity.Fields.FirstOrDefault(f => f.Id == fieldDto.Id);
-                        if (existingField == null) return NotFound(ResponseBuilder.Error($"Update field: {fieldDto.Id}"));
-                        existingField.Name = fieldDto.Name;
-                        existingField.Value = fieldDto.Value;
-                        _db.Entry(existingField).State = EntityState.Modified;
-                    }
-                    if (fieldDto.Action == FieldAction.Delete)
-                    {
-                        var existingField = existingEntity.Fields.FirstOrDefault(f => f.Id == fieldDto.Id);
-                        if (existingField == null) return NotFound(ResponseBuilder.Error($"Delete field: {fieldDto.Id}"));
-                        existingEntity.Fields.Remove(existingField);
-                        _db.Entry(existingField).State = EntityState.Deleted;
+                        var itemToUpdate = entity.Items.First(i => i.Id == item.Id);
                     }
                 }
-                await _db.SaveChangesAsync();
-                return Ok(ResponseBuilder.Data(existingEntity));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ResponseBuilder.Error(ex.Message));
-            }
-        }
-
-
-        [HttpGet("all")]
-        public async Task<ActionResult> GetAll()
-        {
-            try
-            {
-                return Ok(await _db.Entities.Include(e => e.Fields).ToListAsync());
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ResponseBuilder.Error(ex.Message));
-            }
-        }
-
-        [HttpGet("one")]
-        public async Task<ActionResult> GetOne(Guid entityId)
-        {
-            try
-            {
-                var entity = await _db.Entities.Include(e => e.Fields).FirstOrDefaultAsync(e => e.Id == entityId);
-                if (entity == null) return NotFound(ResponseBuilder.Error($"Find entity: {entityId}"));
-                return Ok(entity);
             }
             catch (Exception ex)
             {
@@ -115,18 +77,15 @@ namespace EntityAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<ActionResult> Delete(List<Guid> entityIds)
+        public async Task<ActionResult> Delete(string name)
         {
             try
             {
-                foreach (var entityId in entityIds)
-                {
-                    var entityToDelete = await _db.Entities.FirstOrDefaultAsync(e => e.Id == entityId);
-                    if (entityToDelete == null) return NotFound(ResponseBuilder.Error($"Delete entity: {entityId}"));
-                    _db.Entities.Remove(entityToDelete);
-                }
+                var entity = await _db.Entities.FirstOrDefaultAsync(e => e.Name == name);
+                if (entity == null) return NotFound(ResponseBuilder.Error($"Delete entity: {name}"));
+                _db.Entities.Remove(entity);
                 await _db.SaveChangesAsync();
-                return Ok(ResponseBuilder.Data(entityIds));
+                return Ok(ResponseBuilder.Data(entity));
             }
             catch (Exception ex)
             {

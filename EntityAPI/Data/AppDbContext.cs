@@ -6,7 +6,9 @@ namespace EntityAPI.Data
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
         public DbSet<Entity> Entities { get; set; }
+        public DbSet<Item> Items { get; set; }
         public DbSet<Field> Fields { get; set; }
+        public DbSet<Sort> Sorts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

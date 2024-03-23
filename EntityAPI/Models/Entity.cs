@@ -4,15 +4,30 @@ namespace EntityAPI.Models
 {
     public class Entity
     {
-        [Key] public Guid Id { get; set; } = Guid.NewGuid();
-        public string Name { get; set; } = string.Empty;
-        public ICollection<Field> Fields { get; set; } = new List<Field>();
+        [Key] public Guid Id { get; set; }
+        public required string Name { get; set; }
+        public required ICollection<Sort> Sorts { get; set; }
+        public required ICollection<Item> Items { get; set; }
     }
 
     public class EntityDto
     {
         public Guid? Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public ICollection<FieldDto> Fields { get; set; } = new List<FieldDto>();
+        public required string Name { get; set; }
+        public ICollection<Sort>? Sorts { get; set; }
+        public ICollection<Item>? Items { get; set; }
+    }
+
+    public class EntityBuilder
+    {
+        public static Entity ToEntity(EntityDto entityDto)
+        {
+            return new Entity
+            {
+                Name = entityDto.Name,
+                Sorts = entityDto.Sorts ?? [],
+                Items = entityDto.Items ?? [],
+            };
+        }
     }
 }
