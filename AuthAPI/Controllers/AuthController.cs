@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UsersAPI.Models.Response;
-using UsersAPI.Models.Auth;
+using AuthAPI.Models.Response;
+using AuthAPI.Models.Auth;
 using Microsoft.AspNetCore.Identity;
-using UsersAPI.Models.User;
-using UsersAPI.Services.TokenGeneratorService;
-using UsersAPI.Services.RoleService;
+using AuthAPI.Models.User;
+using AuthAPI.Services.TokenGeneratorService;
+using AuthAPI.Services.RoleService;
 
-namespace UsersAPI.Controllers
+namespace AuthAPI.Controllers
 {
     [Route("api/auth")]
     [ApiController]

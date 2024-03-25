@@ -1,4 +1,4 @@
-﻿namespace UsersAPI.Models.User
+﻿namespace AuthAPI.Models.User
 {
     public class UserDto
     {

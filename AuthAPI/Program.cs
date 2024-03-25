@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-using UsersAPI.Data;
+using AuthAPI.Data;
 using Microsoft.AspNetCore.Identity;
-using UsersAPI.Models.User;
-using UsersAPI.Models.Auth;
-using UsersAPI.Services.TokenGeneratorService;
-using UsersAPI.Services.RoleService;
+using AuthAPI.Models.User;
+using AuthAPI.Models.Auth;
+using AuthAPI.Services.TokenGeneratorService;
+using AuthAPI.Services.RoleService;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

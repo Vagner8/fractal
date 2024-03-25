@@ -1,8 +1,8 @@
-﻿using UsersAPI.Models.Auth;
-using UsersAPI.Models.Response;
-using UsersAPI.Models.User;
+﻿using AuthAPI.Models.Auth;
+using AuthAPI.Models.Response;
+using AuthAPI.Models.User;
 
-namespace UsersAPI.Services.RoleService
+namespace AuthAPI.Services.RoleService
 {
     public interface IRoleService
     {

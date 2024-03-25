@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B1D068B3-C33A-4BA5-9272-7D6DC7D52B78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersAPI", "AuthAPI\UsersAPI.csproj", "{BFD9E0D7-A775-4F63-BD6C-2335689A5FDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAPI", "AuthAPI\AuthAPI.csproj", "{BFD9E0D7-A775-4F63-BD6C-2335689A5FDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityAPI", "EntityAPI\EntityAPI.csproj", "{588AFF15-3F54-4533-946A-083BBC237FA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityAPI", "EntityAPI\EntityAPI.csproj", "{588AFF15-3F54-4533-946A-083BBC237FA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

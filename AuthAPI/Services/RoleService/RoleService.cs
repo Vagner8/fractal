@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using UsersAPI.Models.Response;
-using UsersAPI.Models.User;
+using AuthAPI.Models.Response;
+using AuthAPI.Models.User;
 
-namespace UsersAPI.Services.RoleService
+namespace AuthAPI.Services.RoleService
 {
     public class RoleService(
         UserManager<User> userManager,

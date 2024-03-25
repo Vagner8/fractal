@@ -1,4 +1,4 @@
-﻿namespace UsersAPI.Models.Response
+﻿namespace AuthAPI.Models.Response
 {
     public class ResponseBuilder
     {

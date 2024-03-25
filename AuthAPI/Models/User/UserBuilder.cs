@@ -1,6 +1,6 @@
-﻿using UsersAPI.Models.Auth;
+﻿using AuthAPI.Models.Auth;
 
-namespace UsersAPI.Models.User
+namespace AuthAPI.Models.User
 {
     public class UserBuilder
     {

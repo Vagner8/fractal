@@ -4,10 +4,10 @@ using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using UsersAPI.Models.User;
-using UsersAPI.Models.Auth;
+using AuthAPI.Models.User;
+using AuthAPI.Models.Auth;
 
-namespace UsersAPI.Services.TokenGeneratorService
+namespace AuthAPI.Services.TokenGeneratorService
 {
     public class TokenGeneratorService(IOptions<JwtOptions> jwtOptions) : ITokenGeneratorService
     {

@@ -6,7 +6,7 @@ namespace EntityAPI.Models
     {
         [Key] public Guid Id { get; set; }
         public required string Name { get; set; }
-        public required ICollection<Sort> Sorts { get; set; }
+        public required string Columns { get; set; }
         public required ICollection<Item> Items { get; set; }
     }
 
@@ -14,8 +14,8 @@ namespace EntityAPI.Models
     {
         public Guid? Id { get; set; }
         public required string Name { get; set; }
-        public ICollection<Sort>? Sorts { get; set; }
-        public ICollection<Item>? Items { get; set; }
+        public required List<string> Columns { get; set; }
+        public required List<ItemDto> Items { get; set; }
     }
 
     public class EntityBuilder
@@ -25,9 +25,14 @@ namespace EntityAPI.Models
             return new Entity
             {
                 Name = entityDto.Name,
-                Sorts = entityDto.Sorts ?? [],
-                Items = entityDto.Items ?? [],
+                Columns = ToColumns(entityDto.Columns),
+                Items = entityDto.Items.Select(i => ItemBuilder.ToItem(i)).ToList(),
             };
+        }
+
+        public static string ToColumns(List<string> columns)
+        {
+            return string.Join(":", columns);
         }
     }
 }
