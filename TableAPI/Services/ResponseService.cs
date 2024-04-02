@@ -1,15 +1,10 @@
-﻿namespace EntityAPI.Models
-{
-    public class ResponseDto
-    {
-        public object? Data { get; set; } = null;
-        public bool Success { get; set; } = true;
-        public string? Error { get; set; } = null;
-    }
+﻿using MatrixAPI.Models;
 
-    public class ResponseBuilder
+namespace MatrixAPI.Services
+{
+    public class ResponseService : IResponseService
     {
-        public static ResponseDto Data(object? data)
+        public ResponseDto Data(object? data)
         {
             return new ResponseDto
             {
@@ -19,7 +14,7 @@
             };
         }
 
-        public static ResponseDto Error(string? error = null)
+        public ResponseDto Error(string? error = null)
         {
             return new ResponseDto
             {
@@ -28,5 +23,11 @@
                 Error = error ?? "Unknown error",
             };
         }
+    }
+
+    public interface IResponseService
+    {
+        public ResponseDto Data(object? data);
+        public ResponseDto Error(string? error = null);
     }
 }

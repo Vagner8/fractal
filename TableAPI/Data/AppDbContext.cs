@@ -1,13 +1,13 @@
-﻿using EntityAPI.Models;
+﻿using MatrixAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityAPI.Data
+namespace MatrixAPI.Data
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Entity> Entities { get; set; }
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Field> Fields { get; set; }
+        public DbSet<Matrix> Matrices { get; set; }
+        public DbSet<Line> Lines { get; set; }
+        public DbSet<Control> Controls { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using EntityAPI.Data;
+using MatrixAPI.Data;
+using MatrixAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -22,6 +23,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IMapService, MapService>();
+builder.Services.AddScoped<IResponseService, ResponseService>();
+builder.Services.AddScoped<IMatrixService, MatrixService>();
+builder.Services.AddScoped<IControlService, ControlService>();
 
 var app = builder.Build();
 
@@ -41,3 +46,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
