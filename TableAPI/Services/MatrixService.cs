@@ -26,7 +26,7 @@ namespace MatrixAPI.Services
         public async Task<ResponseDto> Update(MatrixDto matrixDto)
         {
             var matrix = await GetMatrix(matrixDto.Id);
-            UpdateControls(matrix.Controls, matrixDto.Controls);
+            UpdateMatrixControls(matrix.Controls, matrixDto.Controls);
             UpdateLineControls(matrix.Lines, matrixDto.Lines);
             await SaveChangesAsync();
             return _response.Data(_map.ToMatrixDto(matrix));
@@ -34,25 +34,32 @@ namespace MatrixAPI.Services
         public async Task<Matrix> GetMatrix(Guid? id)
         {
             return await _db.Matrices
-                .Include(s => s.Controls)
-                .Include(s => s.Lines)
-                .ThenInclude(r => r.Controls)
-                .FirstOrDefaultAsync(e => e.Id == id) ?? throw new Exception($"Find matrix: {id}");
+                .Include(m => m.Controls)
+                .Include(m => m.Lines)
+                .ThenInclude(l => l.Controls)
+                .FirstOrDefaultAsync(m => m.Id == id) ?? throw new Exception($"Find matrix: {id}");
         }
 
-        public async Task<List<Matrix>> GetMatrixs()
+        public async Task<List<Matrix>> GetMatrices()
         {
             return await _db.Matrices
-                .Include(e => e.Controls)
+                .Include(m => m.Controls)
+                .Include(m => m.Lines)
+                .ThenInclude(l => l.Controls)
                 .ToListAsync() ?? throw new Exception("Find matrixs");
         }
 
-        private void UpdateLineControls(ICollection<Line> rows, List<LineDto> unitsDto)
+        private void UpdateMatrixControls(ICollection<Control> controls, List<ControlDto> controlsDto)
         {
-            foreach (var rowDto in unitsDto)
+            UpdateControls(controls, controlsDto);
+        }
+
+        private void UpdateLineControls(ICollection<Line> lines, List<LineDto> linesDto)
+        {
+            foreach (var lineDto in linesDto)
             {
-                var unit = GetLine(rows, rowDto.Id);
-                UpdateControls(unit.Controls, rowDto.Controls);
+                var line = GetLine(lines, lineDto.Id);
+                UpdateControls(line.Controls, lineDto.Controls);
             }
         }
 
@@ -77,9 +84,9 @@ namespace MatrixAPI.Services
             }
         }
 
-        private static Line GetLine(ICollection<Line> rows, Guid? id)
+        private static Line GetLine(ICollection<Line> lines, Guid? id)
         {
-            return rows.FirstOrDefault(r => r.Id == id) ?? throw new Exception($"Find row: {id}");
+            return lines.FirstOrDefault(l => l.Id == id) ?? throw new Exception($"Find line: {id}");
         }
 
         private async Task SaveChangesAsync()
@@ -126,6 +133,6 @@ namespace MatrixAPI.Services
         public Task<ResponseDto> Add(MatrixDto matrixDto);
         public Task<ResponseDto> Update(MatrixDto matrixDto);
         public Task<Matrix> GetMatrix(Guid? id);
-        public Task<List<Matrix>> GetMatrixs();
+        public Task<List<Matrix>> GetMatrices();
     }
 }

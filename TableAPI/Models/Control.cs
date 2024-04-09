@@ -28,10 +28,6 @@ namespace MatrixAPI.Models
         [ForeignKey("LineId")]
         public Guid? LineId { get; set; }
         public Line Line { get; set; } = null!;
-
-        [ForeignKey("SortId")]
-        public Guid? SortId { get; set; }
-        public Sort Sort { get; set; } = null!;
     }
 
     public class ControlDto

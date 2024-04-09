@@ -7,12 +7,8 @@ namespace MatrixAPI.Models
     {
         [Key]
         public Guid Id { get; set; }
-        public ICollection<Line> Lines { get; set; } = [];
         public ICollection<Control> Controls { get; set; } = [];
-
-        [ForeignKey("SortId")]
-        public Guid? SortId { get; set; }
-        public Sort Sort { get; set; } = null!;
+        public ICollection<Line> Lines { get; set; } = [];
     }
 
     public class MatrixDto
@@ -20,6 +16,5 @@ namespace MatrixAPI.Models
         public Guid? Id { get; set; }
         public List<LineDto> Lines { get; set; } = [];
         public List<ControlDto> Controls { get; set; } = [];
-        public List<SortDto> Sorts { get; set; } = [];
     }
 }

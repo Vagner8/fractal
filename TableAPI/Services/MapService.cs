@@ -23,20 +23,20 @@ namespace MatrixAPI.Services
             };
         }
 
-        public Line ToLine(LineDto rowDto)
+        public Line ToLine(LineDto lineDto)
         {
             return new Line
             {
-                Controls = rowDto.Controls.Select(ToControl).ToList(),
+                Controls = lineDto.Controls.Select(ToControl).ToList(),
             };
         }
 
-        public LineDto ToLineDto(Line unit)
+        public LineDto ToLineDto(Line line)
         {
             return new LineDto
             {
-                Id = unit.Id,
-                Controls = unit.Controls.Select(ToControlDto).ToList(),
+                Id = line.Id,
+                Controls = line.Controls.Select(ToControlDto).ToList(),
             };
         }
 
@@ -59,33 +59,15 @@ namespace MatrixAPI.Services
                 Operation = Operation.None,
             };
         }
-
-        public Sort ToSort(SortDto sortDto)
-        {
-            return new Sort
-            {
-                Controls = sortDto.Controls.Select(ToControl).ToList(),
-            };
-        }
-
-        public SortDto ToSortDto(Sort sort)
-        {
-            return new SortDto
-            {
-                Controls = sort.Controls.Select(ToControlDto).ToList(),
-            };
-        }
     }
 
     public interface IMapService
     {
         public Matrix ToMatrix(MatrixDto matrixDto);
         public MatrixDto ToMatrixDto(Matrix matrix);
-        public Line ToLine(LineDto rowDto);
-        public LineDto ToLineDto(Line unit);
+        public Line ToLine(LineDto lineDto);
+        public LineDto ToLineDto(Line line);
         public Control ToControl(ControlDto controlDto);
         public ControlDto ToControlDto(Control control);
-        public Sort ToSort(SortDto sortDto);
-        public SortDto ToSortDto(Sort sort);
     }
 }

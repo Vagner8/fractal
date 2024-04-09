@@ -48,7 +48,7 @@ namespace MatrixAPI.Controllers
         {
             try
             {
-                var matrixs = await _matrix.GetMatrixs();
+                var matrixs = await _matrix.GetMatrices();
                 return Ok(_response.Data(matrixs.Select(_map.ToMatrixDto)));
             }
             catch (Exception ex)
