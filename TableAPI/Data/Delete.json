@@ -1,0 +1,61 @@
+[
+  {
+    "id": "30aaf000-e288-4a23-a90b-69a780ebe33d",
+    "units": [
+      {
+        "id": "902f7a4d-7174-4e39-b982-dd86c9f94f58",
+        "controls": [
+          {
+            "id": "36de47b1-ed9e-4dbf-957c-5bad6dac3093",
+            "name": "Eamil++",
+            "data": "alena@gmail.com++",
+            "type": "Email++",
+            "act": "Remove"
+          },
+          {
+            "id": "585d78e8-fed3-437b-8b51-b15b16e91d53",
+            "name": "Act",
+            "data": "Update",
+            "type": "Select",
+            "act": "Update"
+          },
+          {
+            "id": "ab000dde-218c-470c-9082-d5ee765c0ec1",
+            "name": "Surname",
+            "data": "Vagner",
+            "type": "Text",
+            "act": "Remove"
+          },
+          {
+            "id": "0c400a26-b4bb-42de-b56d-efb11c665cec",
+            "name": "Name new",
+            "data": "Alena new",
+            "type": "Text new",
+            "act": "Update"
+          }
+        ]
+      },
+      {
+        "id": "b90dceb3-c144-4517-8c5e-efd937573f4f",
+        "controls": [
+          {
+            "id": "67098657-b798-4d09-a537-0ec1093caccd",
+            "name": "Act",
+            "data": "Remove",
+            "type": "Select",
+            "act": "Remove"
+          }
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "id": "b4ad8fe1-01c5-433d-8521-f8f8cf286a75",
+        "name": "Act",
+        "data": "Update",
+        "type": "Select",
+        "act": "Update"
+      }
+    ]
+  }
+]

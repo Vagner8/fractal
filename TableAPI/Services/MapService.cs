@@ -2,72 +2,81 @@
 
 namespace MatrixAPI.Services
 {
-    public class MapService : IMapService
+  public class MapService : IMapService
+  {
+    public Matrix ToMatrix(MatrixDto matrixDto)
     {
-        public Matrix ToMatrix(MatrixDto matrixDto)
-        {
-            return new Matrix
-            {
-                Lines = matrixDto.Lines.Select(ToLine).ToList(),
-                Controls = matrixDto.Controls.Select(ToControl).ToList(),
-            };
-        }
-
-        public MatrixDto ToMatrixDto(Matrix matrix)
-        {
-            return new MatrixDto
-            {
-                Id = matrix.Id,
-                Lines = matrix.Lines.Select(ToLineDto).ToList(),
-                Controls = matrix.Controls.Select(ToControlDto).ToList(),
-            };
-        }
-
-        public Line ToLine(LineDto lineDto)
-        {
-            return new Line
-            {
-                Controls = lineDto.Controls.Select(ToControl).ToList(),
-            };
-        }
-
-        public LineDto ToLineDto(Line line)
-        {
-            return new LineDto
-            {
-                Id = line.Id,
-                Controls = line.Controls.Select(ToControlDto).ToList(),
-            };
-        }
-
-        public Control ToControl(ControlDto controlDto)
-        {
-            return new Control
-            {
-                Name = controlDto.Name,
-                Value = controlDto.Value,
-            };
-        }
-
-        public ControlDto ToControlDto(Control control)
-        {
-            return new ControlDto
-            {
-                Id = control.Id,
-                Name = control.Name,
-                Value = control.Value,
-                Operation = Operation.None,
-            };
-        }
+      return new Matrix
+      {
+        Id = matrixDto.Id ?? Guid.NewGuid(),
+        Units = matrixDto.Units.Select((u) => ToUnit(u, matrixDto.Id)).ToList(),
+        Controls = matrixDto.Controls.Select((c) => ToControl(c, matrixDto.Id, null)).ToList(),
+      };
     }
 
-    public interface IMapService
+    public MatrixDto ToMatrixDto(Matrix matrix)
     {
-        public Matrix ToMatrix(MatrixDto matrixDto);
-        public MatrixDto ToMatrixDto(Matrix matrix);
-        public Line ToLine(LineDto lineDto);
-        public LineDto ToLineDto(Line line);
-        public Control ToControl(ControlDto controlDto);
-        public ControlDto ToControlDto(Control control);
+      return new MatrixDto
+      {
+        Id = matrix.Id,
+        Units = matrix.Units.Select(ToUnitDto).ToList(),
+        Controls = matrix.Controls.Select(ToControlDto).ToList(),
+      };
     }
+
+    public Unit ToUnit(UnitDto unitDto, Guid? matrixId)
+    {
+      return new Unit
+      {
+        Id = unitDto.Id ?? Guid.NewGuid(),
+        Controls = unitDto.Controls.Select((c) => ToControl(c, null, unitDto.Id)).ToList(),
+        MatrixId = matrixId
+      };
+    }
+
+    public UnitDto ToUnitDto(Unit unit)
+    {
+      return new UnitDto
+      {
+        Id = unit.Id,
+        Controls = unit.Controls.Select(ToControlDto).ToList(),
+      };
+    }
+
+    public Control ToControl(ControlDto controlDto, Guid? matrixId, Guid? unitId)
+    {
+      return new Control
+      {
+        Id = controlDto.Id ?? Guid.NewGuid(),
+        Name = controlDto.Name,
+        Data = controlDto.Data,
+        Type = controlDto.Type,
+        Act = controlDto.Act,
+        MatrixId = matrixId,
+        UnitId = unitId
+      };
+    }
+
+    public ControlDto ToControlDto(Control control)
+    {
+      return new ControlDto
+      {
+        Id = control.Id,
+        Name = control.Name,
+        Data = control.Data,
+        Type = control.Type,
+        Act = control.Act,
+      };
+    }
+  }
+
+  public interface IMapService
+  {
+    Matrix ToMatrix(MatrixDto matrixDto);
+    MatrixDto ToMatrixDto(Matrix matrix);
+    Unit ToUnit(UnitDto unitDto, Guid? matrixId);
+    UnitDto ToUnitDto(Unit unit);
+    Control ToControl(ControlDto controlDto, Guid? matrixId, Guid? unitId);
+    ControlDto ToControlDto(Control control);
+  }
 }

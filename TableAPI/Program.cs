@@ -24,9 +24,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMapService, MapService>();
+builder.Services.AddScoped<ISaveService, SaveService>();
+builder.Services.AddScoped<IControlService, ControlService>();
+builder.Services.AddScoped<IFilterService, FilterService>();
 builder.Services.AddScoped<IResponseService, ResponseService>();
 builder.Services.AddScoped<IMatrixService, MatrixService>();
-builder.Services.AddScoped<IControlService, ControlService>();
 
 var app = builder.Build();
 
