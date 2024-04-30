@@ -28,35 +28,35 @@ namespace MatrixAPI.Controllers
     {
       try
       {
-        var filtred = _filter.MatrixDto(matricesDto);
-        if (filtred.MatricesToAdd.Count > 0)
+        var filtered = _filter.MatrixDto(matricesDto);
+        if (filtered.MatricesToAdd.Count > 0)
         {
-          await _db.Matrices.AddRangeAsync(filtred.MatricesToAdd);
+          await _db.Matrices.AddRangeAsync(filtered.MatricesToAdd);
         }
-        if (filtred.MatricesToRemove.Count > 0)
+        if (filtered.MatricesToRemove.Count > 0)
         {
-          _db.Controls.RemoveRange(filtred.MatricesToRemove.SelectMany(m => m.Controls).ToList());
-          _db.Matrices.RemoveRange(filtred.MatricesToRemove);
+          _db.Controls.RemoveRange(filtered.MatricesToRemove.SelectMany(m => m.Controls).ToList());
+          _db.Matrices.RemoveRange(filtered.MatricesToRemove);
         }
-        if (filtred.UnitsToAdd.Count > 0)
+        if (filtered.UnitsToAdd.Count > 0)
         {
-          await _db.Units.AddRangeAsync(filtred.UnitsToAdd);
+          await _db.Units.AddRangeAsync(filtered.UnitsToAdd);
         }
-        if (filtred.UnitsToRemove.Count > 0)
+        if (filtered.UnitsToRemove.Count > 0)
         {
-          _db.Units.RemoveRange(filtred.UnitsToRemove);
+          _db.Units.RemoveRange(filtered.UnitsToRemove);
         }
-        if (filtred.ControlsToAdd.Count > 0)
+        if (filtered.ControlsToAdd.Count > 0)
         {
-          await _db.Controls.AddRangeAsync(filtred.ControlsToAdd);
+          await _db.Controls.AddRangeAsync(filtered.ControlsToAdd);
         }
-        if (filtred.ControlsToRemove.Count > 0)
+        if (filtered.ControlsToRemove.Count > 0)
         {
-          _db.Controls.RemoveRange(filtred.ControlsToRemove);
+          _db.Controls.RemoveRange(filtered.ControlsToRemove);
         }
-        if (filtred.ControlsToUpdate.Count > 0)
+        if (filtered.ControlsToUpdate.Count > 0)
         {
-          _db.Controls.UpdateRange(filtred.ControlsToUpdate);
+          _db.Controls.UpdateRange(filtered.ControlsToUpdate);
         }
         await _save.SaveChangesAsync();
         var matrices = await _matrix.GetManyAsync();
@@ -73,8 +73,8 @@ namespace MatrixAPI.Controllers
     {
       try
       {
-        var matrixs = await _matrix.GetOneAsync(id);
-        return Ok(_response.Data(matrixs.Select(_map.ToMatrixDto)));
+        var matrixes = await _matrix.GetOneAsync(id);
+        return Ok(_response.Data(matrixes.Select(_map.ToMatrixDto)));
       }
       catch (Exception ex)
       {
@@ -87,8 +87,8 @@ namespace MatrixAPI.Controllers
     {
       try
       {
-        var matrixs = await _matrix.GetManyAsync();
-        return Ok(_response.Data(matrixs.Select(_map.ToMatrixDto)));
+        var matrixes = await _matrix.GetManyAsync();
+        return Ok(_response.Data(matrixes.Select(_map.ToMatrixDto)));
       }
       catch (Exception ex)
       {

@@ -6,12 +6,12 @@ namespace MatrixAPI.Services
   {
     private readonly IMapService _map = map;
     private readonly IControlService _control = control;
-    private readonly Filtred _filtred = new();
+    private readonly Filtered _filtered = new();
 
-    public Filtred MatrixDto(List<MatrixDto> matricesDto)
+    public Filtered MatrixDto(List<MatrixDto> matricesDto)
     {
       MatricesUpdate(matricesDto.Select(_map.ToMatrix).ToList());
-      return _filtred;
+      return _filtered;
     }
 
     private void MatricesUpdate(List<Matrix> matrices)
@@ -24,10 +24,10 @@ namespace MatrixAPI.Services
           switch (controlAct.Data)
           {
             case ControlAct.Add:
-              _filtred.MatricesToAdd.Add(matrix);
+              _filtered.MatricesToAdd.Add(matrix);
               break;
             case ControlAct.Remove:
-              _filtred.MatricesToRemove.Add(matrix);
+              _filtered.MatricesToRemove.Add(matrix);
               break;
             case ControlAct.Update:
               ControlsUpdate(matrix.Controls);
@@ -48,10 +48,10 @@ namespace MatrixAPI.Services
           switch (controlAct.Data)
           {
             case ControlAct.Add:
-              _filtred.UnitsToAdd.Add(Unit);
+              _filtered.UnitsToAdd.Add(Unit);
               break;
             case ControlAct.Remove:
-              _filtred.UnitsToRemove.Add(Unit);
+              _filtered.UnitsToRemove.Add(Unit);
               break;
             case ControlAct.Update:
               ControlsUpdate(Unit.Controls);
@@ -68,20 +68,20 @@ namespace MatrixAPI.Services
         switch (control.Act)
         {
           case ControlAct.Add:
-            _filtred.ControlsToAdd.Add(control);
+            _filtered.ControlsToAdd.Add(control);
             break;
           case ControlAct.Update:
-            _filtred.ControlsToUpdate.Add(control);
+            _filtered.ControlsToUpdate.Add(control);
             break;
           case ControlAct.Remove:
-            _filtred.ControlsToRemove.Add(control);
+            _filtered.ControlsToRemove.Add(control);
             break;
         }
       }
     }
   }
 
-  public class Filtred
+  public class Filtered
   {
     public List<Matrix> MatricesToAdd = [];
     public List<Matrix> MatricesToUpdate = [];
@@ -98,6 +98,6 @@ namespace MatrixAPI.Services
 
   public interface IFilterService
   {
-    Filtred MatrixDto(List<MatrixDto> matricesDto);
+    Filtered MatrixDto(List<MatrixDto> matricesDto);
   }
 }
