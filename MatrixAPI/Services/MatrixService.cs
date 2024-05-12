@@ -8,28 +8,18 @@ namespace MatrixAPI.Services
   {
     private readonly AppDbContext _db = db;
 
-    public async Task<List<Matrix>> GetManyAsync()
+    public async Task<Matrix> Get(Guid matrixId)
     {
-      return await _db.Matrices
-        .Include(m => m.Units)
-        .ThenInclude(u => u.Controls)
+      return await _db.Matrixes
+        .Include(m => m.Groups)
+          .ThenInclude(g => g.Controls)
         .Include(m => m.Controls)
-        .ToListAsync();
-    }
-
-    public async Task<List<Matrix>> GetOneAsync(Guid id)
-    {
-      return await _db.Matrices
-        .Include(m => m.Units)
-        .Include(m => m.Controls)
-        .Where(m => m.Id == id)
-        .ToListAsync();
+        .FirstAsync(m => m.Id == matrixId);
     }
   }
 
   public interface IMatrixService
   {
-    Task<List<Matrix>> GetManyAsync();
-    Task<List<Matrix>> GetOneAsync(Guid id);
+    Task<Matrix> Get(Guid matrixId);
   }
 }

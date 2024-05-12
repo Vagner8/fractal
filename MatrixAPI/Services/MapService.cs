@@ -8,9 +8,43 @@ namespace MatrixAPI.Services
     {
       return new Matrix
       {
-        Id = matrixDto.Id ?? Guid.NewGuid(),
-        Units = matrixDto.Units.Select((u) => ToUnit(u, matrixDto.Id)).ToList(),
-        Controls = matrixDto.Controls.Select((c) => ToControl(c, matrixDto.Id, null)).ToList(),
+        Id = matrixDto.Id,
+        Groups = matrixDto.Groups.Select((t) => ToTable(t, matrixDto.Id)).ToList(),
+        Controls = matrixDto.Controls.Select((c) => ToControl(c, matrixDto.Id, null, null)).ToList(),
+      };
+    }
+
+    public Group ToTable(GroupDto screenDto, Guid? matrixId)
+    {
+      return new Group
+      {
+        Id = screenDto.Id,
+        Units = screenDto.Units.Select(u => ToUnit(u, screenDto.Id)).ToList(),
+        Controls = screenDto.Controls.Select(c => ToControl(c, null, screenDto.Id, null)).ToList(),
+        MatrixId = matrixId,
+      };
+    }
+
+    public Unit ToUnit(UnitDto unitDto, Guid? screenId)
+    {
+      return new Unit
+      {
+        Id = unitDto.Id ?? Guid.NewGuid(),
+        Controls = unitDto.Controls.Select((c) => ToControl(c, null,null, unitDto.Id)).ToList(),
+        GroupId = screenId
+      };
+    }
+
+    public Control ToControl(ControlDto controlDto, Guid? matrixId, Guid? screenId, Guid? unitId)
+    {
+      return new Control
+      {
+        Id = controlDto.Id,
+        Indicator = controlDto.Indicator,
+        Data = controlDto.Data,
+        MatrixId = matrixId,
+        GroupId = screenId,
+        UnitId = unitId
       };
     }
 
@@ -19,18 +53,18 @@ namespace MatrixAPI.Services
       return new MatrixDto
       {
         Id = matrix.Id,
-        Units = matrix.Units.Select(ToUnitDto).ToList(),
+        Groups = matrix.Groups.Select(ToTableDto).ToList(),
         Controls = matrix.Controls.Select(ToControlDto).ToList(),
       };
     }
 
-    public Unit ToUnit(UnitDto unitDto, Guid? matrixId)
+    public GroupDto ToTableDto(Group group)
     {
-      return new Unit
+      return new GroupDto
       {
-        Id = unitDto.Id ?? Guid.NewGuid(),
-        Controls = unitDto.Controls.Select((c) => ToControl(c, null, unitDto.Id)).ToList(),
-        MatrixId = matrixId
+        Id = group.Id,
+        Units = group.Units.Select(ToUnitDto).ToList(),
+        Controls = group.Controls.Select(ToControlDto).ToList(),
       };
     }
 
@@ -43,29 +77,13 @@ namespace MatrixAPI.Services
       };
     }
 
-    public Control ToControl(ControlDto controlDto, Guid? matrixId, Guid? unitId)
-    {
-      return new Control
-      {
-        Id = controlDto.Id ?? Guid.NewGuid(),
-        Name = controlDto.Name,
-        Data = controlDto.Data,
-        Type = controlDto.Type,
-        Act = controlDto.Act,
-        MatrixId = matrixId,
-        UnitId = unitId
-      };
-    }
-
     public ControlDto ToControlDto(Control control)
     {
       return new ControlDto
       {
         Id = control.Id,
-        Name = control.Name,
-        Data = control.Data,
-        Type = control.Type,
-        Act = control.Act,
+        Indicator = control.Indicator,
+        Data = control.Data
       };
     }
   }
@@ -73,10 +91,13 @@ namespace MatrixAPI.Services
   public interface IMapService
   {
     Matrix ToMatrix(MatrixDto matrixDto);
-    MatrixDto ToMatrixDto(Matrix matrix);
+    Group ToTable(GroupDto screenDto, Guid? matrixId);
     Unit ToUnit(UnitDto unitDto, Guid? matrixId);
+    Control ToControl(ControlDto controlDto, Guid? matrixId, Guid? screenId, Guid? unitId);
+
+    MatrixDto ToMatrixDto(Matrix matrix);
+    GroupDto ToTableDto(Group group);
     UnitDto ToUnitDto(Unit unit);
-    Control ToControl(ControlDto controlDto, Guid? matrixId, Guid? unitId);
     ControlDto ToControlDto(Control control);
   }
 }

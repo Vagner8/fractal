@@ -1,76 +1,39 @@
-[
-  {
-    "controls": [
-      {
-        "name": "Act",
-        "data": "Add",
-        "type": "Select",
-        "act": "Add"
-      },
-      {
-        "name": "Name",
-        "data": "Users",
-        "type": "Text",
-        "act": "Add"
-      },
-      {
-        "name": "Icon",
-        "data": "group",
-        "type": "Select",
-        "act": "Add"
-      },
-      {
-        "name": "Sort",
-        "data": "Email:Name",
-        "type": "Text",
-        "act": "Add"
-      }
-    ],
-    "units": [
-      {
-        "controls": [
-          {
-            "name": "Act",
-            "data": "Add",
-            "type": "Select",
-            "act": "Add"
-          },
-          {
-            "name": "Name",
-            "data": "Dima new",
-            "type": "Text",
-            "act": "Add"
-          },
-          {
-            "name": "Eamil",
-            "data": "dima@gmail.com",
-            "type": "Email",
-            "act": "Add"
-          }
-        ]
-      },
-      {
-        "controls": [
-          {
-            "name": "Act",
-            "data": "Add",
-            "type": "Select",
-            "act": "Add"
-          },
-          {
-            "name": "Name",
-            "data": "Alena",
-            "type": "Text",
-            "act": "Add"
-          },
-          {
-            "name": "Eamil",
-            "data": "alena@gmail.com",
-            "type": "Email",
-            "act": "Add"
-          }
-        ]
-      }
-    ]
-  }
-]
+{
+  "groups": [
+    {
+      "units": [],
+      "controls": [
+        {
+          "indicator": "Act",
+          "data": "Add"
+        },
+        {
+          "indicator": "Group",
+          "data": ""
+        },
+        {
+          "indicator": "Icon",
+          "data": ""
+        },
+        {
+          "indicator": "Sort",
+          "data": ""
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "indicator": "Act",
+      "data": "Add"
+    },
+    {
+      "indicator": "Matrix",
+      "data": "Vega"
+    },
+    {
+      "indicator": "Sort",
+      "data": ""
+    }
+  ]
+}
