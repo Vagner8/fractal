@@ -1,6 +1,7 @@
 ﻿using MatrixAPI.Models;
 using MatrixAPI.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace MatrixAPI.Data
 {
@@ -14,23 +15,16 @@ namespace MatrixAPI.Data
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-      builder.Entity<Matrix>()
-        .HasMany(m => m.Groups)
-        .WithOne(g => g.Matrix)
-        .OnDelete(DeleteBehavior.Cascade);
+      Seeding(builder);
+      Delete(builder);
+      base.OnModelCreating(builder);
+    }
 
-      builder.Entity<Group>()
-        .HasMany(g => g.Units)
-        .WithOne(u => u.Group)
-        .OnDelete(DeleteBehavior.Cascade);
-
-      builder.Entity<Unit>()
-        .HasMany(u => u.Controls)
-        .WithOne(c => c.Unit)
-        .OnDelete(DeleteBehavior.Cascade);
-
+    private void Seeding(ModelBuilder builder)
+    {
       var matrixId = Guid.NewGuid();
       var groupId = Guid.NewGuid();
+      var unitId = Guid.NewGuid();
 
       builder.Entity<Matrix>().HasData(new Matrix
       {
@@ -43,19 +37,34 @@ namespace MatrixAPI.Data
         MatrixId = matrixId,
       });
 
+      builder.Entity<Unit>().HasData(new Unit
+      {
+        Id = unitId,
+        GroupId = groupId,
+      });
+
       builder.Entity<Control>().HasData(
         _control.MatrixControl(Indicator.Matrix, Act.Add, matrixId),
-        _control.MatrixControl(Indicator.Act, Act.Add, matrixId),
         _control.MatrixControl(Indicator.Icon, string.Empty, matrixId),
         _control.MatrixControl(Indicator.Sort, string.Empty, matrixId));
 
       builder.Entity<Control>().HasData(
-        _control.GroupControl(Indicator.Group, Act.Add, groupId),
         _control.GroupControl(Indicator.Act, Act.Add, groupId),
+        _control.GroupControl(Indicator.Group, Act.Add, groupId),
         _control.GroupControl(Indicator.Icon, string.Empty, groupId),
         _control.GroupControl(Indicator.Sort, string.Empty, groupId));
 
-      base.OnModelCreating(builder);
+      builder.Entity<Control>().HasData(
+        _control.UnitControl(Indicator.Act, Act.Add, unitId),
+        _control.UnitControl("Name", "Dima", unitId));
+    }
+
+    private static void Delete(ModelBuilder builder)
+    {
+      builder.Entity<Unit>()
+          .HasMany(u => u.Controls)
+          .WithOne(c => c.Unit)
+          .OnDelete(DeleteBehavior.Cascade);
     }
   }
 }

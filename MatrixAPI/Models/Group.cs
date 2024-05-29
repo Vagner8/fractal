@@ -3,20 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MatrixAPI.Models
 {
-  public class Unit
+  public class Group
   {
     [Key]
     public Guid? Id { get; set; }
+    public List<Unit> Units { get; set; } = [];
     public List<Control> Controls { get; set; } = [];
 
-    [ForeignKey("GroupId")]
-    public Guid? GroupId { get; set; }
-    public Group Group { get; set; } = null!;
+    [ForeignKey("MatrixId")]
+    public Guid? MatrixId { get; set; }
+    public Matrix Matrix { get; set; } = null!;
   }
 
-  public class UnitDto
+  public class GroupDto
   {
+    [Key]
     public Guid? Id { get; set; }
+    public List<UnitDto> Units { get; set; } = [];
     public List<ControlDto> Controls { get; set; } = [];
   }
 }

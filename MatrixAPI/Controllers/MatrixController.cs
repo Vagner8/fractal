@@ -11,39 +11,34 @@ namespace MatrixAPI.Controllers
       AppDbContext db,
       IMapService map,
       ISaveService save,
-      IWorkService work,
+      ITodoService todo,
       IMatrixService matrix,
       IResponseService response) : ControllerBase
   {
     private readonly AppDbContext _db = db;
     private readonly IMapService _map = map;
     private readonly ISaveService _save = save;
-    private readonly IWorkService _work = work;
+    private readonly ITodoService _todo = todo;
     private readonly IMatrixService _matrix = matrix;
     private readonly IResponseService _response = response;
 
     [HttpPost]
-    public async Task<ActionResult> Post([FromBody] MatrixDto matrix, Guid matrixId)
+    public async Task<ActionResult> Post([FromBody] MatrixDto dto, Guid matrixId)
     {
       try
       {
-        var work = _work.OnInit(matrix);
+        var todo = _todo.Matrix(dto);
 
-        if (work.MatrixToAdd != null) await _db.Matrixes.AddAsync(work.MatrixToAdd);
+        await _matrix.GroupsUpdate(todo);
+        await _matrix.UnitsUpdate(todo);
+        await _matrix.ControlsUpdate(todo);
 
-        if (work.GroupsToAdd.Count > 0) await _db.Groups.AddRangeAsync(work.GroupsToAdd);
-        if (work.GroupsToRemove.Count > 0) _db.Groups.RemoveRange(work.GroupsToAdd);
+        await _db.SaveChangesAsync();
 
-        if (work.UnitsToAdd.Count > 0) await _db.Units.AddRangeAsync(work.UnitsToAdd);
-        if (work.UnitsToRemove.Count > 0) _db.Units.RemoveRange(work.UnitsToRemove);
-
-        if (work.ControlsToAdd.Count > 0) await _db.Controls.AddRangeAsync(work.ControlsToAdd);
-        if (work.ControlsToRemove.Count > 0) _db.Controls.RemoveRange(work.ControlsToRemove);
-        if (work.ControlsToUpdate.Count > 0) _db.Controls.UpdateRange(work.ControlsToUpdate);
-
-        await _save.SaveChangesAsync();
-        var matrixDto = _map.ToMatrixDto(await _matrix.Get(matrixId));
-        return Ok(_response.Data(matrixDto));
+        var matrix = await _matrix.Get(matrixId);
+        var matrixDto = _map.ToMatrixDto(matrix);
+        var response = _response.Data(matrixDto);
+        return Ok(response);
       }
       catch (Exception ex)
       {

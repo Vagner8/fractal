@@ -1,5 +1,4 @@
 ﻿using MatrixAPI.Models;
-using System.Text.RegularExpressions;
 
 namespace MatrixAPI.Services
 {
@@ -38,6 +37,17 @@ namespace MatrixAPI.Services
         GroupId = groupId,
       };
     }
+
+    public Control UnitControl(string indicator, string data, Guid unitId)
+    {
+      return new Control
+      {
+        Id = Guid.NewGuid(),
+        Indicator = indicator,
+        Data = data,
+        UnitId = unitId,
+      };
+    }
   }
 
   public interface IControlService
@@ -46,5 +56,6 @@ namespace MatrixAPI.Services
     C? FindAct<C>(List<C> controls);
     Control MatrixControl(string indicator, string data, Guid matrixId);
     Control GroupControl(string indicator, string data, Guid groupId);
+    Control UnitControl(string indicator, string data, Guid unitId);
   }
 }

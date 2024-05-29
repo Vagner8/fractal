@@ -14,12 +14,20 @@ namespace MatrixAPI.Models
     [Key]
     public Guid? Id { get; set; }
 
-    [ConcurrencyCheck]
-    public Guid Version { get; set; }
+    //[ConcurrencyCheck]
+    //public Guid Version { get; set; }
 
     [ForeignKey("MatrixId")]
     public Guid? MatrixId { get; set; }
     public Matrix Matrix { get; set; } = null!;
+
+    [ForeignKey("GroupId")]
+    public Guid? GroupId { get; set; }
+    public Group Group { get; set; } = null!;
+
+    [ForeignKey("UnitId")]
+    public Guid? UnitId { get; set; }
+    public Unit Unit { get; set; } = null!;
   }
 
   public class ControlDto : ControlBase

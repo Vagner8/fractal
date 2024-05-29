@@ -1,66 +1,13 @@
 {
-  "controls": [
+  "id": "fe3a179e-4058-4444-abff-2b1ea25d8c67",
+  "groups": [
     {
-      "indecator": "Matrix",
-      "data": "Vega"
-    },
-    {
-      "indecator": "Icon",
-      "data": ""
-    },
-    {
-      "indecator": "Sort",
-      "data": ""
-    },
-    {
-      "indecator": "Act",
-      "data": "Add"
-    }
-  ],
-  "matrixes": [
-    {
+      "id": "d0a1c53d-9f2c-4f28-82ea-e0ed64fe7b7e",
       "controls": [
         {
-          "indecator": "Group",
-          "data": "Users"
-        },
-        {
-          "indecator": "Icon",
-          "data": ""
-        },
-        {
-          "indecator": "Sort",
-          "data": ""
-        },
-        {
-          "indecator": "Act",
-          "data": "Add"
-        }
-      ],
-      "matrixes": [
-        {
-          "controls": [
-            {
-              "indecator": "Name",
-              "data": "Dima"
-            },
-            {
-              "indecator": "Email",
-              "data": "dima@gmail.com"
-            }
-          ]
-        },
-        {
-          "controls": [
-            {
-              "indecator": "Name",
-              "data": "Alena"
-            },
-            {
-              "indecator": "Email",
-              "data": "Alena@gmail.com"
-            }
-          ]
+          "id": "e3237fdb-8cf6-4819-b52c-d2e426fba649",
+          "indicator": "Act",
+          "data": "Remove"
         }
       ]
     }
