@@ -3,19 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MatrixAPI.Models
 {
-  public class ControlBase
-  {
-    public required string Indicator { get; set; }
-    public required string Data { get; set; }
-  }
-
-  public class Control : ControlBase
+  public class Control
   {
     [Key]
     public Guid? Id { get; set; }
-
-    //[ConcurrencyCheck]
-    //public Guid Version { get; set; }
+    public string Indicator { get; set; } = string.Empty;
+    public string Data { get; set; } = string.Empty;
 
     [ForeignKey("MatrixId")]
     public Guid? MatrixId { get; set; }
@@ -30,32 +23,5 @@ namespace MatrixAPI.Models
     public Unit Unit { get; set; } = null!;
   }
 
-  public class ControlDto : ControlBase
-  {
-    public Guid? Id { get; set; }
-  }
-
-  public class Act
-  {
-    public const string None = "None";
-    public const string Add = "Add";
-    public const string Update = "Update";
-    public const string Remove = "Remove";
-  }
-
-  public class Indicator
-  {
-    public const string Matrix = "Matrix";
-    public const string Group = "Group";
-    public const string Icon = "Icon";
-    public const string Sort = "Sort";
-    public const string Act = "Act";
-  }
-
-  public class Prop
-  {
-    public static string? Id => nameof(ControlDto.Id);
-    public static string Indicator => nameof(ControlBase.Indicator);
-    public static string Data => nameof(ControlBase.Data);
-  }
+  public record ControlDto(Guid? Id, string Indicator, string Data);
 }

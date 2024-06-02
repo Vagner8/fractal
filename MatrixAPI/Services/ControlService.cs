@@ -13,7 +13,7 @@ namespace MatrixAPI.Services
 
     public C? FindAct<C>(List<C> controls)
     {
-      return Find(controls, Prop.Indicator, Indicator.Act);
+      return Find(controls, ControlKey.Indicator, Indicator.Act);
     }
 
     public Control MatrixControl(string indicator, string data, Guid matrixId)

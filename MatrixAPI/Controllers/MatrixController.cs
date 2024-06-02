@@ -23,19 +23,15 @@ namespace MatrixAPI.Controllers
     private readonly IResponseService _response = response;
 
     [HttpPost]
-    public async Task<ActionResult> Post([FromBody] MatrixDto dto, Guid matrixId)
+    public async Task<ActionResult> Post([FromBody] MatrixDto dto)
     {
       try
       {
         var todo = _todo.Matrix(dto);
-
-        await _matrix.GroupsUpdate(todo);
-        await _matrix.UnitsUpdate(todo);
-        await _matrix.ControlsUpdate(todo);
-
+        await _matrix.UpdateAsync(todo);
         await _db.SaveChangesAsync();
 
-        var matrix = await _matrix.Get(matrixId);
+        var matrix = await _matrix.GetAsync(dto.Id);
         var matrixDto = _map.ToMatrixDto(matrix);
         var response = _response.Data(matrixDto);
         return Ok(response);
@@ -51,7 +47,7 @@ namespace MatrixAPI.Controllers
     {
       try
       {
-        var matrix = await _matrix.Get(matrixId);
+        var matrix = await _matrix.GetAsync(matrixId);
         var matrixDto = _map.ToMatrixDto(matrix);
         return Ok(_response.Data(matrixDto));
       }

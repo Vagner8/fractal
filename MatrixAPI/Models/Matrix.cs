@@ -5,15 +5,10 @@ namespace MatrixAPI.Models
   public class Matrix
   {
     [Key]
-    public Guid? Id { get; set; }
+    public Guid Id { get; set; }
     public List<Group> Groups { get; set; } = [];
     public List<Control> Controls { get; set; } = [];
   }
 
-  public class MatrixDto
-  {
-    public Guid? Id { get; set; }
-    public List<GroupDto> Groups { get; set; } = [];
-    public List<ControlDto> Controls { get; set; } = [];
-  }
+  public record MatrixDto(Guid Id, List<GroupDto>? Groups, List<ControlDto>? Controls);
 }

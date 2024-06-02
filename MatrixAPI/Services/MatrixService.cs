@@ -8,7 +8,24 @@ namespace MatrixAPI.Services
   {
     private readonly AppDbContext _db = db;
 
-    public async Task GroupsUpdate(Todo todo)
+    public async Task UpdateAsync(Todo todo)
+    {
+      await Task.WhenAll(UpdateGroupsAsync(todo), UpdateUnitsAsync(todo), UpdateControlsAsync(todo));
+    }
+
+    public async Task<Matrix> GetAsync(Guid matrixId)
+    {
+      return await _db.Matrixes
+        .Include(m => m.Controls)
+        .Include(m => m.Groups)
+          .ThenInclude(g => g.Units)
+            .ThenInclude(u => u.Controls)
+        .Include(m => m.Groups)
+          .ThenInclude(g => g.Controls)
+        .FirstAsync(m => m.Id == matrixId);
+    }
+
+    private async Task UpdateGroupsAsync(Todo todo)
     {
       if (todo.GroupsToAdd.Count > 0)
       {
@@ -22,7 +39,7 @@ namespace MatrixAPI.Services
             .Include(g => g.Units)
             .Include(g => g.Controls)
             .FirstOrDefaultAsync(g => g.Id == group.Id);
-          
+
           if (groupToDelete != null)
           {
             _db.Controls.RemoveRange(groupToDelete.Controls);
@@ -33,7 +50,7 @@ namespace MatrixAPI.Services
       }
     }
 
-    public async Task UnitsUpdate(Todo todo)
+    private async Task UpdateUnitsAsync(Todo todo)
     {
       if (todo.UnitsToAdd.Count > 0)
       {
@@ -44,7 +61,8 @@ namespace MatrixAPI.Services
         _db.Units.RemoveRange(todo.UnitsToRemove);
       }
     }
-    public async Task ControlsUpdate(Todo todo)
+
+    private async Task UpdateControlsAsync(Todo todo)
     {
       if (todo.ControlsToAdd.Count > 0)
       {
@@ -59,25 +77,11 @@ namespace MatrixAPI.Services
         _db.Controls.RemoveRange(todo.ControlsToRemove);
       }
     }
-
-    public async Task<Matrix> Get(Guid matrixId)
-    {
-      return await _db.Matrixes
-        .Include(m => m.Controls)
-        .Include(m => m.Groups)
-          .ThenInclude(g => g.Units)
-            .ThenInclude(u => u.Controls)
-        .Include(m => m.Groups)
-          .ThenInclude(g => g.Controls)
-        .FirstAsync(m => m.Id == matrixId);
-    }
   }
 
   public interface IMatrixService
   {
-    Task GroupsUpdate(Todo todo);
-    Task UnitsUpdate(Todo todo);
-    Task ControlsUpdate(Todo todo);
-    Task<Matrix> Get(Guid matrixId);
+    Task UpdateAsync(Todo todo);
+    Task<Matrix> GetAsync(Guid matrixId);
   }
 }

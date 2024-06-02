@@ -15,11 +15,5 @@ namespace MatrixAPI.Models
     public Matrix Matrix { get; set; } = null!;
   }
 
-  public class GroupDto
-  {
-    [Key]
-    public Guid? Id { get; set; }
-    public List<UnitDto> Units { get; set; } = [];
-    public List<ControlDto> Controls { get; set; } = [];
-  }
+  public record GroupDto(Guid? Id, List<UnitDto>? Units, List<ControlDto>? Controls);
 }
