@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MatrixAPI.Services;
 using MatrixAPI.Dto;
-using MatrixAPI.Models;
 
 namespace MatrixAPI.Controllers
 {
@@ -11,26 +10,40 @@ namespace MatrixAPI.Controllers
   {
     private readonly IUnitService _us = us;
 
-    [HttpPost]
-    public async Task<ActionResult> AddUnit([FromBody] UnitDto dto, Guid? matrixId = null, Guid? unitId = null)
+    [HttpGet]
+    public async Task<ActionResult> Get(Guid id)
     {
       try
       {
-        await _us.Add(dto, matrixId, unitId);
-        return Ok("Unit added successfully.");
+        return Ok(await _us.Get(id));
       }
       catch (Exception ex)
       {
         return BadRequest(ex.Message);
       }
     }
+
+    [HttpPost]
+    public async Task<ActionResult> AddUnit([FromBody] UnitDto dto)
+    {
+      try
+      {
+        await _us.Add(dto);
+        return Ok(dto);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] ICollection<UnitDto> dto)
     {
       try
       {
         await _us.Delete(dto);
-        return Ok();
+        return Ok(dto);
       }
       catch (Exception ex)
       {

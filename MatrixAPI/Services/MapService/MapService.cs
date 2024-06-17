@@ -5,72 +5,58 @@ namespace MatrixAPI.Services
 {
   public class MapService : IMapService
   {
-    public Unit ToUnit(UnitDto dto, Guid? matrixId = null, Guid? unitId = null)
+    public Unit ToUnit(UnitDto dto)
     {
       return new Unit
       {
         Id = dto.Id,
         Units = [],
         Controls = ToControls(dto.Controls),
-        UnitId = unitId,
-        MatrixId = matrixId,
+        UnitId = dto.UnitId,
       };
     }
 
-    public Control ToControl(ControlDto dto, Guid? matrixId = null, Guid? unitId = null)
+    public Control ToControl(ControlDto dto)
     {
-      var (id, data, indicator) = dto;
       return new Control
       {
-        Id = id,
-        Data = data,
-        Indicator = indicator,
-        MatrixId = matrixId,
-        UnitId = unitId,
+        Id = dto.Id,
+        Data = dto.Data,
+        Indicator = dto.Indicator,
+        UnitId = dto.UnitId,
       };
     }
 
-    public ICollection<Control> ToControls(
-      ControlDictionaryDto dto,
-      Guid? matrixId = null,
-      Guid? unitId = null
-    )
+    public ICollection<Control> ToControls(ControlDictionaryDto dto)
     {
       ICollection<Control> controls = [];
 
       foreach (var value in dto.Values)
       {
-        controls.Add(ToControl(value, matrixId, unitId));
+        controls.Add(ToControl(value));
       }
 
       return controls;
-    }
-
-    public MatrixDto ToMatrixDto(Matrix matrix)
-    {
-      return new MatrixDto(
-        matrix.Id,
-        matrix.Units.Select(ToUnitDto).ToList(),
-        ToControlDto(matrix.Controls, matrix.Id)
-      );
     }
 
     public UnitDto ToUnitDto(Unit unit)
     {
       return new UnitDto(
         unit.Id,
+        unit.UnitId,
         unit.Units.Count == 0 ? [] : unit.Units.Select(ToUnitDto).ToList(),
-        ToControlDto(unit.Controls, null, unit.Id)
+        ToControlDto(unit.Controls)
       );
     }
 
-    public ControlDictionaryDto ToControlDto(ICollection<Control> controls, Guid? matrixId = null, Guid? unitId = null)
+    public ControlDictionaryDto ToControlDto(ICollection<Control> controls)
     {
       var dic = new ControlDictionaryDto();
       foreach (var control in controls)
       {
         dic[control.Indicator] = new ControlDto(
           control.Id,
+          control.UnitId,
           control.Indicator,
           control.Data
         );

@@ -10,10 +10,6 @@ namespace MatrixAPI.Models
     public string Indicator { get; set; } = string.Empty;
     public string Data { get; set; } = string.Empty;
 
-    [ForeignKey("MatrixId")]
-    public Guid? MatrixId { get; set; }
-    public Matrix? Matrix { get; set; }
-
     [ForeignKey("UnitId")]
     public Guid? UnitId { get; set; }
     public Unit? Unit { get; set; }

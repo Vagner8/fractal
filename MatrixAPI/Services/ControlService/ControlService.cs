@@ -1,7 +1,5 @@
 ﻿using MatrixAPI.Data;
 using MatrixAPI.Dto;
-using MatrixAPI.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace MatrixAPI.Services
 {
@@ -10,15 +8,16 @@ namespace MatrixAPI.Services
     private readonly AppDbContext _db = db;
     private readonly IMapService _maps = maps;
 
-    public async Task Add(ControlDictionaryDto dto, Guid? matrixId = null, Guid? unitId = null)
+    public async Task Add(ControlDictionaryDto dto)
     {
-      await _db.Controls.AddRangeAsync(dto.Values.Select(v => _maps.ToControl(v, matrixId, unitId)));
+      var controls = dto.Values.Select(_maps.ToControl);
+      await _db.Controls.AddRangeAsync(controls);
       await _db.SaveChangesAsync();
     }
 
     public async Task Update(ControlDictionaryDto dto)
     {
-      _db.Controls.UpdateRange(dto.Values.Select(v => _maps.ToControl(v)));
+      _db.Controls.UpdateRange(dto.Values.Select(_maps.ToControl));
       await _db.SaveChangesAsync();
     }
 

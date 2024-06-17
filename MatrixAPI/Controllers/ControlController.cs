@@ -11,12 +11,12 @@ namespace MatrixAPI.Controllers
     private readonly IControlService _cs = cs;
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] ControlDictionaryDto dto, Guid? matrixId, Guid? unitId)
+    public async Task<ActionResult> Add([FromBody] ControlDictionaryDto dto)
     {
       try
       {
-        await _cs.Add(dto, matrixId, unitId);
-        return Ok();
+        await _cs.Add(dto);
+        return Ok(dto);
       }
       catch (Exception ex) {
         return BadRequest(ex);
@@ -44,7 +44,7 @@ namespace MatrixAPI.Controllers
       try
       {
         await _cs.Delete(dto);
-        return Ok();
+        return Ok(dto);
       }
       catch (Exception ex)
       {

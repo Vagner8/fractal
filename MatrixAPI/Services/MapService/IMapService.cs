@@ -5,16 +5,11 @@ namespace MatrixAPI.Services
 {
   public interface IMapService
   {
-    Unit ToUnit(UnitDto unit, Guid? matrixId = null, Guid? unitId = null);
-    Control ToControl(ControlDto dto, Guid? matrixId = null, Guid? unitId = null);
-    ICollection<Control> ToControls(ControlDictionaryDto dto, Guid? matrixId = null, Guid? unitId = null);
+    Unit ToUnit(UnitDto unit);
+    Control ToControl(ControlDto dto);
+    ICollection<Control> ToControls(ControlDictionaryDto dto);
 
-    MatrixDto ToMatrixDto(Matrix matrix);
     UnitDto ToUnitDto(Unit unit);
-    ControlDictionaryDto ToControlDto(
-      ICollection<Control> controls,
-      Guid? matrixId = null,
-      Guid? unitId = null
-    );
+    ControlDictionaryDto ToControlDto(ICollection<Control> controls);
   }
 }

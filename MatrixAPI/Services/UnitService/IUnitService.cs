@@ -4,7 +4,8 @@ namespace MatrixAPI.Services
 {
   public interface IUnitService
   {
-    Task Add(UnitDto dto, Guid? matrixId, Guid? unitId);
+    Task<UnitDto> Get(Guid unitId);
+    Task Add(UnitDto dto);
     Task Delete(ICollection<UnitDto> dto);
   }
 }

@@ -9,7 +9,6 @@ namespace MatrixAPI.Data
     {
     }
 
-    public DbSet<Matrix> Matrixes { get; set; }
     public DbSet<Unit> Units { get; set; }
     public DbSet<Control> Controls { get; set; }
 
@@ -18,16 +17,16 @@ namespace MatrixAPI.Data
       base.OnModelCreating(builder);
 
       builder.Entity<Unit>()
+        .HasMany(u => u.Units)
+        .WithOne(u => u.Parent)
+        .HasForeignKey(u => u.UnitId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+      builder.Entity<Unit>()
         .HasMany(u => u.Controls)
         .WithOne(c => c.Unit)
         .HasForeignKey(c => c.UnitId)
         .OnDelete(DeleteBehavior.Cascade);
-
-      builder.Entity<Unit>()
-        .HasMany(u => u.Units)
-        .WithOne(c => c.UnitInstance)
-        .HasForeignKey(c => c.UnitId)
-        .OnDelete(DeleteBehavior.Restrict);
 
       Seeding(builder);
     }
@@ -45,11 +44,10 @@ namespace MatrixAPI.Data
       var product_1 = Guid.NewGuid();
       var product_2 = Guid.NewGuid();
 
-      builder.Entity<Matrix>().HasData(new Matrix { Id = matrix });
-
       builder.Entity<Unit>().HasData(
-        new Unit { Id = users, MatrixId = matrix },
-        new Unit { Id = products, MatrixId = matrix },
+        new Unit { Id = matrix },
+        new Unit { Id = users, UnitId = matrix },
+        new Unit { Id = products, UnitId = matrix },
 
         new Unit { Id = user_1, UnitId = users },
         new Unit { Id = user_2, UnitId = users },
@@ -58,8 +56,9 @@ namespace MatrixAPI.Data
         new Unit { Id = product_2, UnitId = products });
 
       builder.Entity<Control>().HasData(
-        new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, MatrixId = matrix },
-        new Control { Id = Guid.NewGuid(), Data = "Users:Products", Indicator = Indicator.Sort, MatrixId = matrix },
+        new Control { Id = Guid.NewGuid(), Data = "Vega", Indicator = Indicator.Matrix, UnitId = matrix },
+        new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, UnitId = matrix },
+        new Control { Id = Guid.NewGuid(), Data = "Users:Products", Indicator = Indicator.Sort, UnitId = matrix },
 
         new Control { Id = Guid.NewGuid(), Data = "Users", Indicator = Indicator.Group, UnitId = users },
         new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, UnitId = users },
