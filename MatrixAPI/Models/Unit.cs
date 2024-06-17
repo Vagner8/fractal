@@ -7,12 +7,15 @@ namespace MatrixAPI.Models
   {
     [Key]
     public Guid? Id { get; set; }
-    public List<Control> Controls { get; set; } = [];
+    public ICollection<Unit> Units { get; set; } = [];
+    public ICollection<Control> Controls { get; set; } = [];
 
-    [ForeignKey("GroupId")]
-    public Guid? GroupId { get; set; }
-    public Group Group { get; set; } = null!;
+    [ForeignKey("MatrixId")]
+    public Guid? MatrixId { get; set; }
+    public Matrix? MatrixInstance { get; set; }
+
+    [ForeignKey("UnitId")]
+    public Guid? UnitId { get; set; }
+    public Unit? UnitInstance { get; set; }
   }
-
-  public record UnitDto(Guid? Id, List<ControlDto>? Controls);
 }

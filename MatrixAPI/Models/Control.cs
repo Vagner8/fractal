@@ -12,16 +12,10 @@ namespace MatrixAPI.Models
 
     [ForeignKey("MatrixId")]
     public Guid? MatrixId { get; set; }
-    public Matrix Matrix { get; set; } = null!;
-
-    [ForeignKey("GroupId")]
-    public Guid? GroupId { get; set; }
-    public Group Group { get; set; } = null!;
+    public Matrix? Matrix { get; set; }
 
     [ForeignKey("UnitId")]
     public Guid? UnitId { get; set; }
-    public Unit Unit { get; set; } = null!;
+    public Unit? Unit { get; set; }
   }
-
-  public record ControlDto(Guid? Id, string Indicator, string Data);
 }
