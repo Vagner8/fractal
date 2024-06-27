@@ -14,22 +14,21 @@ builder.Services.AddCors(option =>
     });
 });
 
-// Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddExceptionHandler<ExceptionService>();
+builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IMapService, MapService>();
 builder.Services.AddScoped<IUnitService, UnitService>();
 builder.Services.AddScoped<IControlService, ControlService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -37,13 +36,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseCors(MyAllowSpecificOrigins);
-
 app.UseAuthorization();
-
+app.UseExceptionHandler();
 app.MapControllers();
-
 app.Run();
 
 public partial class Program { }

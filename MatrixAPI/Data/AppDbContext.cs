@@ -3,12 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MatrixAPI.Data
 {
-  public class AppDbContext : DbContext
+  public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
   {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<Unit> Units { get; set; }
     public DbSet<Control> Controls { get; set; }
 
@@ -19,13 +15,13 @@ namespace MatrixAPI.Data
       builder.Entity<Unit>()
         .HasMany(u => u.Units)
         .WithOne(u => u.Parent)
-        .HasForeignKey(u => u.UnitId)
+        .HasForeignKey(u => u.ParentId)
         .OnDelete(DeleteBehavior.Restrict);
 
       builder.Entity<Unit>()
         .HasMany(u => u.Controls)
-        .WithOne(c => c.Unit)
-        .HasForeignKey(c => c.UnitId)
+        .WithOne(c => c.Parent)
+        .HasForeignKey(c => c.ParentId)
         .OnDelete(DeleteBehavior.Cascade);
 
       Seeding(builder);
@@ -46,37 +42,36 @@ namespace MatrixAPI.Data
 
       builder.Entity<Unit>().HasData(
         new Unit { Id = matrix },
-        new Unit { Id = users, UnitId = matrix },
-        new Unit { Id = products, UnitId = matrix },
+        new Unit { Id = users, ParentId = matrix },
+        new Unit { Id = products, ParentId = matrix },
 
-        new Unit { Id = user_1, UnitId = users },
-        new Unit { Id = user_2, UnitId = users },
+        new Unit { Id = user_1, ParentId = users },
+        new Unit { Id = user_2, ParentId = users },
 
-        new Unit { Id = product_1, UnitId = products },
-        new Unit { Id = product_2, UnitId = products });
+        new Unit { Id = product_1, ParentId = products },
+        new Unit { Id = product_2, ParentId = products });
 
       builder.Entity<Control>().HasData(
-        new Control { Id = Guid.NewGuid(), Data = "Vega", Indicator = Indicator.Matrix, UnitId = matrix },
-        new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, UnitId = matrix },
-        new Control { Id = Guid.NewGuid(), Data = "Users:Products", Indicator = Indicator.Sort, UnitId = matrix },
+        new Control { Id = Guid.NewGuid(), Data = "Vega", Indicator = Indicator.Unit, ParentId = matrix },
+        new Control { Id = Guid.NewGuid(), Data = "Users:Products", Indicator = Indicator.Sort, ParentId = matrix },
 
-        new Control { Id = Guid.NewGuid(), Data = "Users", Indicator = Indicator.Group, UnitId = users },
-        new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, UnitId = users },
-        new Control { Id = Guid.NewGuid(), Data = "Email:Name", Indicator = Indicator.Sort, UnitId = users },
+        new Control { Id = Guid.NewGuid(), Data = "Users", Indicator = Indicator.Unit, ParentId = users },
+        new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, ParentId = users },
+        new Control { Id = Guid.NewGuid(), Data = "Email:Name", Indicator = Indicator.Sort, ParentId = users },
 
-        new Control { Id = Guid.NewGuid(), Data = "Products", Indicator = Indicator.Group, UnitId = products },
-        new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, UnitId = products },
-        new Control { Id = Guid.NewGuid(), Data = "Price:Name", Indicator = Indicator.Sort, UnitId = products },
+        new Control { Id = Guid.NewGuid(), Data = "Products", Indicator = Indicator.Unit, ParentId = products },
+        new Control { Id = Guid.NewGuid(), Data = "widgets", Indicator = Indicator.Icon, ParentId = products },
+        new Control { Id = Guid.NewGuid(), Data = "Price:Name", Indicator = Indicator.Sort, ParentId = products },
 
-        new Control { Id = Guid.NewGuid(), Data = "Dima", Indicator = "Name", UnitId = user_1 },
-        new Control { Id = Guid.NewGuid(), Data = "dima@mail.com", Indicator = "Email", UnitId = user_1 },
-        new Control { Id = Guid.NewGuid(), Data = "Anna", Indicator = "Name", UnitId = user_2 },
-        new Control { Id = Guid.NewGuid(), Data = "anna@mail.com", Indicator = "Email", UnitId = user_2 },
+        new Control { Id = Guid.NewGuid(), Data = "Dima", Indicator = Indicator.Name, ParentId = user_1 },
+        new Control { Id = Guid.NewGuid(), Data = "dima@mail.com", Indicator = "Email", ParentId = user_1 },
+        new Control { Id = Guid.NewGuid(), Data = "Anna", Indicator = Indicator.Name, ParentId = user_2 },
+        new Control { Id = Guid.NewGuid(), Data = "anna@mail.com", Indicator = "Email", ParentId = user_2 },
 
-        new Control { Id = Guid.NewGuid(), Data = "Phone", Indicator = "Name", UnitId = product_1 },
-        new Control { Id = Guid.NewGuid(), Data = "1000", Indicator = "Price", UnitId = product_1 },
-        new Control { Id = Guid.NewGuid(), Data = "Laptop", Indicator = "Name", UnitId = product_2 },
-        new Control { Id = Guid.NewGuid(), Data = "5000", Indicator = "Price", UnitId = product_2 });
+        new Control { Id = Guid.NewGuid(), Data = "Phone", Indicator = Indicator.Name, ParentId = product_1 },
+        new Control { Id = Guid.NewGuid(), Data = "1000", Indicator = "Price", ParentId = product_1 },
+        new Control { Id = Guid.NewGuid(), Data = "Laptop", Indicator = Indicator.Name, ParentId = product_2 },
+        new Control { Id = Guid.NewGuid(), Data = "5000", Indicator = "Price", ParentId = product_2 });
     }
   }
 }

@@ -7,11 +7,11 @@ namespace MatrixAPI.Models
   {
     [Key]
     public Guid? Id { get; set; }
-    public ICollection<Unit> Units { get; set; } = [];
+    public List<Unit> Units { get; set; } = [];
     public ICollection<Control> Controls { get; set; } = [];
 
-    [ForeignKey("UnitId")]
-    public Guid? UnitId { get; set; }
+    [ForeignKey("ParentId")]
+    public Guid? ParentId { get; set; }
     public Unit? Parent { get; set; }
   }
 }

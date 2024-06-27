@@ -13,43 +13,23 @@ namespace MatrixAPI.Controllers
     [HttpPost]
     public async Task<ActionResult> Add([FromBody] ControlDictionaryDto dto)
     {
-      try
-      {
-        await _cs.Add(dto);
-        return Ok(dto);
-      }
-      catch (Exception ex) {
-        return BadRequest(ex);
-      }
+      await _cs.Add(dto);
+      return Ok(dto);
     }
 
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] ControlDictionaryDto dto)
     {
-      try
-      {
-        await _cs.Update(dto);
-        return Ok();
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex);
-      }
+      await _cs.Update(dto);
+      return Ok();
     }
 
 
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] ControlDictionaryDto dto)
     {
-      try
-      {
-        await _cs.Delete(dto);
-        return Ok(dto);
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex);
-      }
+      await _cs.Delete(dto);
+      return Ok(dto);
     }
   }
 }

@@ -13,42 +13,21 @@ namespace MatrixAPI.Controllers
     [HttpGet]
     public async Task<ActionResult> Get(Guid id)
     {
-      try
-      {
-        return Ok(await _us.Get(id));
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex.Message);
-      }
+      return Ok(await _us.Get(id));
     }
 
     [HttpPost]
     public async Task<ActionResult> AddUnit([FromBody] UnitDto dto)
     {
-      try
-      {
-        await _us.Add(dto);
-        return Ok(dto);
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex.Message);
-      }
+      await _us.Add(dto);
+      return Ok(dto);
     }
 
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] ICollection<UnitDto> dto)
     {
-      try
-      {
-        await _us.Delete(dto);
-        return Ok(dto);
-      }
-      catch (Exception ex)
-      {
-        return BadRequest(ex);
-      }
+      await _us.Delete(dto);
+      return Ok(dto);
     }
   }
 }

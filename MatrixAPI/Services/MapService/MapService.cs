@@ -12,7 +12,7 @@ namespace MatrixAPI.Services
         Id = dto.Id,
         Units = [],
         Controls = ToControls(dto.Controls),
-        UnitId = dto.UnitId,
+        ParentId = dto.ParentId,
       };
     }
 
@@ -23,7 +23,7 @@ namespace MatrixAPI.Services
         Id = dto.Id,
         Data = dto.Data,
         Indicator = dto.Indicator,
-        UnitId = dto.UnitId,
+        ParentId = dto.ParentId,
       };
     }
 
@@ -41,22 +41,38 @@ namespace MatrixAPI.Services
 
     public UnitDto ToUnitDto(Unit unit)
     {
+      UnitDictionaryDto dic = [];
+      for (int i = 0; i < unit.Units.Count; i++)
+      {
+        var subUnit = unit.Units[i];
+        var unitName = subUnit.Controls.FirstOrDefault(c => c.Indicator == Indicator.Unit)?.Data;
+
+        if (!string.IsNullOrEmpty(unitName))
+        {
+          dic[unitName] = ToUnitDto(subUnit);
+        }
+        else
+        {
+          dic[i.ToString()] = ToUnitDto(subUnit);
+        }
+      }
+
       return new UnitDto(
         unit.Id,
-        unit.UnitId,
-        unit.Units.Count == 0 ? [] : unit.Units.Select(ToUnitDto).ToList(),
-        ToControlDto(unit.Controls)
+        unit.ParentId,
+        ToControlDto(unit.Controls),
+        dic.Count > 0 ? dic : null
       );
     }
 
     public ControlDictionaryDto ToControlDto(ICollection<Control> controls)
     {
-      var dic = new ControlDictionaryDto();
+      ControlDictionaryDto dic = [];
       foreach (var control in controls)
       {
         dic[control.Indicator] = new ControlDto(
           control.Id,
-          control.UnitId,
+          control.ParentId,
           control.Indicator,
           control.Data
         );

@@ -19,7 +19,7 @@ namespace MatrixAPI.Services
 
     private async Task LoadUnitsRecursively(Unit parent)
     {
-      var children = await _db.Units.Where(u => u.UnitId == parent.Id).Include(u => u.Controls).ToListAsync();
+      var children = await _db.Units.Where(u => u.ParentId == parent.Id).Include(u => u.Controls).ToListAsync();
       if (children.Count == 0) return;
       parent.Units = children;
       foreach (var child in children) await LoadUnitsRecursively(child);
@@ -27,7 +27,7 @@ namespace MatrixAPI.Services
 
     public async Task Add(UnitDto dto)
     {
-      var parent = await _db.Units.FindAsync(dto.UnitId) ?? throw new Exception("Parent unit not found");
+      var parent = await _db.Units.FindAsync(dto.ParentId) ?? throw new Exception("Parent unit not found");
       var unit = _maps.ToUnit(dto);
       parent.Units.Add(unit);
       await _db.Units.AddAsync(unit);
