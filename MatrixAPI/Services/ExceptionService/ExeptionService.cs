@@ -10,7 +10,7 @@ namespace MatrixAPI.Services
     private readonly ILogger<ExceptionService> _logger = logger;
     public async ValueTask<bool> TryHandleAsync(HttpContext ctx, Exception ex, CancellationToken token)
     {
-      _logger.LogError(ex, ex.Message);
+      _logger.LogError(ex, "An error occurred: {Message}", ex.Message);
       var details = new ProblemDetails
       {
         Detail = ex.Message,
