@@ -1,15 +1,15 @@
-﻿using MatrixAPI.Dto;
-using MatrixAPI.Models;
+﻿using FractalAPI.Dto;
+using FractalAPI.Models;
 
-namespace MatrixAPI.Services
+namespace FractalAPI.Services
 {
   public interface IMapService
   {
-    Unit ToUnit(UnitDto unit);
+    Fractal ToFractal(FractalDto fractal);
     Control ToControl(ControlDto dto);
     ICollection<Control> ToControls(ControlDictionaryDto dto);
 
-    UnitDto ToUnitDto(Unit unit);
+    FractalDto ToFractalDto(Fractal fractal);
     ControlDictionaryDto ToControlDto(ICollection<Control> controls);
   }
 }

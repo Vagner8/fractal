@@ -1,0 +1,6 @@
+@FractalAPI_HostAddress = http://localhost:5189
+
+GET {{FractalAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

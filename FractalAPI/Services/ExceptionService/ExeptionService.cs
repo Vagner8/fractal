@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Text.Json;
 
-namespace MatrixAPI.Services
+namespace FractalAPI.Services
 {
   public class ExceptionService(ILogger<ExceptionService> logger) : IExceptionHandler
   {

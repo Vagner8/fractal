@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using MatrixAPI.Data;
-using MatrixAPI.Services;
+using FractalAPI.Data;
+using FractalAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<ExceptionService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IMapService, MapService>();
-builder.Services.AddScoped<IUnitService, UnitService>();
+builder.Services.AddScoped<IFractalController, FractalService>();
 builder.Services.AddScoped<IControlService, ControlService>();
 
 var app = builder.Build();

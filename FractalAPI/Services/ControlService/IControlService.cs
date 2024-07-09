@@ -1,6 +1,6 @@
-﻿using MatrixAPI.Dto;
+﻿using FractalAPI.Dto;
 
-namespace MatrixAPI.Services
+namespace FractalAPI.Services
 {
   public interface IControlService
   {

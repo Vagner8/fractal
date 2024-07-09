@@ -1,24 +1,24 @@
-﻿using MatrixAPI.Models;
+﻿using FractalAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MatrixAPI.Data
+namespace FractalAPI.Data
 {
   public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
   {
-    public DbSet<Unit> Units { get; set; }
+    public DbSet<Fractal> Fractals { get; set; }
     public DbSet<Control> Controls { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
       base.OnModelCreating(builder);
 
-      builder.Entity<Unit>()
-        .HasMany(u => u.Units)
+      builder.Entity<Fractal>()
+        .HasMany(u => u.Fractals)
         .WithOne(u => u.Parent)
         .HasForeignKey(u => u.ParentId)
         .OnDelete(DeleteBehavior.Restrict);
 
-      builder.Entity<Unit>()
+      builder.Entity<Fractal>()
         .HasMany(u => u.Controls)
         .WithOne(c => c.Parent)
         .HasForeignKey(c => c.ParentId)
@@ -29,7 +29,7 @@ namespace MatrixAPI.Data
 
     private static void Seeding(ModelBuilder builder)
     {
-      var matrix = Guid.NewGuid();
+      var fractal = Guid.NewGuid();
 
       var users = Guid.NewGuid();
       var products = Guid.NewGuid();
@@ -40,26 +40,26 @@ namespace MatrixAPI.Data
       var product_1 = Guid.NewGuid();
       var product_2 = Guid.NewGuid();
 
-      builder.Entity<Unit>().HasData(
-        new Unit { Id = matrix },
-        new Unit { Id = users, ParentId = matrix },
-        new Unit { Id = products, ParentId = matrix },
+      builder.Entity<Fractal>().HasData(
+        new Fractal { Id = fractal },
+        new Fractal { Id = users, ParentId = fractal },
+        new Fractal { Id = products, ParentId = fractal },
 
-        new Unit { Id = user_1, ParentId = users },
-        new Unit { Id = user_2, ParentId = users },
+        new Fractal { Id = user_1, ParentId = users },
+        new Fractal { Id = user_2, ParentId = users },
 
-        new Unit { Id = product_1, ParentId = products },
-        new Unit { Id = product_2, ParentId = products });
+        new Fractal { Id = product_1, ParentId = products },
+        new Fractal { Id = product_2, ParentId = products });
 
       builder.Entity<Control>().HasData(
-        new Control { Id = Guid.NewGuid(), Data = "Vega", Indicator = Indicator.Unit, ParentId = matrix },
-        new Control { Id = Guid.NewGuid(), Data = "Users:Products", Indicator = Indicator.Sort, ParentId = matrix },
+        new Control { Id = Guid.NewGuid(), Data = "Vega", Indicator = Indicator.Fractal, ParentId = fractal },
+        new Control { Id = Guid.NewGuid(), Data = "Users:Products", Indicator = Indicator.Sort, ParentId = fractal },
 
-        new Control { Id = Guid.NewGuid(), Data = "Users", Indicator = Indicator.Unit, ParentId = users },
+        new Control { Id = Guid.NewGuid(), Data = "Users", Indicator = Indicator.Fractal, ParentId = users },
         new Control { Id = Guid.NewGuid(), Data = "group", Indicator = Indicator.Icon, ParentId = users },
         new Control { Id = Guid.NewGuid(), Data = "Email:Name", Indicator = Indicator.Sort, ParentId = users },
 
-        new Control { Id = Guid.NewGuid(), Data = "Products", Indicator = Indicator.Unit, ParentId = products },
+        new Control { Id = Guid.NewGuid(), Data = "Products", Indicator = Indicator.Fractal, ParentId = products },
         new Control { Id = Guid.NewGuid(), Data = "widgets", Indicator = Indicator.Icon, ParentId = products },
         new Control { Id = Guid.NewGuid(), Data = "Price:Name", Indicator = Indicator.Sort, ParentId = products },
 

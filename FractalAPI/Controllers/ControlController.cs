@@ -1,8 +1,8 @@
-﻿using MatrixAPI.Dto;
-using MatrixAPI.Services;
+﻿using FractalAPI.Dto;
+using FractalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MatrixAPI.Controllers
+namespace FractalAPI.Controllers
 {
   [Route("api/control")]
   [ApiController]

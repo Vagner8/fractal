@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAPI", "AuthAPI\AuthAPI.csproj", "{BFD9E0D7-A775-4F63-BD6C-2335689A5FDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MatrixAPI", "MatrixAPI\MatrixAPI.csproj", "{588AFF15-3F54-4533-946A-083BBC237FA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FractalAPI", "FractalAPI\FractalAPI.csproj", "{588AFF15-3F54-4533-946A-083BBC237FA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

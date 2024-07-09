@@ -1,7 +1,7 @@
-﻿using MatrixAPI.Data;
-using MatrixAPI.Dto;
+﻿using FractalAPI.Data;
+using FractalAPI.Dto;
 
-namespace MatrixAPI.Services
+namespace FractalAPI.Services
 {
   public class ControlService(AppDbContext db, IMapService maps) : IControlService
   {

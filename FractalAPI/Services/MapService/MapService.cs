@@ -1,16 +1,16 @@
-﻿using MatrixAPI.Dto;
-using MatrixAPI.Models;
+﻿using FractalAPI.Dto;
+using FractalAPI.Models;
 
-namespace MatrixAPI.Services
+namespace FractalAPI.Services
 {
   public class MapService : IMapService
   {
-    public Unit ToUnit(UnitDto dto)
+    public Fractal ToFractal(FractalDto dto)
     {
-      return new Unit
+      return new Fractal
       {
         Id = dto.Id,
-        Units = [],
+        Fractals = [],
         Controls = ToControls(dto.Controls),
         ParentId = dto.ParentId,
       };
@@ -39,28 +39,28 @@ namespace MatrixAPI.Services
       return controls;
     }
 
-    public UnitDto ToUnitDto(Unit unit)
+    public FractalDto ToFractalDto(Fractal fractal)
     {
-      UnitDictionaryDto dic = [];
-      for (int i = 0; i < unit.Units.Count; i++)
+      FractalDictionaryDto dic = [];
+      for (int i = 0; i < fractal.Fractals.Count; i++)
       {
-        var subUnit = unit.Units[i];
-        var unitName = subUnit.Controls.FirstOrDefault(c => c.Indicator == Indicator.Unit)?.Data;
+        var subFractal = fractal.Fractals[i];
+        var fractalName = subFractal.Controls.FirstOrDefault(c => c.Indicator == Indicator.Fractal)?.Data;
 
-        if (!string.IsNullOrEmpty(unitName))
+        if (!string.IsNullOrEmpty(fractalName))
         {
-          dic[unitName] = ToUnitDto(subUnit);
+          dic[fractalName] = ToFractalDto(subFractal);
         }
         else
         {
-          dic[i.ToString()] = ToUnitDto(subUnit);
+          dic[i.ToString()] = ToFractalDto(subFractal);
         }
       }
 
-      return new UnitDto(
-        unit.Id,
-        unit.ParentId,
-        ToControlDto(unit.Controls),
+      return new FractalDto(
+        fractal.Id,
+        fractal.ParentId,
+        ToControlDto(fractal.Controls),
         dic.Count > 0 ? dic : null
       );
     }
