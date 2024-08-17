@@ -1,4 +1,4 @@
-﻿namespace FractalAPI
+namespace FractalAPI
 {
   public struct Indicator
   {

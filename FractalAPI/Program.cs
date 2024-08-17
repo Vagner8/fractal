@@ -1,22 +1,23 @@
-using Microsoft.EntityFrameworkCore;
 using FractalAPI.Data;
 using FractalAPI.Services;
+
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(option =>
 {
-    option.AddPolicy(name: MyAllowSpecificOrigins, policy =>
-    {
-        policy.WithOrigins("http://localhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-    });
+  option.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+  {
+    policy.WithOrigins("http://localhost:4200")
+      .AllowAnyHeader()
+      .AllowAnyMethod();
+  });
 });
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+  option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -26,13 +27,14 @@ builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IMapService, MapService>();
 builder.Services.AddScoped<IFractalService, FractalService>();
 builder.Services.AddScoped<IControlService, ControlService>();
+builder.Services.AddScoped<ISeedingService, SeedingService>();
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

@@ -16,4 +16,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\projects\Vega\FractalAPI\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\projects\Vega\FractalAPI\.editorconfig" />
+  </ItemGroup>
+
 </Project>

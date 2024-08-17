@@ -1,4 +1,4 @@
-﻿using FractalAPI.Data;
+using FractalAPI.Data;
 using FractalAPI.Dto;
 
 namespace FractalAPI.Services

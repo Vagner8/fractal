@@ -1,4 +1,4 @@
-﻿namespace FractalAPI.Dto
+namespace FractalAPI.Dto
 {
   public class FractalDictionaryDto : Dictionary<string, FractalDto>;
   public record FractalDto(

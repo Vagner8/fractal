@@ -1,6 +1,7 @@
-﻿using FractalAPI.Data;
+using FractalAPI.Data;
 using FractalAPI.Dto;
 using FractalAPI.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace FractalAPI.Services

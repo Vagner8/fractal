@@ -1,0 +1,152 @@
+{
+ // Test
+  "Fractals": [
+    {
+      "Controls": [
+        {
+          "Indicator": "Fractal",
+          "Data": "Home"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "home"
+        }
+      ]
+    },
+    {
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Fractal",
+              "Data": "Delete"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "delete"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Fractal",
+              "Data": "Save"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "save"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Fractal",
+              "Data": "Add"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "add_circle"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Fractal",
+              "Data": "Edit"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "edit"
+            }
+          ]
+        }
+      ],
+      "Controls": [
+        {
+          "Indicator": "Fractal",
+          "Data": "Modifiers"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "group"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "Delete:Save:Add:Edit"
+        }
+      ]
+    },
+    {
+      "Controls": [
+        {
+          "Indicator": "Fractal",
+          "Data": "Products"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "widgets"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": ""
+        }
+      ]
+    },
+    {
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Name",
+              "Data": "Dima"
+            },
+            {
+              "Indicator": "Email",
+              "Data": "dima@mail.com"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Name",
+              "Data": "Anna"
+            },
+            {
+              "Indicator": "Email",
+              "Data": "anna@mail.com"
+            }
+          ]
+        }
+      ],
+      "Controls": [
+        {
+          "Indicator": "Fractal",
+          "Data": "Users"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "group"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "Email:Name"
+        }
+      ]
+    }
+
+  ],
+  "Controls": [
+    {
+      "Indicator": "Sort",
+      "Data": "Users:Products:Home"
+    },
+    {
+      "Indicator": "Fractal",
+      "Data": "Vega"
+    }
+  ]
+}

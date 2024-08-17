@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using FractalAPI.Services;
 using FractalAPI.Dto;
+using FractalAPI.Services;
+
+using Microsoft.AspNetCore.Mvc;
 
 namespace FractalAPI.Controllers
 {
