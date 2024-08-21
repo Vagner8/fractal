@@ -1,9 +1,10 @@
 using FractalAPI.Models;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace FractalAPI.Services
 {
-  public class SeedingService : ISeedingService
+  public partial class SeedingService : ISeedingService
   {
     private readonly string _dataPath = Path.Combine("Services", "SeedingService", "Data.json");
     private readonly SeedingResult _result = new([], []);
@@ -58,8 +59,12 @@ namespace FractalAPI.Services
     private Fractal GetData()
     {
       var json = File.ReadAllText(_dataPath);
-      var fractal = JsonSerializer.Deserialize<Fractal>(json);
+      var noCommentsJson = SearchComments().Replace(json, string.Empty);
+      var fractal = JsonSerializer.Deserialize<Fractal>(noCommentsJson);
       return fractal ?? throw new Exception($"No data, path: {_dataPath}");
     }
+
+    [GeneratedRegex(@"//.*(?=\r?\n)|/\*[\s\S]*?\*/")]
+    private static partial Regex SearchComments();
   }
 }

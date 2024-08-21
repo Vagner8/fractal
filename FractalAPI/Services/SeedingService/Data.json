@@ -1,18 +1,19 @@
 {
- // Test
   "Fractals": [
+    // Menadger
     {
       "Controls": [
         {
           "Indicator": "Fractal",
-          "Data": "Home"
+          "Data": "Manager"
         },
         {
           "Indicator": "Icon",
-          "Data": "home"
+          "Data": "app"
         }
       ]
     },
+    // Modifiers
     {
       "Fractals": [
         {
@@ -79,45 +80,79 @@
         }
       ]
     },
-    {
-      "Controls": [
-        {
-          "Indicator": "Fractal",
-          "Data": "Products"
-        },
-        {
-          "Indicator": "Icon",
-          "Data": "widgets"
-        },
-        {
-          "Indicator": "Sort",
-          "Data": ""
-        }
-      ]
-    },
+    // Pages
     {
       "Fractals": [
+        // Home
         {
           "Controls": [
             {
-              "Indicator": "Name",
-              "Data": "Dima"
+              "Indicator": "Fractal",
+              "Data": "Home"
             },
             {
-              "Indicator": "Email",
-              "Data": "dima@mail.com"
+              "Indicator": "Icon",
+              "Data": "home"
             }
           ]
         },
+        // Products
         {
           "Controls": [
             {
-              "Indicator": "Name",
-              "Data": "Anna"
+              "Indicator": "Fractal",
+              "Data": "Products"
             },
             {
-              "Indicator": "Email",
-              "Data": "anna@mail.com"
+              "Indicator": "Icon",
+              "Data": "widgets"
+            },
+            {
+              "Indicator": "Sort",
+              "Data": ""
+            }
+          ]
+        },
+        // Users
+        {
+          "Fractals": [
+            {
+              "Controls": [
+                {
+                  "Indicator": "Name",
+                  "Data": "Dima"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "dima@mail.com"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Name",
+                  "Data": "Anna"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "anna@mail.com"
+                }
+              ]
+            }
+          ],
+          "Controls": [
+            {
+              "Indicator": "Fractal",
+              "Data": "Users"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "group"
+            },
+            {
+              "Indicator": "Sort",
+              "Data": "Email:Name"
             }
           ]
         }
@@ -125,28 +160,19 @@
       "Controls": [
         {
           "Indicator": "Fractal",
-          "Data": "Users"
-        },
-        {
-          "Indicator": "Icon",
-          "Data": "group"
+          "Data": "Pages"
         },
         {
           "Indicator": "Sort",
-          "Data": "Email:Name"
+          "Data": "Users:Products:Home"
         }
       ]
     }
-
   ],
   "Controls": [
     {
-      "Indicator": "Sort",
-      "Data": "Users:Products:Home"
-    },
-    {
       "Indicator": "Fractal",
-      "Data": "Vega"
+      "Data": "Root"
     }
   ]
 }

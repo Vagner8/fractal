@@ -24,4 +24,8 @@
     <None Include="C:\projects\Vega\FractalAPI\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Automatization\" />
+  </ItemGroup>
+
 </Project>
