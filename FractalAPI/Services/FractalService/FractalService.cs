@@ -1,21 +1,20 @@
 using FractalAPI.Data;
-using FractalAPI.Dto;
 using FractalAPI.Models;
 
 using Microsoft.EntityFrameworkCore;
 
 namespace FractalAPI.Services
 {
-  public class FractalService(AppDbContext db, IMapService maps) : IFractalService
+  public class FractalService(AppDbContext db) : IFractalService
   {
     private readonly AppDbContext _db = db;
-    private readonly IMapService _maps = maps;
 
     public async Task<FractalDto> Get(Guid fractalId)
     {
-      var fractal = await _db.Fractals.Include(u => u.Controls).FirstOrDefaultAsync(u => u.Id == fractalId) ?? throw new Exception("Fractal not found");
+      var fractal = await _db.Fractals.Include(u => u.Controls)
+        .FirstOrDefaultAsync(u => u.Id == fractalId) ?? throw new Exception("Fractal not found");
       await LoadFractalsRecursively(fractal);
-      return _maps.ToFractalDto(fractal);
+      return ToFractalDto(fractal);
     }
 
     private async Task LoadFractalsRecursively(Fractal parent)
@@ -26,27 +25,44 @@ namespace FractalAPI.Services
       foreach (var child in children) await LoadFractalsRecursively(child);
     }
 
-    public async Task Add(FractalDto dto)
+    public async Task Add(Fractal fractal)
     {
-      var parent = await _db.Fractals.FindAsync(dto.ParentId) ?? throw new Exception("Parent fractal not found");
-      var fractal = _maps.ToFractal(dto);
+      var parent = await _db.Fractals.FindAsync(fractal.ParentId) ?? throw new Exception("Parent fractal not found");
       parent.Fractals.Add(fractal);
       await _db.Fractals.AddAsync(fractal);
       await _db.SaveChangesAsync();
     }
 
-    public async Task Update(FractalDto dto)
+    public async Task Update(Fractal fractal)
     {
-      var fractal = _maps.ToFractal(dto);
       _db.Fractals.Update(fractal);
       await _db.SaveChangesAsync();
     }
 
-    public async Task Delete(ICollection<FractalDto> dto)
+    public async Task Delete(ICollection<Fractal> fractals)
     {
-      var fractals = dto.Select(_maps.ToFractal);
       _db.Fractals.RemoveRange(fractals);
       await _db.SaveChangesAsync();
+    }
+
+    private FractalDto ToFractalDto(Fractal fractal)
+    {
+      return new FractalDto
+      {
+        Id = fractal.Id,
+        Fractals = fractal.Fractals.Select(ToFractalDto).ToList(),
+        Controls = fractal.Controls.Select(ToControlDto).ToList()
+      };
+    }
+
+    private ControlDto ToControlDto(Control control)
+    {
+      return new ControlDto
+      {
+        Id = control.Id,
+        Indicator = control.Indicator,
+        Data = control.Data
+      };
     }
   }
 }

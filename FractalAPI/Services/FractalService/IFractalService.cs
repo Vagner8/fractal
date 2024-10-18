@@ -1,12 +1,12 @@
-using FractalAPI.Dto;
+using FractalAPI.Models;
 
 namespace FractalAPI.Services
 {
   public interface IFractalService
   {
     Task<FractalDto> Get(Guid fractalId);
-    Task Add(FractalDto dto);
-    Task Update(FractalDto dto);
-    Task Delete(ICollection<FractalDto> dto);
+    Task Add(Fractal fractal);
+    Task Update(Fractal fractal);
+    Task Delete(ICollection<Fractal> fractal);
   }
 }

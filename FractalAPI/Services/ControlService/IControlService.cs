@@ -1,11 +1,11 @@
-using FractalAPI.Dto;
+using FractalAPI.Models;
 
 namespace FractalAPI.Services
 {
   public interface IControlService
   {
-    Task Add(ControlDictionaryDto dto);
-    Task Update(ControlDictionaryDto dto);
-    Task Delete(ControlDictionaryDto dto);
+    Task Add(Fractal fractal);
+    Task Update(Fractal fractal);
+    Task Delete(Fractal fractal);
   }
 }

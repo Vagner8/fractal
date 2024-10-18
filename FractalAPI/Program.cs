@@ -14,17 +14,20 @@ builder.Services.AddCors(option =>
       .AllowAnyMethod();
   });
 });
-
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
   option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+  //options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+  options.JsonSerializerOptions.WriteIndented = true;
+  options.JsonSerializerOptions.MaxDepth = 32;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<ExceptionService>();
 builder.Services.AddProblemDetails();
-builder.Services.AddScoped<IMapService, MapService>();
 builder.Services.AddScoped<IFractalService, FractalService>();
 builder.Services.AddScoped<IControlService, ControlService>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();

@@ -1,29 +1,27 @@
 using FractalAPI.Data;
-using FractalAPI.Dto;
+using FractalAPI.Models;
 
 namespace FractalAPI.Services
 {
-  public class ControlService(AppDbContext db, IMapService maps) : IControlService
+  public class ControlService(AppDbContext db) : IControlService
   {
     private readonly AppDbContext _db = db;
-    private readonly IMapService _maps = maps;
 
-    public async Task Add(ControlDictionaryDto dto)
+    public async Task Add(Fractal fractal)
     {
-      var controls = dto.Values.Select(_maps.ToControl);
-      await _db.Controls.AddRangeAsync(controls);
+      await _db.Controls.AddRangeAsync(fractal.Controls);
       await _db.SaveChangesAsync();
     }
 
-    public async Task Update(ControlDictionaryDto dto)
+    public async Task Update(Fractal fractal)
     {
-      _db.Controls.UpdateRange(dto.Values.Select(_maps.ToControl));
+      _db.Controls.UpdateRange(fractal.Controls);
       await _db.SaveChangesAsync();
     }
 
-    public async Task Delete(ControlDictionaryDto dto)
+    public async Task Delete(Fractal fractal)
     {
-      _db.Controls.RemoveRange(_maps.ToControls(dto));
+      _db.Controls.RemoveRange(fractal.Controls);
       await _db.SaveChangesAsync();
     }
   }

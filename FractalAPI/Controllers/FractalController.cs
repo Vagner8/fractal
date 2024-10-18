@@ -1,4 +1,4 @@
-using FractalAPI.Dto;
+using FractalAPI.Models;
 using FractalAPI.Services;
 
 using Microsoft.AspNetCore.Mvc;
@@ -14,28 +14,29 @@ namespace FractalAPI.Controllers
     [HttpGet]
     public async Task<ActionResult> Get(Guid id)
     {
-      return Ok(await _fs.Get(id));
+      var fractal = await _fs.Get(id);
+      return Ok(fractal);
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] FractalDto dto)
+    public async Task<ActionResult> Add([FromBody] Fractal fractal)
     {
-      await _fs.Add(dto);
-      return Ok(dto);
+      await _fs.Add(fractal);
+      return Ok(fractal);
     }
 
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] FractalDto dto)
+    public async Task<ActionResult> Update([FromBody] Fractal fractal)
     {
-      await _fs.Update(dto);
-      return Ok(dto);
+      await _fs.Update(fractal);
+      return Ok(fractal);
     }
 
     [HttpDelete]
-    public async Task<ActionResult> Delete([FromBody] ICollection<FractalDto> dto)
+    public async Task<ActionResult> Delete([FromBody] ICollection<Fractal> fractal)
     {
-      await _fs.Delete(dto);
-      return Ok(dto);
+      await _fs.Delete(fractal);
+      return Ok(fractal);
     }
   }
 }
