@@ -17,11 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="C:\projects\Vega\FractalAPI\.editorconfig" />
+    <EditorConfigFiles Remove="C:\projects\Fractal\FractalAPI\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="C:\projects\Vega\FractalAPI\.editorconfig" />
+    <None Include="C:\projects\Fractal\FractalAPI\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>

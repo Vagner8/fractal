@@ -29,7 +29,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<ExceptionService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IFractalService, FractalService>();
-builder.Services.AddScoped<IControlService, ControlService>();
 builder.Services.AddScoped<ISeedingService, SeedingService>();
 
 var app = builder.Build();

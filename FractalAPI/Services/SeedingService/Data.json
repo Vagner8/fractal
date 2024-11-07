@@ -44,7 +44,7 @@
           "Controls": [
             {
               "Indicator": "FractalName",
-              "Data": "Add"
+              "Data": "New"
             },
             {
               "Indicator": "Icon",
@@ -76,7 +76,7 @@
         },
         {
           "Indicator": "Sort",
-          "Data": "Delete:Save:Add:Edit"
+          "Data": "Delete:Save:New:Edit"
         }
       ]
     },
@@ -98,6 +98,48 @@
         },
         // Products
         {
+          "Fractals": [
+            {
+              "Controls": [
+                {
+                  "Indicator": "FractalName",
+                  "Data": "Shape"
+                },
+                {
+                  "Indicator": "Name",
+                  "Data": ""
+                },
+                {
+                  "Indicator": "Price",
+                  "Data": ""
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Name",
+                  "Data": "Laptop"
+                },
+                {
+                  "Indicator": "Price",
+                  "Data": "15262"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Name",
+                  "Data": "Phone"
+                },
+                {
+                  "Indicator": "Price",
+                  "Data": "1000"
+                }
+              ]
+            }
+          ],
           "Controls": [
             {
               "Indicator": "FractalName",
@@ -109,13 +151,29 @@
             },
             {
               "Indicator": "Sort",
-              "Data": ""
+              "Data": "Name:Price"
             }
           ]
         },
         // Users
         {
           "Fractals": [
+            {
+              "Controls": [
+                {
+                  "Indicator": "FractalName",
+                  "Data": "Shape"
+                },
+                {
+                  "Indicator": "Name",
+                  "Data": ""
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": ""
+                }
+              ]
+            },
             {
               "Controls": [
                 {
