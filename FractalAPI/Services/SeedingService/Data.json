@@ -102,22 +102,6 @@
             {
               "Controls": [
                 {
-                  "Indicator": "FractalName",
-                  "Data": "Shape"
-                },
-                {
-                  "Indicator": "Name",
-                  "Data": ""
-                },
-                {
-                  "Indicator": "Price",
-                  "Data": ""
-                }
-              ]
-            },
-            {
-              "Controls": [
-                {
                   "Indicator": "Name",
                   "Data": "Laptop"
                 },
@@ -158,22 +142,6 @@
         // Users
         {
           "Fractals": [
-            {
-              "Controls": [
-                {
-                  "Indicator": "FractalName",
-                  "Data": "Shape"
-                },
-                {
-                  "Indicator": "Name",
-                  "Data": ""
-                },
-                {
-                  "Indicator": "Email",
-                  "Data": ""
-                }
-              ]
-            },
             {
               "Controls": [
                 {

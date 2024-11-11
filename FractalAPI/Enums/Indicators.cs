@@ -2,8 +2,8 @@
 {
   public enum Indicators : byte
   {
-    FractalName,
     Icon,
-    Sort
+    Sort,
+    FractalName,
   }
 }

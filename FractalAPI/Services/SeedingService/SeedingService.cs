@@ -25,7 +25,7 @@ namespace FractalAPI.Services
       return _result;
     }
 
-    private void Fractals(List<Fractal> fractals, Guid? parentId)
+    private void Fractals(ICollection<Fractal>? fractals, Guid? parentId)
     {
       foreach (var fractal in fractals)
       {

@@ -23,12 +23,16 @@ namespace FractalAPI.Controllers
       return Ok(_fs.ToFractalDto(fractal));
     }
 
-    //[HttpPost]
-    //public async Task<ActionResult> Add([FromBody] FractalDto dto)
-    //{
-    //  await _fs.Add(dto);
-    //  return Ok(dto);
-    //}
+    [HttpPost]
+    public async Task<ActionResult> Add([FromBody] FractalDto dto)
+    {
+      Fractal parent = await _db.Fractals.FindAsync(dto.ParentId) ?? throw new Exception("Parent fractal not found");
+      Fractal newFractal = _fs.ToFractal(dto);
+      parent.Fractals.Add(newFractal);
+      await _db.Fractals.AddAsync(newFractal);
+      await _db.SaveChangesAsync();
+      return Ok(_fs.ToFractalDto(newFractal));
+    }
 
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] FractalDto dto)
@@ -38,11 +42,12 @@ namespace FractalAPI.Controllers
       return Ok(dto);
     }
 
-    //[HttpDelete]
-    //public async Task<ActionResult> Delete([FromBody] ICollection<Fractal> fractal)
-    //{
-    //  await _fs.Delete(fractal);
-    //  return Ok(fractal);
-    //}
+    [HttpDelete]
+    public async Task<ActionResult> Delete([FromBody] ICollection<FractalDto> dto)
+    {
+      _db.Fractals.RemoveRange(dto.Select(_fs.ToFractal));
+      await _db.SaveChangesAsync();
+      return Ok(dto);
+    }
   }
 }
