@@ -1,43 +1,45 @@
 using FractalAPI.Models;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace FractalAPI.Services
 {
-  public partial class SeedingService : ISeedingService
+  public partial class SeedingService
   {
-    private readonly string _dataPath = Path.Combine("Services", "SeedingService", "Data.json");
-    private readonly SeedingResult _result = new([], []);
+    private readonly ICollection<Fractal> _fractals = [];
+    private readonly ICollection<Control> _controls = [];
 
-    public SeedingResult Data()
+    public SeedingService()
     {
-      _result.Fractals.Clear();
-      _result.Controls.Clear();
       var fractal = GetData();
       var id = Guid.NewGuid();
-      _result.Fractals.Add(new Fractal
+      _fractals.Add(new Fractal
       {
         Id = id,
         ParentId = null,
       });
       Controls(fractal.Controls, id);
       Fractals(fractal.Fractals, id);
-      return _result;
+    }
+
+    public void Deconstruct(out ICollection<Fractal> fractals, out ICollection<Control> controls)
+    {
+      fractals = _fractals;
+      controls = _controls;
     }
 
     private void Fractals(ICollection<Fractal>? fractals, Guid? parentId)
     {
+      if (fractals == null) return;
       foreach (var fractal in fractals)
       {
         var id = Guid.NewGuid();
-        _result.Fractals.Add(new Fractal
+        _fractals.Add(new Fractal
         {
           Id = id,
           ParentId = parentId,
         });
         Controls(fractal.Controls, id);
-
-        if (fractal.Fractals != null) Fractals(fractal.Fractals, id);
+        Fractals(fractal.Fractals, id);
       }
     }
 
@@ -46,7 +48,7 @@ namespace FractalAPI.Services
       if (controls == null) return;
       foreach (var control in controls)
       {
-        _result.Controls.Add(new Control
+        _controls.Add(new Control
         {
           Id = Guid.NewGuid(),
           ParentId = parentId,
@@ -56,15 +58,11 @@ namespace FractalAPI.Services
       }
     }
 
-    private Fractal GetData()
+    private static Fractal GetData()
     {
-      var json = File.ReadAllText(_dataPath);
-      var noCommentsJson = SearchComments().Replace(json, string.Empty);
-      var fractal = JsonSerializer.Deserialize<Fractal>(noCommentsJson);
-      return fractal ?? throw new Exception($"No data, path: {_dataPath}");
+      string path = Path.Combine("Services", "SeedingService", "Data.json");
+      string json = File.ReadAllText(path);
+      return JsonSerializer.Deserialize<Fractal>(json) ?? throw new Exception($"No data, path: {path}");
     }
-
-    [GeneratedRegex(@"//.*(?=\r?\n)|/\*[\s\S]*?\*/")]
-    private static partial Regex SearchComments();
   }
 }

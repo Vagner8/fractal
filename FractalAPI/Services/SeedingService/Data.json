@@ -1,10 +1,15 @@
 {
+  "Controls": [
+    {
+      "Indicator": "Cursor",
+      "Data": "Root"
+    }
+  ],
   "Fractals": [
-    // Menadger
     {
       "Controls": [
         {
-          "Indicator": "FractalName",
+          "Indicator": "Cursor",
           "Data": "Manager"
         },
         {
@@ -13,13 +18,26 @@
         }
       ]
     },
-    // Modifiers
     {
+      "Controls": [
+        {
+          "Indicator": "Cursor",
+          "Data": "Modifiers"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "group"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "Delete:Save:New:Edit"
+        }
+      ],
       "Fractals": [
         {
           "Controls": [
             {
-              "Indicator": "FractalName",
+              "Indicator": "Cursor",
               "Data": "Delete"
             },
             {
@@ -31,7 +49,7 @@
         {
           "Controls": [
             {
-              "Indicator": "FractalName",
+              "Indicator": "Cursor",
               "Data": "Save"
             },
             {
@@ -43,7 +61,7 @@
         {
           "Controls": [
             {
-              "Indicator": "FractalName",
+              "Indicator": "Cursor",
               "Data": "New"
             },
             {
@@ -55,7 +73,7 @@
         {
           "Controls": [
             {
-              "Indicator": "FractalName",
+              "Indicator": "Cursor",
               "Data": "Edit"
             },
             {
@@ -64,30 +82,24 @@
             }
           ]
         }
-      ],
+      ]
+    },
+    {
       "Controls": [
         {
-          "Indicator": "FractalName",
-          "Data": "Modifiers"
-        },
-        {
-          "Indicator": "Icon",
-          "Data": "group"
+          "Indicator": "Cursor",
+          "Data": "Pages"
         },
         {
           "Indicator": "Sort",
-          "Data": "Delete:Save:New:Edit"
+          "Data": "Users:Products:Home"
         }
-      ]
-    },
-    // Pages
-    {
+      ],
       "Fractals": [
-        // Home
         {
           "Controls": [
             {
-              "Indicator": "FractalName",
+              "Indicator": "Cursor",
               "Data": "Home"
             },
             {
@@ -96,8 +108,21 @@
             }
           ]
         },
-        // Products
         {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Products"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "widgets"
+            },
+            {
+              "Indicator": "Sort",
+              "Data": "Name:Price"
+            }
+          ],
           "Fractals": [
             {
               "Controls": [
@@ -123,24 +148,23 @@
                 }
               ]
             }
-          ],
+          ]
+        },
+        {
           "Controls": [
             {
-              "Indicator": "FractalName",
-              "Data": "Products"
+              "Indicator": "Cursor",
+              "Data": "Users"
             },
             {
               "Indicator": "Icon",
-              "Data": "widgets"
+              "Data": "group"
             },
             {
               "Indicator": "Sort",
-              "Data": "Name:Price"
+              "Data": "Email:Name"
             }
-          ]
-        },
-        // Users
-        {
+          ],
           "Fractals": [
             {
               "Controls": [
@@ -166,39 +190,9 @@
                 }
               ]
             }
-          ],
-          "Controls": [
-            {
-              "Indicator": "FractalName",
-              "Data": "Users"
-            },
-            {
-              "Indicator": "Icon",
-              "Data": "group"
-            },
-            {
-              "Indicator": "Sort",
-              "Data": "Email:Name"
-            }
           ]
         }
-      ],
-      "Controls": [
-        {
-          "Indicator": "FractalName",
-          "Data": "Pages"
-        },
-        {
-          "Indicator": "Sort",
-          "Data": "Users:Products:Home"
-        }
       ]
-    }
-  ],
-  "Controls": [
-    {
-      "Indicator": "FractalName",
-      "Data": "Root"
     }
   ]
 }
