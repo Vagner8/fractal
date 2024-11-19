@@ -1,4 +1,5 @@
 using FractalAPI.Data;
+using FractalAPI.Enums;
 using FractalAPI.Models;
 
 using Microsoft.EntityFrameworkCore;
@@ -9,25 +10,57 @@ namespace FractalAPI.Services
   {
     private readonly AppDbContext _db = db;
 
-    public FractalDto ToFractalDto(Fractal fractal)
-    {
-      return new FractalDto
-      {
-        Id = fractal.Id,
-        ParentId = fractal.ParentId,
-        Fractals = fractal.Fractals.Select(ToFractalDto).ToList(),
-        Controls = fractal.Controls.Select(ToControlDto).ToList()
-      };
-    }
-
     public Fractal ToFractal(FractalDto dto)
     {
       return new Fractal
       {
         Id = dto.Id,
         ParentId = dto.ParentId,
-        Fractals = dto.Fractals.Select(ToFractal).ToList(),
-        Controls = dto.Controls.Select((dto) => ToControl(dto)).ToList()
+        Fractals = dto.Fractals?.Values.Select(ToFractal).ToList(),
+        Controls = dto.Controls.Values.Select(ToControl).ToList()
+      };
+    }
+
+    public FractalDto ToFractalDto(Fractal fractal)
+    {
+      int index = 0;
+      Dictionary<string, FractalDto> fractals = [];
+      Dictionary<string, ControlDto> controls = fractal.Controls.ToDictionary(c =>
+        c.Indicator, ToControlDto);
+
+      if (fractal.Fractals == null)
+      {
+        return new FractalDto
+        {
+          Id = fractal.Id,
+          ParentId = fractal.ParentId,
+          Fractals = null,
+          Controls = controls,
+        };
+      }
+
+      foreach (var child in fractal.Fractals)
+      {
+        var cursor = child.Controls.FirstOrDefault(c =>
+          c.Indicator == Indicators.Cursor.ToString());
+
+        if (cursor != null)
+        {
+          fractals[cursor.Data] = ToFractalDto(child);
+        }
+        else
+        {
+          fractals[index.ToString()] = ToFractalDto(child);
+          index++;
+        }
+      }
+
+      return new FractalDto
+      {
+        Id = fractal.Id,
+        ParentId = fractal.ParentId,
+        Fractals = fractals,
+        Controls = controls,
       };
     }
 
@@ -39,7 +72,7 @@ namespace FractalAPI.Services
       foreach (var child in children) await LoadFractalsRecursively(child);
     }
 
-    private ControlDto ToControlDto(Control control)
+    private static ControlDto ToControlDto(Control control)
     {
       return new ControlDto
       {
@@ -50,11 +83,11 @@ namespace FractalAPI.Services
       };
     }
 
-    private Control ToControl(ControlDto dto, Guid? newId = null)
+    private static Control ToControl(ControlDto dto)
     {
       return new Control
       {
-        Id = newId.HasValue ? newId : dto.Id,
+        Id = dto.Id,
         ParentId = dto.ParentId,
         Indicator = dto.Indicator,
         Data = dto.Data

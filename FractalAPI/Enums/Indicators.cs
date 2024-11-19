@@ -4,6 +4,6 @@
   {
     Icon,
     Sort,
-    FractalName,
+    Cursor,
   }
 }

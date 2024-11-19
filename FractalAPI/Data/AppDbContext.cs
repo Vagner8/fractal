@@ -1,11 +1,9 @@
 ﻿using FractalAPI.Models;
-using FractalAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace FractalAPI.Data
 {
-  public class AppDbContext(
-    DbContextOptions<AppDbContext> options) : DbContext(options)
+  public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
   {
     public DbSet<Fractal> Fractals { get; set; }
     public DbSet<Control> Controls { get; set; }
@@ -25,7 +23,7 @@ namespace FractalAPI.Data
         .HasForeignKey(c => c.ParentId)
         .OnDelete(DeleteBehavior.Cascade);
 
-      var (fractals, controls) = new SeedingService();
+      var (fractals, controls) = new Seeding();
 
       builder.Entity<Fractal>().HasData(fractals);
       builder.Entity<Control>().HasData(controls);

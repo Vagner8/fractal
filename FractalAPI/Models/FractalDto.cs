@@ -4,7 +4,7 @@
   {
     public Guid? Id { get; set; }
     public Guid? ParentId { get; set; }
-    public ICollection<FractalDto> Fractals { get; set; } = [];
-    public ICollection<ControlDto> Controls { get; set; } = [];
+    public Dictionary<string, FractalDto>? Fractals { get; set; } = [];
+    public Dictionary<string, ControlDto> Controls { get; set; } = [];
   }
 }

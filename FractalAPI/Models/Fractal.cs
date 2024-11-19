@@ -7,7 +7,7 @@ namespace FractalAPI.Models
   {
     [Key]
     public Guid? Id { get; set; }
-    public ICollection<Fractal> Fractals { get; set; } = [];
+    public ICollection<Fractal>? Fractals { get; set; } = null;
     public ICollection<Control> Controls { get; set; } = [];
 
     [ForeignKey("ParentId")]

@@ -30,10 +30,22 @@
         },
         {
           "Indicator": "Sort",
-          "Data": "Delete:Save:New:Edit"
+          "Data": "Delete:Save:Clean:New:Edit"
         }
       ],
       "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Clean"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "mop"
+            }
+          ]
+        },
         {
           "Controls": [
             {
