@@ -30,22 +30,10 @@
         },
         {
           "Indicator": "Sort",
-          "Data": "Delete:Save:Clean:New:Edit"
+          "Data": "Delete:Save:New:Edit"
         }
       ],
       "Fractals": [
-        {
-          "Controls": [
-            {
-              "Indicator": "Cursor",
-              "Data": "Clean"
-            },
-            {
-              "Indicator": "Icon",
-              "Data": "mop"
-            }
-          ]
-        },
         {
           "Controls": [
             {
@@ -174,7 +162,7 @@
             },
             {
               "Indicator": "Sort",
-              "Data": "Email:Name"
+              "Data": "Index:Email:Name"
             }
           ],
           "Fractals": [

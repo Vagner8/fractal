@@ -23,7 +23,6 @@ namespace FractalAPI.Services
 
     public FractalDto ToFractalDto(Fractal fractal)
     {
-      int index = 0;
       Dictionary<string, FractalDto> fractals = [];
       Dictionary<string, ControlDto> controls = fractal.Controls.ToDictionary(c =>
         c.Indicator, ToControlDto);
@@ -39,9 +38,9 @@ namespace FractalAPI.Services
         };
       }
 
-      foreach (var child in fractal.Fractals)
+      foreach (Fractal child in fractal.Fractals)
       {
-        var cursor = child.Controls.FirstOrDefault(c =>
+        Control? cursor = child.Controls.FirstOrDefault(c =>
           c.Indicator == Indicators.Cursor.ToString());
 
         if (cursor != null)
@@ -50,8 +49,9 @@ namespace FractalAPI.Services
         }
         else
         {
-          fractals[index.ToString()] = ToFractalDto(child);
-          index++;
+          Control? position = child.Controls.FirstOrDefault(c =>
+          c.Indicator == Indicators.Position.ToString());
+          fractals[position != null ? position.Data : ""] = ToFractalDto(child);
         }
       }
 

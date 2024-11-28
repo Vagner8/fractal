@@ -5,5 +5,6 @@
     Icon,
     Sort,
     Cursor,
+    Position
   }
 }
