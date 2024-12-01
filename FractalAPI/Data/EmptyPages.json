@@ -1,0 +1,212 @@
+{
+  "Controls": [
+    {
+      "Indicator": "Cursor",
+      "Data": "Root"
+    }
+  ],
+  "Fractals": [
+    {
+      "Controls": [
+        {
+          "Indicator": "Cursor",
+          "Data": "Settings"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "more_vert"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "Menu:Drag-and-Drop"
+        }
+      ],
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Menu"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "menu_open"
+            },
+            {
+              "Indicator": "Description",
+              "Data": "Toggle the side from which the menu opens: left or right."
+            },
+            {
+              "Indicator": "Select",
+              "Data": "start:end"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Drag-and-Drop"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "drag_pan"
+            },
+            {
+              "Indicator": "Description",
+              "Data": "Enable to reposition and organize interface elements by dragging and dropping them."
+            },
+            {
+              "Indicator": "Toggle",
+              "Data": "false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Controls": [
+        {
+          "Indicator": "Cursor",
+          "Data": "Manager"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "apps"
+        },
+        {
+          "Indicator": "X",
+          "Data": "560"
+        },
+        {
+          "Indicator": "Y",
+          "Data": "690"
+        }
+      ]
+    },
+    {
+      "Controls": [
+        {
+          "Indicator": "Cursor",
+          "Data": "Modifiers"
+        },
+        {
+          "Indicator": "Icon",
+          "Data": "group"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "Delete:Save:New:Edit"
+        }
+      ],
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Delete"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "delete"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Save"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "save"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "New"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "add_circle"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Edit"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "edit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Controls": [
+        {
+          "Indicator": "Cursor",
+          "Data": "Pages"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "Users:Products:Home"
+        }
+      ],
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Home"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "home"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Products"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "widgets"
+            },
+            {
+              "Indicator": "Sort",
+              "Data": "Position:Name:Price"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Users"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "group"
+            },
+            {
+              "Indicator": "Sort",
+              "Data": "Position:Email:Name"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -38,7 +38,7 @@ namespace FractalAPI.Controllers
     }
 
     [HttpPut]
-    public async Task<ActionResult> Edit([FromBody] FractalDto[] dto)
+    public async Task<ActionResult> Update([FromBody] FractalDto[] dto)
     {
       _db.Fractals.UpdateRange(dto.Select(_fs.ToFractal));
       await _db.SaveChangesAsync();

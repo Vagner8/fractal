@@ -61,7 +61,7 @@ namespace FractalAPI.Data
 
     private static Fractal GetData()
     {
-      string path = Path.Combine("Data", "Data.json");
+      string path = Path.Combine("Data", "EmptyPages.json");
       return JsonSerializer.Deserialize<Fractal>(File.ReadAllText(path)) ?? throw new Exception($"No data, path: {path}");
     }
   }
