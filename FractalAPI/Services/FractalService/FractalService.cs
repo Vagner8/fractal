@@ -41,7 +41,7 @@ namespace FractalAPI.Services
       foreach (Fractal child in fractal.Fractals)
       {
         Control? cursor = child.Controls.FirstOrDefault(c =>
-          c.Indicator == Indicators.Cursor.ToString());
+          c.Indicator == Indicators.Cursor);
 
         if (cursor != null)
         {
@@ -50,7 +50,7 @@ namespace FractalAPI.Services
         else
         {
           Control? position = child.Controls.FirstOrDefault(c =>
-          c.Indicator == Indicators.Position.ToString());
+          c.Indicator == Indicators.Position);
           fractals[position != null ? position.Data : ""] = ToFractalDto(child);
         }
       }
@@ -79,7 +79,7 @@ namespace FractalAPI.Services
         Id = control.Id,
         ParentId = control.ParentId,
         Indicator = control.Indicator,
-        Data = control.Data
+        Data = ToDataDto(control.Data)
       };
     }
 
@@ -90,8 +90,21 @@ namespace FractalAPI.Services
         Id = dto.Id,
         ParentId = dto.ParentId,
         Indicator = dto.Indicator,
-        Data = dto.Data
+        Data = ToData(dto.Data)
       };
+    }
+
+    private static object ToDataDto(string data)
+    {
+      if (data == "true") return true;
+      if (data == "false") return false;
+      return data;
+    }
+
+    private static string ToData(object data)
+    {
+      if (data is bool boolData) return boolData ? "true" : "false";
+      return data?.ToString() ?? string.Empty;
     }
   }
 }

@@ -19,6 +19,14 @@
         {
           "Indicator": "Sort",
           "Data": "Menu:Drag-and-Drop"
+        },
+        {
+          "Indicator": "X",
+          "Data": "560"
+        },
+        {
+          "Indicator": "Y",
+          "Data": "690"
         }
       ],
       "Fractals": [
@@ -75,12 +83,8 @@
           "Data": "apps"
         },
         {
-          "Indicator": "X",
-          "Data": "560"
-        },
-        {
-          "Indicator": "Y",
-          "Data": "690"
+          "Indicator": "Position",
+          "Data": "560:690"
         }
       ]
     },
@@ -203,6 +207,72 @@
             {
               "Indicator": "Sort",
               "Data": "Position:Email:Name"
+            }
+          ],
+          "Fractals": [
+            {
+              "Controls": [
+                {
+                  "Indicator": "Position",
+                  "Data": "1"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "dima@mail.com"
+                },
+                {
+                  "Indicator": "Name",
+                  "Data": "Dima"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Position",
+                  "Data": "1"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "anna@mail.com"
+                },
+                {
+                  "Indicator": "Name",
+                  "Data": "Anna"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Position",
+                  "Data": "2"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "anna@mail.com2"
+                },
+                {
+                  "Indicator": "Name",
+                  "Data": "Anna2"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Position",
+                  "Data": "3"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "anna@mail.com3"
+                },
+                {
+                  "Indicator": "Name",
+                  "Data": "Anna3"
+                }
+              ]
             }
           ]
         }

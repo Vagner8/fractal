@@ -1,10 +1,11 @@
 ﻿namespace FractalAPI.Enums
 {
-  public enum Indicators : byte
+  public static class Indicators
   {
-    Icon,
-    Sort,
-    Cursor,
-    Position
+    public static readonly string Icon = "Icon";
+    public static readonly string Sort = "Sort";
+    public static readonly string Cursor = "Cursor";
+    public static readonly string Select = "Select";
+    public static readonly string Position = "Position";
   }
 }
