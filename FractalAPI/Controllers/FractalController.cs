@@ -26,13 +26,7 @@ namespace FractalAPI.Controllers
     [HttpPost]
     public async Task<ActionResult> Add([FromBody] FractalDto[] dto)
     {
-      Fractal parent = await _db.Fractals.FindAsync(dto[0].ParentId) ?? throw new Exception("Parent fractal not found");
-      ICollection<Fractal> fractals = dto.Select(_fs.ToFractal).ToList();
-      foreach (Fractal fractal in fractals)
-      {
-        parent.Fractals?.Add(fractal);
-      }
-      _db.Fractals.AddRange(fractals);
+      _db.Fractals.AddRange(dto.Select(_fs.ToFractal).ToList());
       await _db.SaveChangesAsync();
       return Ok(dto);
     }

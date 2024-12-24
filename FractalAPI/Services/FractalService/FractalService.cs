@@ -83,7 +83,7 @@ namespace FractalAPI.Services
       };
     }
 
-    private static Control ToControl(ControlDto dto)
+    public Control ToControl(ControlDto dto)
     {
       return new Control
       {

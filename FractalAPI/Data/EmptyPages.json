@@ -17,7 +17,7 @@
           "Data": "more_vert"
         },
         {
-          "Indicator": "Sort",
+          "Indicator": "Columns",
           "Data": "Menu:Drag-and-Drop"
         },
         {
@@ -99,11 +99,23 @@
           "Data": "group"
         },
         {
-          "Indicator": "Sort",
-          "Data": "Delete:Save:New:Edit"
+          "Indicator": "Columns",
+          "Data": "App:Delete:Save:New:Edit"
         }
       ],
       "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "App"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "construction"
+            }
+          ]
+        },
         {
           "Controls": [
             {
@@ -158,10 +170,10 @@
       "Controls": [
         {
           "Indicator": "Cursor",
-          "Data": "Pages"
+          "Data": "Collections"
         },
         {
-          "Indicator": "Sort",
+          "Indicator": "Columns",
           "Data": "Users:Products:Home"
         }
       ],
@@ -189,7 +201,7 @@
               "Data": "widgets"
             },
             {
-              "Indicator": "Sort",
+              "Indicator": "Columns",
               "Data": "Position:Name:Price"
             }
           ]
@@ -205,7 +217,7 @@
               "Data": "group"
             },
             {
-              "Indicator": "Sort",
+              "Indicator": "Columns",
               "Data": "Position:Email:Name"
             }
           ],
