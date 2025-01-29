@@ -4,7 +4,8 @@ namespace FractalAPI.Models
   {
     public Guid? Id { get; set; }
     public Guid? ParentId { get; set; }
-    public object Data { get; set; } = string.Empty;
+    public string Data { get; set; } = string.Empty;
+    public string Input { get; set; } = string.Empty;
     public string Indicator { get; set; } = string.Empty;
   }
 }

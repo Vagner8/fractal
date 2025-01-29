@@ -3,75 +3,13 @@
     {
       "Indicator": "Cursor",
       "Data": "Root"
+    },
+    {
+      "Indicator": "Sort",
+      "Data": "Collections:Settings:Modifiers:Manager"
     }
   ],
   "Fractals": [
-    {
-      "Controls": [
-        {
-          "Indicator": "Cursor",
-          "Data": "Settings"
-        },
-        {
-          "Indicator": "Icon",
-          "Data": "more_vert"
-        },
-        {
-          "Indicator": "Columns",
-          "Data": "Menu:Drag-and-Drop"
-        },
-        {
-          "Indicator": "X",
-          "Data": "560"
-        },
-        {
-          "Indicator": "Y",
-          "Data": "690"
-        }
-      ],
-      "Fractals": [
-        {
-          "Controls": [
-            {
-              "Indicator": "Cursor",
-              "Data": "Menu"
-            },
-            {
-              "Indicator": "Icon",
-              "Data": "menu_open"
-            },
-            {
-              "Indicator": "Description",
-              "Data": "Toggle the side from which the menu opens: left or right."
-            },
-            {
-              "Indicator": "Select",
-              "Data": "start:end"
-            }
-          ]
-        },
-        {
-          "Controls": [
-            {
-              "Indicator": "Cursor",
-              "Data": "Drag-and-Drop"
-            },
-            {
-              "Indicator": "Icon",
-              "Data": "drag_pan"
-            },
-            {
-              "Indicator": "Description",
-              "Data": "Enable to reposition and organize interface elements by dragging and dropping them."
-            },
-            {
-              "Indicator": "Toggle",
-              "Data": "false"
-            }
-          ]
-        }
-      ]
-    },
     {
       "Controls": [
         {
@@ -99,23 +37,12 @@
           "Data": "group"
         },
         {
-          "Indicator": "Columns",
-          "Data": "App:Delete:Save:New:Edit"
+          "Indicator": "Sort",
+          "Data": "Delete:Save:New:Edit",
+          "Input":  "select"
         }
       ],
       "Fractals": [
-        {
-          "Controls": [
-            {
-              "Indicator": "Cursor",
-              "Data": "App"
-            },
-            {
-              "Indicator": "Icon",
-              "Data": "construction"
-            }
-          ]
-        },
         {
           "Controls": [
             {
@@ -173,11 +100,27 @@
           "Data": "Collections"
         },
         {
-          "Indicator": "Columns",
-          "Data": "Users:Products:Home"
+          "Indicator": "Icon",
+          "Data": "category"
+        },
+        {
+          "Indicator": "Sort",
+          "Data": "App:Users:Products:Home"
         }
       ],
       "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "App"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "construction"
+            }
+          ]
+        },
         {
           "Controls": [
             {
@@ -226,15 +169,18 @@
               "Controls": [
                 {
                   "Indicator": "Position",
-                  "Data": "1"
+                  "Data": "1",
+                  "Input": "2"
                 },
                 {
                   "Indicator": "Email",
-                  "Data": "dima@mail.com"
+                  "Data": "dima@mail.com",
+                  "Input": "2"
                 },
                 {
                   "Indicator": "Name",
-                  "Data": "Dima"
+                  "Data": "Dima",
+                  "Input": "2"
                 }
               ]
             },

@@ -28,7 +28,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<ExceptionService>();
 builder.Services.AddProblemDetails();
-builder.Services.AddScoped<IFractalService, FractalService>();
+builder.Services.AddScoped<IGetService, GetService>();
+builder.Services.AddScoped<IDeleteService, DeleteService>();
+builder.Services.AddScoped<IMapService, MapService>();
+//builder.Services.AddScoped<IFractalService, FractalService>();
 
 var app = builder.Build();
 

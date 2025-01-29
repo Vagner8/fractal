@@ -7,15 +7,15 @@ namespace FractalAPI.Controllers
 {
   [Route("api/control")]
   [ApiController]
-  public class ControlController(AppDbContext db, IFractalService fs) : ControllerBase
+  public class ControlController(AppDbContext db, IMapService ms) : ControllerBase
   {
     private readonly AppDbContext _db = db;
-    private readonly IFractalService _fs = fs;
+    private readonly IMapService _ms = ms;
 
     [HttpPost]
     public async Task<ActionResult> Add([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.AddRange(dto.Select(_fs.ToControl));
+      _db.Controls.AddRange(dto.Select(_ms.ToControl));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -23,7 +23,7 @@ namespace FractalAPI.Controllers
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.RemoveRange(dto.Select(_fs.ToControl));
+      _db.Controls.RemoveRange(dto.Select(_ms.ToControl));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }

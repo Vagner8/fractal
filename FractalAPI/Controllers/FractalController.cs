@@ -1,50 +1,80 @@
+using FractalAPI.Constants;
 using FractalAPI.Data;
 using FractalAPI.Models;
 using FractalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace FractalAPI.Controllers
 {
   [Route("api/fractal")]
   [ApiController]
-  public class FractalController(AppDbContext db, IFractalService fs) : ControllerBase
+  public class FractalController(
+    AppDbContext db,
+    IMapService ms,
+    IGetService gs,
+    IDeleteService ds) : ControllerBase
   {
     private readonly AppDbContext _db = db;
-    private readonly IFractalService _fs = fs;
+    private readonly IMapService _ms = ms;
+    private readonly IGetService _gs = gs;
+    private readonly IDeleteService _ds = ds;
 
     [HttpGet]
     public async Task<ActionResult> Get(Guid id)
     {
-      var fractal = await _db.Fractals.Include(u => u.Controls)
-        .FirstOrDefaultAsync(u => u.Id == id) ?? throw new Exception("Fractal not found");
-      await _fs.LoadFractalsRecursively(fractal);
-      return Ok(_fs.ToFractalDto(fractal));
+      Fractal fractal = await _gs.GetFractalWithChildrenRecursively(id);
+      return Ok(_ms.ToFractalDto(fractal));
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] FractalDto[] dto)
+    public async Task<ActionResult> Add([FromBody] FractalDto[] fractalsDto)
     {
-      _db.Fractals.AddRange(dto.Select(_fs.ToFractal).ToList());
+      _db.Fractals.AddRange(fractalsDto.Select(_ms.ToFractal).ToList());
+
+      foreach (var fractalDto in fractalsDto)
+      {
+        Fractal? parent = await _gs.FindFractal(fractalDto.ParentId);
+
+        if (parent != null)
+        {
+          Control? parentSort = parent.FindControl(SplitableIndicators.Sort);
+          parentSort?.Push(fractalDto.Controls[Indicators.Cursor].Data);
+          _db.Fractals.Update(parent);
+        }
+      }
+
       await _db.SaveChangesAsync();
-      return Ok(dto);
+      return Ok(fractalsDto);
     }
 
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] FractalDto[] dto)
     {
-      _db.Fractals.UpdateRange(dto.Select(_fs.ToFractal));
+      _db.Fractals.UpdateRange(dto.Select(_ms.ToFractal));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
 
     [HttpDelete]
-    public async Task<ActionResult> Delete([FromBody] ICollection<FractalDto> dto)
+    public async Task<ActionResult> Delete([FromBody] ICollection<FractalDto> fractalsDto)
     {
-      _db.Fractals.RemoveRange(dto.Select(_fs.ToFractal));
+      foreach (var fractalDto in fractalsDto)
+      {
+        Fractal fractal = await _gs.GetFractalWithChildrenRecursively(fractalDto.Id);
+        Fractal? parent = await _gs.FindFractal(fractal.ParentId);
+
+        if (parent != null)
+        {
+          Control? parentSort = parent.FindControl(SplitableIndicators.Sort);
+          parentSort?.Remove(fractal.GetControl(Indicators.Cursor).Data);
+        }
+
+        _ds.DeleteFractalChildrenRecursively(fractal.Fractals);
+        _db.Fractals.Remove(fractal);
+      }
       await _db.SaveChangesAsync();
-      return Ok(dto);
+      return Ok(fractalsDto);
     }
   }
 }
