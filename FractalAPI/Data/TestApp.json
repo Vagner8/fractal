@@ -1,0 +1,73 @@
+{
+  "Controls": [
+    {
+      "Data": "Root",
+      "Input": "text",
+      "Indicator": "Cursor"
+    }
+  ],
+  "Fractals": [
+    {
+      "Controls": [
+        {
+          "Indicator": "Cursor",
+          "Data": "Modifiers"
+        }
+      ],
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Delete"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Save"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "New"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Edit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Controls": [
+        {
+          "Data": "Pages",
+          "Input": "text",
+          "Indicator": "Cursor"
+        }
+      ],
+      "Fractals": [
+        {
+          "Controls": [
+            {
+              "Data": "App",
+              "Input": "text",
+              "Indicator": "Cursor"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

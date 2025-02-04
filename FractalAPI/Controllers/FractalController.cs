@@ -35,13 +35,6 @@ namespace FractalAPI.Controllers
       foreach (var fractalDto in fractalsDto)
       {
         Fractal? parent = await _gs.FindFractal(fractalDto.ParentId);
-
-        if (parent != null)
-        {
-          Control? parentSort = parent.FindControl(SplitableIndicators.Sort);
-          parentSort?.Push(fractalDto.Controls[Indicators.Cursor].Data);
-          _db.Fractals.Update(parent);
-        }
       }
 
       await _db.SaveChangesAsync();
@@ -66,7 +59,7 @@ namespace FractalAPI.Controllers
 
         if (parent != null)
         {
-          Control? parentSort = parent.FindControl(SplitableIndicators.Sort);
+          Control? parentSort = parent.FindControl(SplitIndicators.Sort);
           parentSort?.Remove(fractal.GetControl(Indicators.Cursor).Data);
         }
 

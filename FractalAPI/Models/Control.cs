@@ -30,7 +30,7 @@ namespace FractalAPI.Models
 
     private void EnsureSplitable()
     {
-      if (typeof(SplitableIndicators).GetProperty(Indicator) != null)
+      if (typeof(SplitIndicators).GetProperty(Indicator) != null)
         throw new Exception($"Unable to split: {Indicator}");
     }
   }
