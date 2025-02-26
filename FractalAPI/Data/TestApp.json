@@ -1,9 +1,19 @@
 {
   "Controls": [
     {
-      "Data": "Root",
-      "Input": "text",
-      "Indicator": "Cursor"
+      "Indicator": "Cursor",
+      "Data": "App",
+      "Input": "text"
+    },
+    {
+      "Indicator": "Sort children",
+      "Data": "Modifiers:Collections",
+      "Input": "text"
+    },
+    {
+      "Indicator": "Sort own controls",
+      "Data": "Sort own controls:Cursor:Sort children",
+      "Input": "text"
     }
   ],
   "Fractals": [
@@ -11,7 +21,18 @@
       "Controls": [
         {
           "Indicator": "Cursor",
-          "Data": "Modifiers"
+          "Data": "Modifiers",
+          "Input": "text"
+        },
+        {
+          "Indicator": "Sort children",
+          "Data": "New:Edit:Save:Delete",
+          "Input": "text"
+        },
+        {
+          "Indicator": "Sort own controls",
+          "Data": "Cursor",
+          "Input": "text"
         }
       ],
       "Fractals": [
@@ -19,7 +40,13 @@
           "Controls": [
             {
               "Indicator": "Cursor",
-              "Data": "Delete"
+              "Data": "Delete",
+              "Input": "text"
+            },
+            {
+              "Indicator": "Sort own controls",
+              "Data": "Cursor",
+              "Input": "text"
             }
           ]
         },
@@ -27,7 +54,13 @@
           "Controls": [
             {
               "Indicator": "Cursor",
-              "Data": "Save"
+              "Data": "Save",
+              "Input": "text"
+            },
+            {
+              "Indicator": "Sort own controls",
+              "Data": "Cursor",
+              "Input": "text"
             }
           ]
         },
@@ -35,7 +68,13 @@
           "Controls": [
             {
               "Indicator": "Cursor",
-              "Data": "New"
+              "Data": "New",
+              "Input": "text"
+            },
+            {
+              "Indicator": "Sort own controls",
+              "Data": "Cursor",
+              "Input": "text"
             }
           ]
         },
@@ -43,7 +82,13 @@
           "Controls": [
             {
               "Indicator": "Cursor",
-              "Data": "Edit"
+              "Data": "Edit",
+              "Input": "text"
+            },
+            {
+              "Indicator": "Sort own controls",
+              "Data": "Cursor",
+              "Input": "text"
             }
           ]
         }
@@ -52,18 +97,125 @@
     {
       "Controls": [
         {
-          "Data": "Pages",
-          "Input": "text",
-          "Indicator": "Cursor"
+          "Indicator": "Cursor",
+          "Data": "Collections",
+          "Input": "text"
+        },
+        {
+          "Indicator": "Sort childten",
+          "Data": "Users:Products",
+          "Input": "text"
+        },
+        {
+          "Indicator": "Sort own controls",
+          "Data": "Cursor:Sort childten:Sort own controls",
+          "Input": "text"
         }
       ],
       "Fractals": [
         {
           "Controls": [
             {
-              "Data": "App",
-              "Input": "text",
-              "Indicator": "Cursor"
+              "Indicator": "Cursor",
+              "Data": "Home",
+              "Input": "text"
+            },
+            {
+              "Indicator": "Icon",
+              "Data": "home",
+              "Input": "text"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Input":  "Text",
+              "Data": "Products"
+            },
+            {
+              "Indicator": "Icon",
+              "Input": "Text",
+              "Data": "widgets"
+            }
+          ]
+        },
+        {
+          "Controls": [
+            {
+              "Indicator": "Cursor",
+              "Data": "Users",
+              "Input": "Text"
+            },
+            {
+              "Indicator": "Sort children",
+              "Data": "2:1",
+              "Input": "Text"
+            },
+            {
+              "Indicator": "Sort children controls",
+              "Data": "Email:Name",
+              "Input": "Text"
+            }
+          ],
+          "Fractals": [
+            {
+              "Controls": [
+                {
+                  "Indicator": "Position",
+                  "Input": "Text",
+                  "Data": "1"
+                },
+                {
+                  "Indicator": "Name",
+                  "Input": "Text",
+                  "Data": "Dima"
+                },
+                {
+                  "Indicator": "Email",
+                  "Input": "Text",
+                  "Data": "dima@mail.com"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Name",
+                  "Input": "Text",
+                  "Data": "Anna"
+                },
+                {
+                  "Indicator": "Position",
+                  "Input": "Text",
+                  "Data": "2"
+                },
+                {
+                  "Indicator": "Email",
+                  "Input": "Text",
+                  "Data": "anna@mail.com"
+                }
+              ]
+            },
+            {
+              "Controls": [
+                {
+                  "Indicator": "Name",
+                  "Data": "Vova",
+                  "Input": "Text"
+                },
+                {
+                  "Indicator": "Position",
+                  "Data": "3",
+                  "Input": "Text"
+                },
+                {
+                  "Indicator": "Email",
+                  "Data": "vova@mail.com",
+                  "Input": "Text"
+                }
+              ]
             }
           ]
         }

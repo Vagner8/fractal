@@ -27,5 +27,13 @@ namespace FractalAPI.Controllers
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
+
+    [HttpPut]
+    public async Task<ActionResult> Update([FromBody] ICollection<ControlDto> dto)
+    {
+      _db.Controls.UpdateRange(dto.Select(_ms.ToControl));
+      await _db.SaveChangesAsync();
+      return Ok(dto);
+    }
   }
 }
