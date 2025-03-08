@@ -13,16 +13,5 @@ namespace FractalAPI.Models
     [ForeignKey("ParentId")]
     public Guid? ParentId { get; set; }
     public Fractal? Parent { get; set; }
-
-    public Control? FindControl(string indicator)
-    {
-      return Controls.FirstOrDefault(c => c.Indicator == indicator);
-    }
-
-    public Control GetControl(string indicator)
-    {
-      return FindControl(indicator)
-        ?? throw new Exception($"Unable to get control by indicator: {indicator}");
-    }
   }
 }

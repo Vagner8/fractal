@@ -1,5 +1,4 @@
-﻿using FractalAPI.Constants;
-using FractalAPI.Models;
+﻿using FractalAPI.Models;
 
 namespace FractalAPI.Services
 {
@@ -35,19 +34,8 @@ namespace FractalAPI.Services
 
       foreach (Fractal child in fractal.Fractals)
       {
-        Control? cursor = child.Controls.FirstOrDefault(c =>
-          c.Indicator == Indicators.Cursor);
-
-        if (cursor != null)
-        {
-          fractals[cursor.Data] = ToFractalDto(child);
-        }
-        else
-        {
-          Control? position = child.Controls.FirstOrDefault(c =>
-          c.Indicator == Indicators.Position);
-          fractals[position != null ? position.Data : ""] = ToFractalDto(child);
-        }
+        Control cursor = child.Controls.First(c => c.Indicator == "Cursor");
+        fractals[cursor.Data] = ToFractalDto(child);
       }
 
       return new FractalDto

@@ -1,4 +1,3 @@
-using FractalAPI.Constants;
 using FractalAPI.Data;
 using FractalAPI.Models;
 using FractalAPI.Services;
@@ -55,14 +54,6 @@ namespace FractalAPI.Controllers
       foreach (var fractalDto in fractalsDto)
       {
         Fractal fractal = await _gs.GetFractalWithChildrenRecursively(fractalDto.Id);
-        Fractal? parent = await _gs.FindFractal(fractal.ParentId);
-
-        if (parent != null)
-        {
-          Control? parentSort = parent.FindControl(SplitIndicators.Sort);
-          parentSort?.Remove(fractal.GetControl(Indicators.Cursor).Data);
-        }
-
         _ds.DeleteFractalChildrenRecursively(fractal.Fractals);
         _db.Fractals.Remove(fractal);
       }

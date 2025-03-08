@@ -12,6 +12,11 @@
     },
     {
       "Indicator": "Sort own controls",
+      "Data": "Sort own controls:Cursor:Sort children:Sort children controls",
+      "Input": "text"
+    },
+    {
+      "Indicator": "Sort children controls",
       "Data": "Sort own controls:Cursor:Sort children",
       "Input": "text"
     }
@@ -163,7 +168,7 @@
             {
               "Controls": [
                 {
-                  "Indicator": "Position",
+                  "Indicator": "Cursor",
                   "Input": "Text",
                   "Data": "1"
                 },
@@ -187,7 +192,7 @@
                   "Data": "Anna"
                 },
                 {
-                  "Indicator": "Position",
+                  "Indicator": "Cursor",
                   "Input": "Text",
                   "Data": "2"
                 },
@@ -206,7 +211,7 @@
                   "Input": "Text"
                 },
                 {
-                  "Indicator": "Position",
+                  "Indicator": "Cursor",
                   "Data": "3",
                   "Input": "Text"
                 },
