@@ -3,22 +3,22 @@
     {
       "Indicator": "Cursor",
       "Data": "App",
-      "Input": "text"
+      "Field": "text"
     },
     {
-      "Indicator": "Sort children",
+      "Indicator": "Ooc",
+      "Data": "Cursor:Ooc:Oc:Occ",
+      "Field": "text"
+    },
+    {
+      "Indicator": "Oc",
       "Data": "Modifiers:Collections",
-      "Input": "text"
+      "Field": "text"
     },
     {
-      "Indicator": "Sort own controls",
-      "Data": "Sort own controls:Cursor:Sort children:Sort children controls",
-      "Input": "text"
-    },
-    {
-      "Indicator": "Sort children controls",
-      "Data": "Sort own controls:Cursor:Sort children",
-      "Input": "text"
+      "Indicator": "Occ",
+      "Data": "Cursor:Ooc:Oc:Occ",
+      "Field": "text"
     }
   ],
   "Fractals": [
@@ -27,17 +27,22 @@
         {
           "Indicator": "Cursor",
           "Data": "Modifiers",
-          "Input": "text"
+          "Field": "text"
         },
         {
-          "Indicator": "Sort children",
+          "Indicator": "Ooc",
+          "Data": "Cursor:Ooc:Oc:Occ",
+          "Field": "text"
+        },
+        {
+          "Indicator": "Oc",
           "Data": "New:Edit:Save:Delete",
-          "Input": "text"
+          "Field": "text"
         },
         {
-          "Indicator": "Sort own controls",
-          "Data": "Cursor",
-          "Input": "text"
+          "Indicator": "Occ",
+          "Data": "Cursor:Ooc:Oc:Occ",
+          "Field": "text"
         }
       ],
       "Fractals": [
@@ -46,12 +51,22 @@
             {
               "Indicator": "Cursor",
               "Data": "Delete",
-              "Input": "text"
+              "Field": "text"
             },
             {
-              "Indicator": "Sort own controls",
-              "Data": "Cursor",
-              "Input": "text"
+              "Indicator": "Ooc",
+              "Data": "Cursor:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
+              "Data": "",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Occ",
+              "Data": "",
+              "Field": "text"
             }
           ]
         },
@@ -60,12 +75,22 @@
             {
               "Indicator": "Cursor",
               "Data": "Save",
-              "Input": "text"
+              "Field": "text"
             },
             {
-              "Indicator": "Sort own controls",
-              "Data": "Cursor",
-              "Input": "text"
+              "Indicator": "Ooc",
+              "Data": "Cursor:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
+              "Data": "",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Occ",
+              "Data": "",
+              "Field": "text"
             }
           ]
         },
@@ -74,12 +99,22 @@
             {
               "Indicator": "Cursor",
               "Data": "New",
-              "Input": "text"
+              "Field": "text"
             },
             {
-              "Indicator": "Sort own controls",
-              "Data": "Cursor",
-              "Input": "text"
+              "Indicator": "Ooc",
+              "Data": "Cursor:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
+              "Data": "",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Occ",
+              "Data": "",
+              "Field": "text"
             }
           ]
         },
@@ -88,12 +123,22 @@
             {
               "Indicator": "Cursor",
               "Data": "Edit",
-              "Input": "text"
+              "Field": "text"
             },
             {
-              "Indicator": "Sort own controls",
-              "Data": "Cursor",
-              "Input": "text"
+              "Indicator": "Ooc",
+              "Data": "Cursor:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
+              "Data": "",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Occ",
+              "Data": "",
+              "Field": "text"
             }
           ]
         }
@@ -104,17 +149,22 @@
         {
           "Indicator": "Cursor",
           "Data": "Collections",
-          "Input": "text"
+          "Field": "text"
         },
         {
-          "Indicator": "Sort childten",
+          "Indicator": "Ooc",
+          "Data": "Cursor:Ooc:Oc:Occ",
+          "Field": "text"
+        },
+        {
+          "Indicator": "Oc",
           "Data": "Users:Products",
-          "Input": "text"
+          "Field": "text"
         },
         {
-          "Indicator": "Sort own controls",
-          "Data": "Cursor:Sort childten:Sort own controls",
-          "Input": "text"
+          "Indicator": "Occ",
+          "Data": "Cursor:Icon:Ooc:Oc:Occ",
+          "Field": "text"
         }
       ],
       "Fractals": [
@@ -123,12 +173,27 @@
             {
               "Indicator": "Cursor",
               "Data": "Home",
-              "Input": "text"
+              "Field": "text"
             },
             {
               "Indicator": "Icon",
               "Data": "home",
-              "Input": "text"
+              "Field": "text"
+            },
+            {
+              "Indicator": "Ooc",
+              "Data": "Cursor:Icon:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
+              "Data": "",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Occ",
+              "Data": "",
+              "Field": "text"
             }
           ]
         },
@@ -136,13 +201,28 @@
           "Controls": [
             {
               "Indicator": "Cursor",
-              "Input":  "Text",
-              "Data": "Products"
+              "Data": "Products",
+              "Field": "Text"
             },
             {
               "Indicator": "Icon",
-              "Input": "Text",
+              "Field": "Text",
               "Data": "widgets"
+            },
+            {
+              "Indicator": "Ooc",
+              "Data": "Cursor:Icon:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
+              "Data": "",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Occ",
+              "Data": "",
+              "Field": "text"
             }
           ]
         },
@@ -151,17 +231,22 @@
             {
               "Indicator": "Cursor",
               "Data": "Users",
-              "Input": "Text"
+              "Field": "Text"
             },
             {
-              "Indicator": "Sort children",
+              "Indicator": "Ooc",
+              "Data": "Cursor:Icon:Ooc:Oc:Occ",
+              "Field": "text"
+            },
+            {
+              "Indicator": "Oc",
               "Data": "2:1",
-              "Input": "Text"
+              "Field": "text"
             },
             {
-              "Indicator": "Sort children controls",
-              "Data": "Email:Name",
-              "Input": "Text"
+              "Indicator": "Occ",
+              "Data": "Email:Name:Cursor",
+              "Field": "text"
             }
           ],
           "Fractals": [
@@ -169,17 +254,32 @@
               "Controls": [
                 {
                   "Indicator": "Cursor",
-                  "Input": "Text",
+                  "Field": "Text",
                   "Data": "1"
                 },
                 {
+                  "Indicator": "Ooc",
+                  "Data": "Cursor:Name:Email:Ooc:Oc:Occ",
+                  "Field": "text"
+                },
+                {
+                  "Indicator": "Oc",
+                  "Data": "",
+                  "Field": "text"
+                },
+                {
+                  "Indicator": "Occ",
+                  "Data": "",
+                  "Field": "text"
+                },
+                {
                   "Indicator": "Name",
-                  "Input": "Text",
+                  "Field": "Text",
                   "Data": "Dima"
                 },
                 {
                   "Indicator": "Email",
-                  "Input": "Text",
+                  "Field": "Text",
                   "Data": "dima@mail.com"
                 }
               ]
@@ -187,38 +287,34 @@
             {
               "Controls": [
                 {
+                  "Indicator": "Cursor",
+                  "Data": "2",
+                  "Field": "Text"
+                },
+                {
+                  "Indicator": "Ooc",
+                  "Data": "Cursor:Name:Email:Ooc:Oc:Occ",
+                  "Field": "text"
+                },
+                {
+                  "Indicator": "Oc",
+                  "Data": "",
+                  "Field": "text"
+                },
+                {
+                  "Indicator": "Occ",
+                  "Data": "",
+                  "Field": "text"
+                },
+                {
                   "Indicator": "Name",
-                  "Input": "Text",
+                  "Field": "Text",
                   "Data": "Anna"
                 },
                 {
-                  "Indicator": "Cursor",
-                  "Input": "Text",
-                  "Data": "2"
-                },
-                {
                   "Indicator": "Email",
-                  "Input": "Text",
+                  "Field": "Text",
                   "Data": "anna@mail.com"
-                }
-              ]
-            },
-            {
-              "Controls": [
-                {
-                  "Indicator": "Name",
-                  "Data": "Vova",
-                  "Input": "Text"
-                },
-                {
-                  "Indicator": "Cursor",
-                  "Data": "3",
-                  "Input": "Text"
-                },
-                {
-                  "Indicator": "Email",
-                  "Data": "vova@mail.com",
-                  "Input": "Text"
                 }
               ]
             }

@@ -55,7 +55,7 @@ namespace FractalAPI.Data
           ParentId = parentId,
           Data = control.Data,
           Indicator = control.Indicator,
-          Input = control.Input,
+          Field = control.Field,
         });
       }
     }
