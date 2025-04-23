@@ -6,18 +6,13 @@
       "Field": "text"
     },
     {
-      "Indicator": "Ooc",
-      "Data": "Cursor:Ooc:Oc:Occ",
-      "Field": "text"
-    },
-    {
       "Indicator": "Oc",
       "Data": "Modifiers:Collections",
       "Field": "text"
     },
     {
       "Indicator": "Occ",
-      "Data": "Cursor:Ooc:Oc:Occ",
+      "Data": "Name",
       "Field": "text"
     }
   ],
@@ -25,23 +20,23 @@
     {
       "Controls": [
         {
+          "Indicator": "Name",
+          "Data": "Modifiers",
+          "Field": "text"
+        },
+        {
           "Indicator": "Cursor",
           "Data": "Modifiers",
           "Field": "text"
         },
         {
-          "Indicator": "Ooc",
-          "Data": "Cursor:Ooc:Oc:Occ",
-          "Field": "text"
-        },
-        {
           "Indicator": "Oc",
-          "Data": "New:Edit:Save:Delete",
+          "Data": "Delete:Save:New:Edit",
           "Field": "text"
         },
         {
           "Indicator": "Occ",
-          "Data": "Cursor:Ooc:Oc:Occ",
+          "Data": "Name",
           "Field": "text"
         }
       ],
@@ -49,23 +44,13 @@
         {
           "Controls": [
             {
-              "Indicator": "Cursor",
+              "Indicator": "Name",
               "Data": "Delete",
               "Field": "text"
             },
             {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "",
+              "Indicator": "Cursor",
+              "Data": "Delete",
               "Field": "text"
             }
           ]
@@ -73,23 +58,13 @@
         {
           "Controls": [
             {
-              "Indicator": "Cursor",
+              "Indicator": "Name",
               "Data": "Save",
               "Field": "text"
             },
             {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "",
+              "Indicator": "Cursor",
+              "Data": "Save",
               "Field": "text"
             }
           ]
@@ -97,23 +72,13 @@
         {
           "Controls": [
             {
-              "Indicator": "Cursor",
+              "Indicator": "Name",
               "Data": "New",
               "Field": "text"
             },
             {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "",
+              "Indicator": "Cursor",
+              "Data": "New",
               "Field": "text"
             }
           ]
@@ -121,23 +86,13 @@
         {
           "Controls": [
             {
-              "Indicator": "Cursor",
+              "Indicator": "Name",
               "Data": "Edit",
               "Field": "text"
             },
             {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "",
+              "Indicator": "Cursor",
+              "Data": "Edit",
               "Field": "text"
             }
           ]
@@ -147,23 +102,23 @@
     {
       "Controls": [
         {
+          "Indicator": "Name",
+          "Data": "Collections",
+          "Field": "text"
+        },
+        {
           "Indicator": "Cursor",
           "Data": "Collections",
           "Field": "text"
         },
         {
-          "Indicator": "Ooc",
-          "Data": "Cursor:Ooc:Oc:Occ",
-          "Field": "text"
-        },
-        {
           "Indicator": "Oc",
-          "Data": "Users:Products",
+          "Data": "Products:Users",
           "Field": "text"
         },
         {
           "Indicator": "Occ",
-          "Data": "Cursor:Icon:Ooc:Oc:Occ",
+          "Data": "Name:Icon",
           "Field": "text"
         }
       ],
@@ -171,34 +126,10 @@
         {
           "Controls": [
             {
-              "Indicator": "Cursor",
-              "Data": "Home",
-              "Field": "text"
+              "Indicator": "Name",
+              "Data": "Products",
+              "Field": "Text"
             },
-            {
-              "Indicator": "Icon",
-              "Data": "home",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Icon:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "",
-              "Field": "text"
-            }
-          ]
-        },
-        {
-          "Controls": [
             {
               "Indicator": "Cursor",
               "Data": "Products",
@@ -208,115 +139,20 @@
               "Indicator": "Icon",
               "Field": "Text",
               "Data": "widgets"
-            },
-            {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Icon:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "",
-              "Field": "text"
             }
           ]
         },
         {
           "Controls": [
             {
-              "Indicator": "Cursor",
+              "Indicator": "Name",
               "Data": "Users",
               "Field": "Text"
             },
             {
-              "Indicator": "Ooc",
-              "Data": "Cursor:Icon:Ooc:Oc:Occ",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Oc",
-              "Data": "2:1",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Occ",
-              "Data": "Email:Name:Cursor",
-              "Field": "text"
-            }
-          ],
-          "Fractals": [
-            {
-              "Controls": [
-                {
-                  "Indicator": "Cursor",
-                  "Field": "Text",
-                  "Data": "1"
-                },
-                {
-                  "Indicator": "Ooc",
-                  "Data": "Cursor:Name:Email:Ooc:Oc:Occ",
-                  "Field": "text"
-                },
-                {
-                  "Indicator": "Oc",
-                  "Data": "",
-                  "Field": "text"
-                },
-                {
-                  "Indicator": "Occ",
-                  "Data": "",
-                  "Field": "text"
-                },
-                {
-                  "Indicator": "Name",
-                  "Field": "Text",
-                  "Data": "Dima"
-                },
-                {
-                  "Indicator": "Email",
-                  "Field": "Text",
-                  "Data": "dima@mail.com"
-                }
-              ]
-            },
-            {
-              "Controls": [
-                {
-                  "Indicator": "Cursor",
-                  "Data": "2",
-                  "Field": "Text"
-                },
-                {
-                  "Indicator": "Ooc",
-                  "Data": "Cursor:Name:Email:Ooc:Oc:Occ",
-                  "Field": "text"
-                },
-                {
-                  "Indicator": "Oc",
-                  "Data": "",
-                  "Field": "text"
-                },
-                {
-                  "Indicator": "Occ",
-                  "Data": "",
-                  "Field": "text"
-                },
-                {
-                  "Indicator": "Name",
-                  "Field": "Text",
-                  "Data": "Anna"
-                },
-                {
-                  "Indicator": "Email",
-                  "Field": "Text",
-                  "Data": "anna@mail.com"
-                }
-              ]
+              "Indicator": "Cursor",
+              "Data": "Users",
+              "Field": "Text"
             }
           ]
         }

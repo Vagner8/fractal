@@ -20,7 +20,6 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-  //options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
   options.JsonSerializerOptions.WriteIndented = true;
   options.JsonSerializerOptions.MaxDepth = 32;
 });
@@ -31,7 +30,6 @@ builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IGetService, GetService>();
 builder.Services.AddScoped<IDeleteService, DeleteService>();
 builder.Services.AddScoped<IMapService, MapService>();
-//builder.Services.AddScoped<IFractalService, FractalService>();
 
 var app = builder.Build();
 
