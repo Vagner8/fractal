@@ -8,6 +8,39 @@ namespace FractalAPI.Data
     public DbSet<Fractal> Fractals { get; set; }
     public DbSet<Control> Controls { get; set; }
 
+    public override int SaveChanges()
+    {
+      UpdateTimestamps();
+      return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+      UpdateTimestamps();
+      return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private void UpdateTimestamps()
+    {
+      foreach (var entry in ChangeTracker.Entries())
+      {
+        DateTime now = DateTime.UtcNow;
+        if (entry.Entity is CommonEntity entity)
+        {
+          if (entry.State == EntityState.Added)
+          {
+            entity.CreatedAt = now;
+            entity.UpdatedAt = now;
+          }
+
+          if (entry.State == EntityState.Unchanged)
+          {
+            entity.UpdatedAt = now;
+          }
+        }
+      }
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
       base.OnModelCreating(builder);

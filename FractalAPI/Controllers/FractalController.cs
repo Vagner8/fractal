@@ -1,6 +1,6 @@
 using FractalAPI.Data;
 using FractalAPI.Models;
-using FractalAPI.Services;
+using FractalAPI.Services.FractalService;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -10,30 +10,26 @@ namespace FractalAPI.Controllers
   [ApiController]
   public class FractalController(
     AppDbContext db,
-    IMapService ms,
-    IGetService gs,
-    IDeleteService ds) : ControllerBase
+    IFractalService fs) : ControllerBase
   {
     private readonly AppDbContext _db = db;
-    private readonly IMapService _ms = ms;
-    private readonly IGetService _gs = gs;
-    private readonly IDeleteService _ds = ds;
+    private readonly IFractalService _fs = fs;
 
     [HttpGet]
     public async Task<ActionResult> Get(Guid id)
     {
-      Fractal fractal = await _gs.GetFractalWithChildrenRecursively(id);
-      return Ok(_ms.ToFractalDto(fractal));
+      Fractal fractal = await _fs.GetFractalWithChildrenRecursively(id);
+      return Ok(_fs.CreateFractalDto(fractal));
     }
 
     [HttpPost]
     public async Task<ActionResult> Add([FromBody] FractalDto[] fractalsDto)
     {
-      _db.Fractals.AddRange(fractalsDto.Select(_ms.ToFractal).ToList());
+      _db.Fractals.AddRange(fractalsDto.Select(_fs.CreateFractal).ToList());
 
       foreach (var fractalDto in fractalsDto)
       {
-        Fractal? parent = await _gs.FindFractal(fractalDto.ParentId);
+        Fractal? parent = await _fs.FindFractal(fractalDto.ParentId);
       }
 
       await _db.SaveChangesAsync();
@@ -43,7 +39,7 @@ namespace FractalAPI.Controllers
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] FractalDto[] dto)
     {
-      _db.Fractals.UpdateRange(dto.Select(_ms.ToFractal));
+      _db.Fractals.UpdateRange(dto.Select(_fs.CreateFractal));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -53,8 +49,8 @@ namespace FractalAPI.Controllers
     {
       foreach (var fractalDto in fractalsDto)
       {
-        Fractal fractal = await _gs.GetFractalWithChildrenRecursively(fractalDto.Id);
-        _ds.DeleteFractalChildrenRecursively(fractal.Fractals);
+        Fractal fractal = await _fs.GetFractalWithChildrenRecursively(fractalDto.Id);
+        _fs.DeleteFractalChildrenRecursively(fractal.Fractals);
         _db.Fractals.Remove(fractal);
       }
       await _db.SaveChangesAsync();

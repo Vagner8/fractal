@@ -27,7 +27,7 @@ namespace FractalAPI.Data
       controls = _controls;
     }
 
-    private void AddFractals(ICollection<Fractal>? fractals, Guid? parentId)
+    private void AddFractals(ICollection<Fractal>? fractals, Guid parentId)
     {
       if (fractals == null) return;
 

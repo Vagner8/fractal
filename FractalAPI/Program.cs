@@ -1,6 +1,7 @@
 using FractalAPI.Data;
 using FractalAPI.Services;
-
+using FractalAPI.Services.ControlService;
+using FractalAPI.Services.FractalService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,9 +28,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<ExceptionService>();
 builder.Services.AddProblemDetails();
-builder.Services.AddScoped<IGetService, GetService>();
-builder.Services.AddScoped<IDeleteService, DeleteService>();
-builder.Services.AddScoped<IMapService, MapService>();
+builder.Services.AddScoped<IFractalService, FractalService>();
+builder.Services.AddScoped<IControlService, ControlService>();
 
 var app = builder.Build();
 
