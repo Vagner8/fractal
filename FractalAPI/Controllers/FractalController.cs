@@ -1,6 +1,8 @@
 using FractalAPI.Data;
+using FractalAPI.Dto;
+using FractalAPI.FractalTools;
 using FractalAPI.Models;
-using FractalAPI.Services.FractalService;
+using FractalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -16,30 +18,22 @@ namespace FractalAPI.Controllers
     private readonly IFractalService _fs = fs;
 
     [HttpGet]
-    public async Task<ActionResult> Get(Guid id)
+    public async Task<ActionResult> Get(string cursor)
     {
-      Fractal fractal = await _fs.GetFractalWithChildrenRecursively(id);
-      return Ok(_fs.CreateFractalDto(fractal));
+      Fractal fractal = await _fs.GetWithChildrenRecursively(cursor);
+      return Ok(FractalMap.ToFracalDto(fractal));
     }
 
     [HttpPost]
-    public async Task<ActionResult> Add([FromBody] FractalDto[] fractalsDto)
+    public async Task<ActionResult> Add([FromBody] ICollection<ICollection<FractalDto>> payload)
     {
-      _db.Fractals.AddRange(fractalsDto.Select(_fs.CreateFractal).ToList());
-
-      foreach (var fractalDto in fractalsDto)
-      {
-        Fractal? parent = await _fs.FindFractal(fractalDto.ParentId);
-      }
-
       await _db.SaveChangesAsync();
-      return Ok(fractalsDto);
+      return Ok(payload);
     }
 
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] FractalDto[] dto)
     {
-      _db.Fractals.UpdateRange(dto.Select(_fs.CreateFractal));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -49,8 +43,8 @@ namespace FractalAPI.Controllers
     {
       foreach (var fractalDto in fractalsDto)
       {
-        Fractal fractal = await _fs.GetFractalWithChildrenRecursively(fractalDto.Id);
-        _fs.DeleteFractalChildrenRecursively(fractal.Fractals);
+        Fractal fractal = await _fs.GetWithChildrenRecursively(fractalDto.Cursor);
+        _fs.DeleteWithChildrenRecursively(fractal.Children);
         _db.Fractals.Remove(fractal);
       }
       await _db.SaveChangesAsync();

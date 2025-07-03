@@ -25,7 +25,7 @@ namespace FractalAPI.Data
       foreach (var entry in ChangeTracker.Entries())
       {
         DateTime now = DateTime.UtcNow;
-        if (entry.Entity is CommonEntity entity)
+        if (entry.Entity is Base entity)
         {
           if (entry.State == EntityState.Added)
           {
@@ -45,15 +45,15 @@ namespace FractalAPI.Data
     {
       base.OnModelCreating(builder);
       builder.Entity<Fractal>()
-        .HasMany(f => f.Fractals)
+        .HasMany(f => f.Children)
         .WithOne(f => f.Parent)
-        .HasForeignKey(f => f.ParentId)
+        .HasForeignKey(f => f.ParentCursor)
         .OnDelete(DeleteBehavior.Restrict);
 
       builder.Entity<Fractal>()
         .HasMany(f => f.Controls)
         .WithOne(c => c.Parent)
-        .HasForeignKey(c => c.ParentId)
+        .HasForeignKey(c => c.ParentCursor)
         .OnDelete(DeleteBehavior.Cascade);
 
       var (fractals, controls) = new Seeding();

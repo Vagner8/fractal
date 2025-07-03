@@ -11,14 +11,13 @@ namespace FractalAPI.Data
     public Seeding()
     {
       Fractal fractal = GetData();
-      Guid id = Guid.NewGuid();
       _fractals.Add(new Fractal
       {
-        Id = id,
-        ParentId = null,
+        Cursor = fractal.Cursor,
+        ParentCursor = fractal.ParentCursor,
       });
-      AddControls(fractal.Controls, id);
-      AddFractals(fractal.Fractals, id);
+      AddControls(fractal.Controls);
+      AddFractals(fractal.Children);
     }
 
     public void Deconstruct(out ICollection<Fractal> fractals, out ICollection<Control> controls)
@@ -27,36 +26,38 @@ namespace FractalAPI.Data
       controls = _controls;
     }
 
-    private void AddFractals(ICollection<Fractal>? fractals, Guid parentId)
+    private void AddFractals(ICollection<Fractal>? fractals)
     {
       if (fractals == null) return;
 
       foreach (var fractal in fractals)
       {
-        Guid id = Guid.NewGuid();
         _fractals.Add(new Fractal
         {
-          Id = id,
-          ParentId = parentId
+          Cursor = fractal.Cursor,
+          ParentCursor = fractal.ParentCursor
         });
 
-        AddControls(fractal.Controls, id);
-        AddFractals(fractal.Fractals, id);
+        AddControls(fractal.Controls);
+        AddFractals(fractal.Children);
       }
     }
 
-    private void AddControls(ICollection<Control> controls, Guid parentId)
+    private void AddControls(ICollection<Control>? controls)
     {
-      foreach (var control in controls)
+      if (controls != null)
       {
-        _controls.Add(new Control
+        foreach (var control in controls)
         {
-          Id = Guid.NewGuid(),
-          ParentId = parentId,
-          Data = control.Data,
-          Indicator = control.Indicator,
-          Field = control.Field,
-        });
+          _controls.Add(new Control
+          {
+            Id = control.Id,
+            Type = control.Type,
+            Data = control.Data,
+            Cursor = control.Cursor,
+            ParentCursor = control.ParentCursor,
+          });
+        }
       }
     }
 

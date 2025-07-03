@@ -1,0 +1,146 @@
+{
+  "Cursor": "App",
+  "ParentCursor": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574500",
+  "Controls": [
+    {
+      "Cursor": "Oc:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574001",
+      "ParentCursor": "App",
+      "Data": "Modifiers:Collections:Manager",
+      "Type": "Select"
+    },
+    {
+      "Cursor": "Occ:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574002",
+      "ParentCursor": "App",
+      "Data": "Name",
+      "Type": "Select"
+    }
+  ],
+  "Children": [
+    {
+      "Cursor": "Manager:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574013",
+      "ParentCursor": "App"
+    },
+    {
+      "Cursor": "Modifiers:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574014",
+      "ParentCursor": "App",
+      "Controls": [
+        {
+          "Cursor": "Oc:Modifiers:6f7a9f7f-0c3e-4d51-a3f2-96be1f574003",
+          "ParentCursor": "Modifiers:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574014",
+          "Data": "Delete:Save:New:Edit",
+          "Type": "Select"
+        }
+      ],
+      "Children": [
+        {
+          "Cursor": "Delete:Modifiers:6f7a9f7f-0c3e-4d51-a3f2-96be1f574015",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Cursor": "Save:Modifiers:6f7a9f7f-0c3e-4d51-a3f2-96be1f574016",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Cursor": "Edit:Modifiers:6f7a9f7f-0c3e-4d51-a3f2-96be1f574017",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Cursor": "New:Modifiers:6f7a9f7f-0c3e-4d51-a3f2-96be1f574018",
+          "ParentCursor": "Modifiers"
+        }
+      ]
+    },
+    {
+      "Cursor": "Collections:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574019",
+      "ParentCursor": "App",
+      "Controls": [
+        {
+          "Cursor": "Oc:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574004",
+          "ParentCursor": "Collections:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574019",
+          "Data": "Products:Users",
+          "Type": "Select"
+        }
+      ],
+      "Children": [
+        {
+          "Cursor": "Users:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574021",
+          "ParentCursor": "Collections:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574019",
+          "Controls": [
+            {
+              "Cursor": "Oc:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574006",
+              "ParentCursor": "Users:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574021",
+              "Data": "3:2:1",
+              "Type": "Select"
+            },
+            {
+              "Cursor": "Occ:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574007",
+              "ParentCursor": "Users:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574021",
+              "Data": "Email:Name",
+              "Type": "Select"
+            }
+          ],
+          "Children": [
+            {
+              "Cursor": "1:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574130",
+              "ParentCursor": "Users:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574021",
+              "Controls": [
+                {
+                  "Cursor": "Name:1:6f7a9f7f-0c3e-4d51-a3f2-96be1f574008",
+                  "ParentCursor": "1:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574130",
+                  "Data": "John-1",
+                  "Type": "String"
+                },
+                {
+                  "Cursor": "Email:1:6f7a9f7f-0c3e-4d51-a3f2-96be1f574009",
+                  "ParentCursor": "1:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574130",
+                  "Data": "dima@mail.com",
+                  "Type": "String"
+                }
+              ]
+            },
+            {
+              "Cursor": "2:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574131",
+              "ParentCursor": "Users:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574021",
+              "Controls": [
+                {
+                  "Cursor": "Name:2:6f7a9f7f-0c3e-4d51-a3f2-96be1f574133",
+                  "ParentCursor": "2:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574131",
+                  "Data": "John-2",
+                  "Type": "String"
+                },
+                {
+                  "Cursor": "Email:2:6f7a9f7f-0c3e-4d51-a3f2-96be1f574136",
+                  "ParentCursor": "2:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574131",
+                  "Data": "dima@mail.com",
+                  "Type": "String"
+                }
+              ]
+            },
+            {
+              "Cursor": "3:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574137",
+              "ParentCursor": "Users:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574021",
+              "Controls": [
+                {
+                  "Cursor": "Name:3:6f7a9f7f-0c3e-4d51-a3f2-96be1f574012",
+                  "ParentCursor": "3:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574137",
+                  "Data": "John-3",
+                  "Type": "String"
+                },
+                {
+                  "Cursor": "Email:3:6f7a9f7f-0c3e-4d51-a3f2-96be1f574013",
+                  "ParentCursor": "3:Users:6f7a9f7f-0c3e-4d51-a3f2-96be1f574137",
+                  "Data": "dima@mail.com",
+                  "Type": "String"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Cursor": "Products:Collections:6f7a9f7f-0c3e-4d51-a3f2-96be1f574119",
+          "ParentCursor": "Collections:App:6f7a9f7f-0c3e-4d51-a3f2-96be1f574019"
+        }
+      ]
+    }
+  ]
+}

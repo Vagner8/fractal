@@ -1,160 +1,156 @@
 {
+  "Cursor": "App",
+  "ParentCursor": null,
   "Controls": [
     {
-      "Indicator": "Cursor",
-      "Data": "App",
-      "Field": "text"
+      "Cursor": "Oc",
+      "ParentCursor": "App",
+      "Data": "Modifiers:Collections:Manager",
+      "Type": "Select",
+      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574001"
     },
     {
-      "Indicator": "Oc",
-      "Data": "Modifiers:Collections",
-      "Field": "text"
-    },
-    {
-      "Indicator": "Occ",
+      "Cursor": "Occ",
+      "ParentCursor": "App",
       "Data": "Name",
-      "Field": "text"
+      "Type": "Select",
+      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574002"
     }
   ],
-  "Fractals": [
+  "Children": [
     {
+      "Cursor": "Manager",
+      "ParentCursor": "App"
+    },
+    {
+      "Cursor": "Modifiers",
+      "ParentCursor": "App",
       "Controls": [
         {
-          "Indicator": "Name",
-          "Data": "Modifiers",
-          "Field": "text"
-        },
-        {
-          "Indicator": "Cursor",
-          "Data": "Modifiers",
-          "Field": "text"
-        },
-        {
-          "Indicator": "Oc",
+          "Cursor": "Oc",
+          "ParentCursor": "Modifiers",
           "Data": "Delete:Save:New:Edit",
-          "Field": "text"
-        },
-        {
-          "Indicator": "Occ",
-          "Data": "Name",
-          "Field": "text"
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574003"
         }
       ],
-      "Fractals": [
+      "Children": [
         {
-          "Controls": [
-            {
-              "Indicator": "Name",
-              "Data": "Delete",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Cursor",
-              "Data": "Delete",
-              "Field": "text"
-            }
-          ]
+          "Cursor": "Delete",
+          "ParentCursor": "Modifiers"
         },
         {
-          "Controls": [
-            {
-              "Indicator": "Name",
-              "Data": "Save",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Cursor",
-              "Data": "Save",
-              "Field": "text"
-            }
-          ]
+          "Cursor": "Save",
+          "ParentCursor": "Modifiers"
         },
         {
-          "Controls": [
-            {
-              "Indicator": "Name",
-              "Data": "New",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Cursor",
-              "Data": "New",
-              "Field": "text"
-            }
-          ]
+          "Cursor": "Edit",
+          "ParentCursor": "Modifiers"
         },
         {
-          "Controls": [
-            {
-              "Indicator": "Name",
-              "Data": "Edit",
-              "Field": "text"
-            },
-            {
-              "Indicator": "Cursor",
-              "Data": "Edit",
-              "Field": "text"
-            }
-          ]
+          "Cursor": "New",
+          "ParentCursor": "Modifiers"
         }
       ]
     },
     {
+      "Cursor": "Collections",
+      "ParentCursor": "App",
       "Controls": [
         {
-          "Indicator": "Name",
-          "Data": "Collections",
-          "Field": "text"
-        },
-        {
-          "Indicator": "Cursor",
-          "Data": "Collections",
-          "Field": "text"
-        },
-        {
-          "Indicator": "Oc",
+          "Cursor": "Oc",
+          "ParentCursor": "Collections",
           "Data": "Products:Users",
-          "Field": "text"
-        },
-        {
-          "Indicator": "Occ",
-          "Data": "Name:Icon",
-          "Field": "text"
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574004"
         }
       ],
-      "Fractals": [
+      "Children": [
         {
+          "Cursor": "Users",
+          "ParentCursor": "Collections",
           "Controls": [
             {
-              "Indicator": "Name",
-              "Data": "Products",
-              "Field": "Text"
+              "Cursor": "Oc",
+              "ParentCursor": "Users",
+              "Data": "3:2:1",
+              "Type": "Select",
+              "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574006"
             },
             {
-              "Indicator": "Cursor",
-              "Data": "Products",
-              "Field": "Text"
+              "Cursor": "Occ",
+              "ParentCursor": "Users",
+              "Data": "Email:Name",
+              "Type": "Select",
+              "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574007"
+            }
+          ],
+          "Children": [
+            {
+              "Cursor": "1",
+              "ParentCursor": "Users",
+              "Controls": [
+                {
+                  "Cursor": "Name",
+                  "ParentCursor": "1",
+                  "Data": "John-1",
+                  "Type": "String",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574008"
+                },
+                {
+                  "Cursor": "Email",
+                  "ParentCursor": "1",
+                  "Data": "dima@mail.com",
+                  "Type": "String",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574009"
+                }
+              ]
             },
             {
-              "Indicator": "Icon",
-              "Field": "Text",
-              "Data": "widgets"
+              "Cursor": "2",
+              "ParentCursor": "Users",
+              "Controls": [
+                {
+                  "Cursor": "Name",
+                  "ParentCursor": "2",
+                  "Data": "John-2",
+                  "Type": "String",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574010"
+                },
+                {
+                  "Cursor": "Email",
+                  "ParentCursor": "2",
+                  "Data": "dima@mail.com",
+                  "Type": "String",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574011"
+                }
+              ]
+            },
+            {
+              "Cursor": "3",
+              "ParentCursor": "Users",
+              "Controls": [
+                {
+                  "Cursor": "Name",
+                  "ParentCursor": "3",
+                  "Data": "John-3",
+                  "Type": "String",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574012"
+                },
+                {
+                  "Cursor": "Email",
+                  "ParentCursor": "3",
+                  "Data": "dima@mail.com",
+                  "Type": "String",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574013"
+                }
+              ]
             }
           ]
         },
         {
-          "Controls": [
-            {
-              "Indicator": "Name",
-              "Data": "Users",
-              "Field": "Text"
-            },
-            {
-              "Indicator": "Cursor",
-              "Data": "Users",
-              "Field": "Text"
-            }
-          ]
+          "Cursor": "Products",
+          "ParentCursor": "Collections"
         }
       ]
     }

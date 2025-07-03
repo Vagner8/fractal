@@ -1,7 +1,5 @@
 using FractalAPI.Data;
 using FractalAPI.Services;
-using FractalAPI.Services.ControlService;
-using FractalAPI.Services.FractalService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

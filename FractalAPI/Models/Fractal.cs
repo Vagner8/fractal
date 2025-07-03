@@ -1,8 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
+
 namespace FractalAPI.Models
 {
-  public class Fractal : CommonEntity
+  public class Fractal : Base
   {
-    public ICollection<Fractal> Fractals { get; set; } = [];
-    public ICollection<Control> Controls { get; set; } = [];
+    [Key]
+    public string Cursor { get; set; } = string.Empty;
+    public ICollection<Fractal>? Children { get; set; }
+    public ICollection<Control>? Controls { get; set; }
   }
 }

@@ -1,7 +1,9 @@
-﻿using FractalAPI.Data;
-using FractalAPI.Models;
-using FractalAPI.Services.ControlService;
+﻿using FractalAPI.ControlTools;
+using FractalAPI.Data;
+using FractalAPI.Dto;
+using FractalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace FractalAPI.Controllers
 {
@@ -15,7 +17,7 @@ namespace FractalAPI.Controllers
     [HttpPost]
     public async Task<ActionResult> Add([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.AddRange(dto.Select(_cs.CreateControl));
+      _db.Controls.AddRange(dto.Select(ControlMap.ToControl));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -23,7 +25,7 @@ namespace FractalAPI.Controllers
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.RemoveRange(dto.Select(_cs.CreateControl));
+      _db.Controls.RemoveRange(dto.Select(ControlMap.ToControl));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -31,7 +33,7 @@ namespace FractalAPI.Controllers
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.UpdateRange(dto.Select(_cs.CreateControl));
+      _db.Controls.UpdateRange(dto.Select(ControlMap.ToControl));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }

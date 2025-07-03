@@ -1,31 +1,9 @@
-﻿using FractalAPI.Models;
+﻿using FractalAPI.Data;
 
-namespace FractalAPI.Services.ControlService
+namespace FractalAPI.Services
 {
-  public class ControlService : IControlService
+  public class ControlService(AppDbContext db) : IControlService
   {
-    public Control CreateControl(ControlDto dto)
-    {
-      return new Control
-      {
-        Id = dto.Id,
-        ParentId = dto.ParentId,
-        Indicator = dto.Indicator,
-        Data = dto.Data,
-        Field = dto.Field,
-      };
-    }
-
-    public ControlDto CreateControlDto(Control control)
-    {
-      return new ControlDto
-      {
-        Id = control.Id,
-        ParentId = control.ParentId,
-        Indicator = control.Indicator,
-        Data = control.Data,
-        Field = control.Field,
-      };
-    }
+    private readonly AppDbContext _db = db;
   }
 }
