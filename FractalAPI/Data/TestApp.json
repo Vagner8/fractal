@@ -15,9 +15,46 @@
       "Data": "Name",
       "Type": "Select",
       "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574002"
+    },
+    {
+      "Cursor": "Ooc",
+      "ParentCursor": "App",
+      "Data": "Oc:Occ:Ooc",
+      "Type": "Select",
+      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574055"
     }
   ],
   "Children": [
+    {
+      "Cursor": "Pages",
+      "ParentCursor": "App",
+      "Controls": [
+        {
+          "Cursor": "Oc",
+          "ParentCursor": "Pages",
+          "Data": "Home:Admin",
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f571004"
+        },
+        {
+          "Cursor": "Ooc",
+          "ParentCursor": "Pages",
+          "Data": "Oc:Ooc",
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574056"
+        }
+      ],
+      "Children": [
+        {
+          "Cursor": "Home",
+          "ParentCursor": "Pages"
+        },
+        {
+          "Cursor": "Admin",
+          "ParentCursor": "Pages"
+        }
+      ]
+    },
     {
       "Cursor": "Manager",
       "ParentCursor": "App"
@@ -63,6 +100,13 @@
           "Data": "Products:Users",
           "Type": "Select",
           "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574004"
+        },
+        {
+          "Cursor": "Ooc",
+          "ParentCursor": "Collections",
+          "Data": "Oc:Ooc",
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574057"
         }
       ],
       "Children": [
@@ -83,6 +127,13 @@
               "Data": "Email:Name",
               "Type": "Select",
               "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574007"
+            },
+            {
+              "Cursor": "Ooc",
+              "ParentCursor": "Users",
+              "Data": "Oc:Occ:Ooc",
+              "Type": "Select",
+              "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574058"
             }
           ],
           "Children": [
@@ -103,6 +154,13 @@
                   "Data": "dima@mail.com",
                   "Type": "String",
                   "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574009"
+                },
+                {
+                  "Cursor": "Ooc",
+                  "ParentCursor": "1",
+                  "Data": "Ooc:Name:Email",
+                  "Type": "Select",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574059"
                 }
               ]
             },
@@ -123,6 +181,13 @@
                   "Data": "dima@mail.com",
                   "Type": "String",
                   "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574011"
+                },
+                {
+                  "Cursor": "Ooc",
+                  "ParentCursor": "2",
+                  "Data": "Ooc:Name:Email",
+                  "Type": "Select",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574060"
                 }
               ]
             },
@@ -143,6 +208,13 @@
                   "Data": "dima@mail.com",
                   "Type": "String",
                   "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574013"
+                },
+                {
+                  "Cursor": "Ooc",
+                  "ParentCursor": "3",
+                  "Data": "Ooc:Name:Email",
+                  "Type": "Select",
+                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574061"
                 }
               ]
             }

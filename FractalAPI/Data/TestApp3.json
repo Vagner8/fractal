@@ -1,0 +1,77 @@
+{
+  "Cursor": "App",
+  "ParentCursor": null,
+  "Controls": [
+    {
+      "Cursor": "Oc",
+      "ParentCursor": "App",
+      "Data": "Collections:Modifiers:Manager:Pages",
+      "Type": "Select",
+      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574001"
+    }
+  ],
+  "Children": [
+    {
+      "Cursor": "Pages",
+      "ParentCursor": "App",
+      "Controls": [
+        {
+          "Cursor": "Oc",
+          "ParentCursor": "Pages",
+          "Data": "Home:Admin",
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f571004"
+        }
+      ],
+      "Children": [
+        {
+          "Cursor": "Home",
+          "ParentCursor": "Pages"
+        },
+        {
+          "Cursor": "Admin",
+          "ParentCursor": "Pages"
+        }
+      ]
+    },
+    {
+      "Cursor": "Manager",
+      "ParentCursor": "App"
+    },
+    {
+      "Cursor": "Modifiers",
+      "ParentCursor": "App",
+      "Controls": [
+        {
+          "Cursor": "Oc",
+          "ParentCursor": "Modifiers",
+          "Data": "Delete:Save:New:Edit",
+          "Type": "Select",
+          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574003"
+        }
+      ],
+      "Children": [
+        {
+          "Cursor": "Delete",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Cursor": "Save",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Cursor": "Edit",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Cursor": "New",
+          "ParentCursor": "Modifiers"
+        }
+      ]
+    },
+    {
+      "Cursor": "Collections",
+      "ParentCursor": "App"
+    }
+  ]
+}

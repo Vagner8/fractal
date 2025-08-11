@@ -1,6 +1,7 @@
 ﻿using FractalAPI.ControlTools;
 using FractalAPI.Dto;
 using FractalAPI.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FractalAPI.FractalTools
 {
@@ -19,23 +20,15 @@ namespace FractalAPI.FractalTools
 
     public static FractalDto ToFracalDto(Fractal fractal)
     {
-      var childFractalsDto = new Dictionary<string, FractalDto>();
+      var childrenDto = fractal.Children?.ToDictionary(f => f.Cursor, ToFracalDto);
       var controlsDto = fractal.Controls?.ToDictionary(c => c.Cursor, ControlMap.ToControlDto);
-
-      if (fractal.Children != null)
-      {
-        foreach (var child in fractal.Children)
-        {
-          childFractalsDto[child.Cursor] = ToFracalDto(child);
-        }
-      }
 
       return new FractalDto
       {
         Cursor = fractal.Cursor,
         ParentCursor = fractal.ParentCursor,
-        Children = childFractalsDto,
-        Controls = controlsDto,
+        Children = childrenDto.IsNullOrEmpty() ? null : childrenDto,
+        Controls = controlsDto.IsNullOrEmpty() ? null : controlsDto,
       };
     }
   }
