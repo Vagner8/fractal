@@ -28,6 +28,7 @@ builder.Services.AddExceptionHandler<ExceptionService>();
 builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IFractalService, FractalService>();
 builder.Services.AddScoped<IControlService, ControlService>();
+builder.Services.AddScoped<IMapService, MapService>();
 
 var app = builder.Build();
 

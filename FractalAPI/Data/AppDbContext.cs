@@ -44,22 +44,27 @@ namespace FractalAPI.Data
     protected override void OnModelCreating(ModelBuilder builder)
     {
       base.OnModelCreating(builder);
+
       builder.Entity<Fractal>()
         .HasMany(f => f.Children)
-        .WithOne(f => f.Parent)
-        .HasForeignKey(f => f.ParentCursor)
-        .OnDelete(DeleteBehavior.Restrict);
+        .WithOne()
+        .HasForeignKey(f => f.ParentCursor);
 
       builder.Entity<Fractal>()
         .HasMany(f => f.Controls)
-        .WithOne(c => c.Parent)
-        .HasForeignKey(c => c.ParentCursor)
-        .OnDelete(DeleteBehavior.Cascade);
+        .WithOne()
+        .HasForeignKey(c => c.ControlParentCursor);
 
-      var (fractals, controls) = new Seeding();
+      builder.Entity<Fractal>()
+        .HasMany(f => f.ChildrenControls)
+        .WithOne()
+        .HasForeignKey(c => c.ChildControlParentCursor);
+
+      var (fractals, controls, childrenControls) = new Seeding();
 
       builder.Entity<Fractal>().HasData(fractals);
       builder.Entity<Control>().HasData(controls);
+      builder.Entity<Control>().HasData(childrenControls);
     }
   }
 }

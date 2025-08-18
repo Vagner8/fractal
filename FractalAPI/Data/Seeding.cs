@@ -5,41 +5,48 @@ namespace FractalAPI.Data
 {
   public partial class Seeding
   {
-    private readonly ICollection<Fractal> _fractals = [];
+    private readonly ICollection<Fractal> _children = [];
     private readonly ICollection<Control> _controls = [];
+    private readonly ICollection<Control> _childrenControls = [];
 
     public Seeding()
     {
       Fractal fractal = GetData();
-      _fractals.Add(new Fractal
+      _children.Add(new Fractal
       {
         Cursor = fractal.Cursor,
         ParentCursor = fractal.ParentCursor,
       });
+      AddChildren(fractal.Children);
       AddControls(fractal.Controls);
-      AddFractals(fractal.Children);
+      AddChildrenControls(fractal.ChildrenControls);
     }
 
-    public void Deconstruct(out ICollection<Fractal> fractals, out ICollection<Control> controls)
+    public void Deconstruct(
+      out ICollection<Fractal> fractals,
+      out ICollection<Control> controls,
+      out ICollection<Control> childrenControls)
     {
-      fractals = _fractals;
+      fractals = _children;
       controls = _controls;
+      childrenControls = _childrenControls;
     }
 
-    private void AddFractals(ICollection<Fractal>? fractals)
+    private void AddChildren(ICollection<Fractal>? fractals)
     {
       if (fractals == null) return;
 
       foreach (var fractal in fractals)
       {
-        _fractals.Add(new Fractal
+        _children.Add(new Fractal
         {
           Cursor = fractal.Cursor,
           ParentCursor = fractal.ParentCursor
         });
 
+        AddChildren(fractal.Children);
         AddControls(fractal.Controls);
-        AddFractals(fractal.Children);
+        AddChildrenControls(fractal.ChildrenControls);
       }
     }
 
@@ -55,7 +62,25 @@ namespace FractalAPI.Data
             Type = control.Type,
             Data = control.Data,
             Cursor = control.Cursor,
-            ParentCursor = control.ParentCursor,
+            ControlParentCursor = control.ParentCursor,
+          });
+        }
+      }
+    }
+
+    private void AddChildrenControls(ICollection<Control>? controls)
+    {
+      if (controls != null)
+      {
+        foreach (var control in controls)
+        {
+          _childrenControls.Add(new Control
+          {
+            Id = control.Id,
+            Type = control.Type,
+            Data = control.Data,
+            Cursor = control.Cursor,
+            ChildControlParentCursor = control.ParentCursor,
           });
         }
       }
@@ -63,7 +88,7 @@ namespace FractalAPI.Data
 
     private static Fractal GetData()
     {
-      string path = Path.Combine("Data", "TestApp3.json");
+      string path = Path.Combine("Data", "TestApp.json");
       return JsonSerializer.Deserialize<Fractal>(File.ReadAllText(path)) ?? throw new Exception($"No data, path: {path}");
     }
   }

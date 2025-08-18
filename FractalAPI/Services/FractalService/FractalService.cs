@@ -25,6 +25,7 @@ namespace FractalAPI.Services
       return await _db.Fractals
         .Include(f => f.Controls)
         .Include(f => f.Children)
+        .Include(f => f.ChildrenControls)
         .FirstOrDefaultAsync(f => f.Cursor == cursor)
         ?? throw new Exception($"Unable to get fractal with children by cursor: {cursor}");
     }

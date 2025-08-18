@@ -1,6 +1,5 @@
 using FractalAPI.Data;
 using FractalAPI.Dto;
-using FractalAPI.FractalTools;
 using FractalAPI.Models;
 using FractalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +11,18 @@ namespace FractalAPI.Controllers
   [ApiController]
   public class FractalController(
     AppDbContext db,
+    IMapService ms,
     IFractalService fs) : ControllerBase
   {
     private readonly AppDbContext _db = db;
+    private readonly IMapService _ms = ms;
     private readonly IFractalService _fs = fs;
 
     [HttpGet]
     public async Task<ActionResult> Get(string cursor)
     {
       Fractal fractal = await _fs.GetWithChildrenRecursively(cursor);
-      return Ok(FractalMap.ToFracalDto(fractal));
+      return Ok(_ms.ToFractalDto(fractal));
     }
 
     [HttpPost]

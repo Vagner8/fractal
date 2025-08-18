@@ -3,81 +3,87 @@
   "ParentCursor": null,
   "Controls": [
     {
-      "Cursor": "Oc",
-      "ParentCursor": "App",
-      "Data": "Modifiers:Collections:Manager",
-      "Type": "Select",
-      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574001"
+      "Data": "Controls:Children:Control columns:Children controls",
+      "Type": "Splittable",
+      "Id": "a4b6b7a9-31a2-4c9f-bc42-77a9b0d2f401",
+      "Cursor": "Controls",
+      "ParentCursor": "App"
     },
     {
-      "Cursor": "Occ",
-      "ParentCursor": "App",
-      "Data": "Name",
-      "Type": "Select",
-      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574002"
+      "Data": "Modifiers",
+      "Type": "Splittable",
+      "Id": "c5d6e8f9-1a23-4b56-9c78-abcdeffed001",
+      "Cursor": "Children",
+      "ParentCursor": "App"
     },
     {
-      "Cursor": "Ooc",
-      "ParentCursor": "App",
-      "Data": "Oc:Occ:Ooc",
-      "Type": "Select",
-      "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574055"
+      "Data": "Data:Type:Cursor",
+      "Type": "Splittable",
+      "Id": "d7e8f9a0-2b34-4c56-8d90-bcdef1234001",
+      "Cursor": "Control columns",
+      "ParentCursor": "App"
+    },
+    {
+      "Data": "Cursor:Children:Controls",
+      "Type": "Splittable",
+      "Id": "e8f9a0b1-3c45-4d67-9ea1-cdef23456001",
+      "Cursor": "Children controls",
+      "ParentCursor": "App"
+    }
+  ],
+  "ChildrenControls": [
+    {
+      "Data": "",
+      "Type": "String",
+      "Id": "f9a0b1c2-4d56-4e78-af12-def345670001",
+      "Cursor": "Cursor",
+      "ParentCursor": "App"
+    },
+    {
+      "Data": "",
+      "Type": "Splittable",
+      "Id": "0a1b2c3d-5e67-4f89-b012-ef4567800001",
+      "Cursor": "Children",
+      "ParentCursor": "App"
+    },
+    {
+      "Data": "",
+      "Type": "Splittable",
+      "Id": "1b2c3d4e-6f78-4a90-c123-f56789012001",
+      "Cursor": "Controls",
+      "ParentCursor": "App"
     }
   ],
   "Children": [
-    {
-      "Cursor": "Pages",
-      "ParentCursor": "App",
-      "Controls": [
-        {
-          "Cursor": "Oc",
-          "ParentCursor": "Pages",
-          "Data": "Home:Admin",
-          "Type": "Select",
-          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f571004"
-        },
-        {
-          "Cursor": "Ooc",
-          "ParentCursor": "Pages",
-          "Data": "Oc:Ooc",
-          "Type": "Select",
-          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574056"
-        }
-      ],
-      "Children": [
-        {
-          "Cursor": "Home",
-          "ParentCursor": "Pages"
-        },
-        {
-          "Cursor": "Admin",
-          "ParentCursor": "Pages"
-        }
-      ]
-    },
-    {
-      "Cursor": "Manager",
-      "ParentCursor": "App"
-    },
     {
       "Cursor": "Modifiers",
       "ParentCursor": "App",
       "Controls": [
         {
-          "Cursor": "Oc",
-          "ParentCursor": "Modifiers",
           "Data": "Delete:Save:New:Edit",
-          "Type": "Select",
-          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574003"
+          "Type": "Splittable",
+          "Id": "2c3d4e5f-7a89-4b01-d234-678901230001",
+          "Cursor": "Children",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Data": "Children:Controls:Children controls",
+          "Type": "Splittable",
+          "Id": "3d4e5f60-8b90-4c12-e345-789012340001",
+          "Cursor": "Controls",
+          "ParentCursor": "Modifiers"
+        },
+        {
+          "Data": "Cursor",
+          "Type": "Splittable",
+          "Id": "4e5f6071-9c01-4d23-f456-890123450001",
+          "Cursor": "Children controls",
+          "ParentCursor": "Modifiers"
         }
       ],
       "Children": [
         {
           "Cursor": "Delete",
-          "ParentCursor": "Modifiers"
-        },
-        {
-          "Cursor": "Save",
           "ParentCursor": "Modifiers"
         },
         {
@@ -87,142 +93,10 @@
         {
           "Cursor": "New",
           "ParentCursor": "Modifiers"
-        }
-      ]
-    },
-    {
-      "Cursor": "Collections",
-      "ParentCursor": "App",
-      "Controls": [
-        {
-          "Cursor": "Oc",
-          "ParentCursor": "Collections",
-          "Data": "Products:Users",
-          "Type": "Select",
-          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574004"
         },
         {
-          "Cursor": "Ooc",
-          "ParentCursor": "Collections",
-          "Data": "Oc:Ooc",
-          "Type": "Select",
-          "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574057"
-        }
-      ],
-      "Children": [
-        {
-          "Cursor": "Users",
-          "ParentCursor": "Collections",
-          "Controls": [
-            {
-              "Cursor": "Oc",
-              "ParentCursor": "Users",
-              "Data": "3:2:1",
-              "Type": "Select",
-              "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574006"
-            },
-            {
-              "Cursor": "Occ",
-              "ParentCursor": "Users",
-              "Data": "Email:Name",
-              "Type": "Select",
-              "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574007"
-            },
-            {
-              "Cursor": "Ooc",
-              "ParentCursor": "Users",
-              "Data": "Oc:Occ:Ooc",
-              "Type": "Select",
-              "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574058"
-            }
-          ],
-          "Children": [
-            {
-              "Cursor": "1",
-              "ParentCursor": "Users",
-              "Controls": [
-                {
-                  "Cursor": "Name",
-                  "ParentCursor": "1",
-                  "Data": "John-1",
-                  "Type": "String",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574008"
-                },
-                {
-                  "Cursor": "Email",
-                  "ParentCursor": "1",
-                  "Data": "dima@mail.com",
-                  "Type": "String",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574009"
-                },
-                {
-                  "Cursor": "Ooc",
-                  "ParentCursor": "1",
-                  "Data": "Ooc:Name:Email",
-                  "Type": "Select",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574059"
-                }
-              ]
-            },
-            {
-              "Cursor": "2",
-              "ParentCursor": "Users",
-              "Controls": [
-                {
-                  "Cursor": "Name",
-                  "ParentCursor": "2",
-                  "Data": "John-2",
-                  "Type": "String",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574010"
-                },
-                {
-                  "Cursor": "Email",
-                  "ParentCursor": "2",
-                  "Data": "dima@mail.com",
-                  "Type": "String",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574011"
-                },
-                {
-                  "Cursor": "Ooc",
-                  "ParentCursor": "2",
-                  "Data": "Ooc:Name:Email",
-                  "Type": "Select",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574060"
-                }
-              ]
-            },
-            {
-              "Cursor": "3",
-              "ParentCursor": "Users",
-              "Controls": [
-                {
-                  "Cursor": "Name",
-                  "ParentCursor": "3",
-                  "Data": "John-3",
-                  "Type": "String",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574012"
-                },
-                {
-                  "Cursor": "Email",
-                  "ParentCursor": "3",
-                  "Data": "dima@mail.com",
-                  "Type": "String",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574013"
-                },
-                {
-                  "Cursor": "Ooc",
-                  "ParentCursor": "3",
-                  "Data": "Ooc:Name:Email",
-                  "Type": "Select",
-                  "Id": "6f7a9f7f-0c3e-4d51-a3f2-96be1f574061"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "Cursor": "Products",
-          "ParentCursor": "Collections"
+          "Cursor": "Save",
+          "ParentCursor": "Modifiers"
         }
       ]
     }
