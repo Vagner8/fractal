@@ -13,15 +13,16 @@ namespace FractalAPI.Services
         Cursor = dto.Cursor,
         ParentCursor = dto.ParentCursor,
         Children = dto.Children?.Values.Select(ToFractal).ToList(),
-        Controls = dto.Controls?.Values.Select(ToControl).ToList()
+        Controls = dto.Controls?.Values.Select(c => ToControl(c)).ToList(),
+        ChildrenControls = dto.ChildrenControls?.Values.Select((c) => ToControl(c, true)).ToList(),
       };
     }
 
     public FractalDto ToFractalDto(Fractal fractal)
     {
-      var childrenDto = fractal.Children?.ToDictionary(f => f.Cursor, ToFractalDto);
-      var controlsDto = fractal.Controls?.ToDictionary(c => c.Cursor, ToControlDto);
-      var chldrenControlsDto = fractal.ChildrenControls?.ToDictionary(c => c.Cursor, ToControlDto);
+      var childrenDto = fractal.Children?.ToDictionary(f => ToLowerFirstLetter(f.Cursor), ToFractalDto);
+      var controlsDto = fractal.Controls?.ToDictionary(c => ToLowerFirstLetter(c.Cursor), ToControlDto);
+      var chldrenControlsDto = fractal.ChildrenControls?.ToDictionary(c => ToLowerFirstLetter(c.Cursor), ToControlDto);
 
       return new FractalDto
       {
@@ -45,7 +46,7 @@ namespace FractalAPI.Services
       };
     }
 
-    public Control ToControl(ControlDto dto)
+    public Control ToControl(ControlDto dto, bool isChildControl = false)
     {
       return new Control
       {
@@ -53,8 +54,17 @@ namespace FractalAPI.Services
         Data = dto.Data,
         Type = dto.Type,
         Cursor = dto.Cursor,
-        ControlParentCursor = dto.ParentCursor,
+        ControlParentCursor = isChildControl ? null : dto.ParentCursor,
+        ChildControlParentCursor = isChildControl ? dto.ParentCursor : null,
       };
+    }
+
+    private static string ToLowerFirstLetter(string input)
+    {
+      if (string.IsNullOrEmpty(input) || char.IsLower(input[0]))
+        return input;
+
+      return char.ToLower(input[0]) + input[1..];
     }
   }
 }

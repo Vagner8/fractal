@@ -8,6 +8,6 @@ namespace FractalAPI.Services
     Fractal ToFractal(FractalDto dto);
     FractalDto ToFractalDto(Fractal fractal);
     ControlDto ToControlDto(Control control);
-    Control ToControl(ControlDto controlDto);
+    Control ToControl(ControlDto dto, bool isChildControl = false);
   }
 }

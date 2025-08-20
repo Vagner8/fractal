@@ -17,7 +17,7 @@ namespace FractalAPI.Controllers
     [HttpPost]
     public async Task<ActionResult> Add([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.AddRange(dto.Select(_ms.ToControl));
+      _db.Controls.AddRange(dto.Select((c) => _ms.ToControl(c)));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -25,7 +25,7 @@ namespace FractalAPI.Controllers
     [HttpDelete]
     public async Task<ActionResult> Delete([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.RemoveRange(dto.Select(_ms.ToControl));
+      _db.Controls.RemoveRange(dto.Select((c) => _ms.ToControl(c)));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }
@@ -33,7 +33,7 @@ namespace FractalAPI.Controllers
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] ICollection<ControlDto> dto)
     {
-      _db.Controls.UpdateRange(dto.Select(_ms.ToControl));
+      _db.Controls.UpdateRange(dto.Select((c) => _ms.ToControl(c)));
       await _db.SaveChangesAsync();
       return Ok(dto);
     }

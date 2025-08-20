@@ -1,102 +1,102 @@
 {
-  "Cursor": "App",
+  "Cursor": "app",
   "ParentCursor": null,
   "Controls": [
     {
-      "Data": "Controls:Children:Control columns:Children controls",
-      "Type": "Splittable",
+      "Data": "controls:children:control keys:children controls",
+      "Type": "splittable",
       "Id": "a4b6b7a9-31a2-4c9f-bc42-77a9b0d2f401",
-      "Cursor": "Controls",
-      "ParentCursor": "App"
+      "Cursor": "controls",
+      "ParentCursor": "app"
     },
     {
-      "Data": "Modifiers",
-      "Type": "Splittable",
+      "Data": "modifiers",
+      "Type": "splittable",
       "Id": "c5d6e8f9-1a23-4b56-9c78-abcdeffed001",
-      "Cursor": "Children",
-      "ParentCursor": "App"
+      "Cursor": "children",
+      "ParentCursor": "app"
     },
     {
-      "Data": "Data:Type:Cursor",
-      "Type": "Splittable",
+      "Data": "data:type:cursor",
+      "Type": "splittable",
       "Id": "d7e8f9a0-2b34-4c56-8d90-bcdef1234001",
-      "Cursor": "Control columns",
-      "ParentCursor": "App"
+      "Cursor": "control keys",
+      "ParentCursor": "app"
     },
     {
-      "Data": "Cursor:Children:Controls",
-      "Type": "Splittable",
+      "Data": "cursor:children:controls",
+      "Type": "splittable",
       "Id": "e8f9a0b1-3c45-4d67-9ea1-cdef23456001",
-      "Cursor": "Children controls",
-      "ParentCursor": "App"
+      "Cursor": "children controls",
+      "ParentCursor": "app"
     }
   ],
   "ChildrenControls": [
     {
       "Data": "",
-      "Type": "String",
+      "Type": "string",
       "Id": "f9a0b1c2-4d56-4e78-af12-def345670001",
-      "Cursor": "Cursor",
-      "ParentCursor": "App"
+      "Cursor": "cursor",
+      "ParentCursor": "app"
     },
     {
       "Data": "",
-      "Type": "Splittable",
+      "Type": "splittable",
       "Id": "0a1b2c3d-5e67-4f89-b012-ef4567800001",
-      "Cursor": "Children",
-      "ParentCursor": "App"
+      "Cursor": "children",
+      "ParentCursor": "app"
     },
     {
       "Data": "",
-      "Type": "Splittable",
+      "Type": "splittable",
       "Id": "1b2c3d4e-6f78-4a90-c123-f56789012001",
-      "Cursor": "Controls",
-      "ParentCursor": "App"
+      "Cursor": "controls",
+      "ParentCursor": "app"
     }
   ],
   "Children": [
     {
-      "Cursor": "Modifiers",
-      "ParentCursor": "App",
+      "Cursor": "modifiers",
+      "ParentCursor": "app",
       "Controls": [
         {
-          "Data": "Delete:Save:New:Edit",
-          "Type": "Splittable",
+          "Data": "delete:save:new:edit",
+          "Type": "splittable",
           "Id": "2c3d4e5f-7a89-4b01-d234-678901230001",
           "Cursor": "Children",
-          "ParentCursor": "Modifiers"
+          "ParentCursor": "modifiers"
         },
         {
-          "Data": "Children:Controls:Children controls",
-          "Type": "Splittable",
+          "Data": "children:controls:children controls",
+          "Type": "splittable",
           "Id": "3d4e5f60-8b90-4c12-e345-789012340001",
           "Cursor": "Controls",
-          "ParentCursor": "Modifiers"
+          "ParentCursor": "modifiers"
         },
         {
-          "Data": "Cursor",
-          "Type": "Splittable",
+          "Data": "cursor",
+          "Type": "splittable",
           "Id": "4e5f6071-9c01-4d23-f456-890123450001",
-          "Cursor": "Children controls",
-          "ParentCursor": "Modifiers"
+          "Cursor": "children controls",
+          "ParentCursor": "modifiers"
         }
       ],
       "Children": [
         {
-          "Cursor": "Delete",
-          "ParentCursor": "Modifiers"
+          "Cursor": "delete",
+          "ParentCursor": "modifiers"
         },
         {
-          "Cursor": "Edit",
-          "ParentCursor": "Modifiers"
+          "Cursor": "edit",
+          "ParentCursor": "modifiers"
         },
         {
-          "Cursor": "New",
-          "ParentCursor": "Modifiers"
+          "Cursor": "new",
+          "ParentCursor": "modifiers"
         },
         {
-          "Cursor": "Save",
-          "ParentCursor": "Modifiers"
+          "Cursor": "save",
+          "ParentCursor": "modifiers"
         }
       ]
     }
